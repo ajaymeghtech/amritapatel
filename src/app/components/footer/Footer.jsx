@@ -13,7 +13,7 @@ import socialmedia2Icon from '@/app/assets/icons/socialmedia2.png';
 import socialmedia3Icon from '@/app/assets/icons/socialmedia3.png';
 import socialmedia4Icon from '@/app/assets/icons/socialmedia4.png';
 import footerLogo from '@/app/assets/images/amrita_patel_footer_logo.png';
-import megh_logo from '@/App/assets/images/megh_technologies_logo.png';
+import megh_logo from '@/app/assets/images/megh_technologies_logo.png';
 import { fetchSettings } from '@/app/services/settingsService';
 
 export default function Footer() {
@@ -38,7 +38,7 @@ export default function Footer() {
     }, []);
 
     if (loading) {
-        return <footer className={footerStyles.footer}><p>Loading footer...</p></footer>;
+        return <footer className={styles.footer}><p>Loading footer...</p></footer>;
     }
 
     console.log('Footer settings:', settings);
