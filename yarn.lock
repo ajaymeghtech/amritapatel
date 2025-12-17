@@ -1886,15 +1886,15 @@
     "@mui/utils" "^7.3.3"
     "@mui/x-internals" "8.14.0"
 
-"@next/env@15.5.5":
-  version "15.5.5"
-  resolved "https://registry.npmjs.org/@next/env/-/env-15.5.5.tgz"
-  integrity sha512-2Zhvss36s/yL+YSxD5ZL5dz5pI6ki1OLxYlh6O77VJ68sBnlUrl5YqhBgCy7FkdMsp9RBeGFwpuDCdpJOqdKeQ==
+"@next/env@15.5.7":
+  version "15.5.7"
+  resolved "https://registry.npmjs.org/@next/env/-/env-15.5.7.tgz"
+  integrity sha512-4h6Y2NyEkIEN7Z8YxkA27pq6zTkS09bUSYC0xjd0NpwFxjnIKeZEeH591o5WECSmjpUhLn3H2QLJcDye3Uzcvg==
 
-"@next/swc-win32-x64-msvc@15.5.5":
-  version "15.5.5"
-  resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.5.5.tgz"
-  integrity sha512-5kE3oRJxc7M8RmcTANP8RGoJkaYlwIiDD92gSwCjJY0+j8w8Sl1lvxgQ3bxfHY2KkHFai9tpy/Qx1saWV8eaJQ==
+"@next/swc-win32-x64-msvc@15.5.7":
+  version "15.5.7"
+  resolved "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-15.5.7.tgz"
+  integrity sha512-gMzgBX164I6DN+9/PGA+9dQiwmTkE4TloBNx8Kv9UiGARsr9Nba7IpcBRA1iTV9vwlYnrE3Uy6I7Aj6qLjQuqw==
 
 "@parcel/watcher-win32-x64@2.5.1":
   version "2.5.1"
@@ -3726,25 +3726,25 @@ nanoid@^3.3.6, nanoid@^3.3.7:
   resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.11.tgz"
   integrity sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==
 
-next@15.5.5:
-  version "15.5.5"
-  resolved "https://registry.npmjs.org/next/-/next-15.5.5.tgz"
-  integrity sha512-OQVdBPtpBfq7HxFN0kOVb7rXXOSIkt5lTzDJDGRBcOyVvNRIWFauMqi1gIHd1pszq1542vMOGY0HP4CaiALfkA==
+next@15.5.7:
+  version "15.5.7"
+  resolved "https://registry.npmjs.org/next/-/next-15.5.7.tgz"
+  integrity sha512-+t2/0jIJ48kUpGKkdlhgkv+zPTEOoXyr60qXe68eB/pl3CMJaLeIGjzp5D6Oqt25hCBiBTt8wEeeAzfJvUKnPQ==
   dependencies:
-    "@next/env" "15.5.5"
+    "@next/env" "15.5.7"
     "@swc/helpers" "0.5.15"
     caniuse-lite "^1.0.30001579"
     postcss "8.4.31"
     styled-jsx "5.1.6"
   optionalDependencies:
-    "@next/swc-darwin-arm64" "15.5.5"
-    "@next/swc-darwin-x64" "15.5.5"
-    "@next/swc-linux-arm64-gnu" "15.5.5"
-    "@next/swc-linux-arm64-musl" "15.5.5"
-    "@next/swc-linux-x64-gnu" "15.5.5"
-    "@next/swc-linux-x64-musl" "15.5.5"
-    "@next/swc-win32-arm64-msvc" "15.5.5"
-    "@next/swc-win32-x64-msvc" "15.5.5"
+    "@next/swc-darwin-arm64" "15.5.7"
+    "@next/swc-darwin-x64" "15.5.7"
+    "@next/swc-linux-arm64-gnu" "15.5.7"
+    "@next/swc-linux-arm64-musl" "15.5.7"
+    "@next/swc-linux-x64-gnu" "15.5.7"
+    "@next/swc-linux-x64-musl" "15.5.7"
+    "@next/swc-win32-arm64-msvc" "15.5.7"
+    "@next/swc-win32-x64-msvc" "15.5.7"
     sharp "^0.34.3"
 
 node-addon-api@^7.0.0:
