@@ -1,7 +1,7 @@
 import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
-import Innerbanner from "../components/common/innerbanner";
+import Innerbanner from "../components/common/Innerbanner";
 
 
 export default function AcademicsPage() {
