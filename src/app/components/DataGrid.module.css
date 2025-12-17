@@ -1,0 +1,143 @@
+/* DataGrid Component Styles */
+.dataTableContainer {
+  width: 100%;
+  maxWidth: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+.dataTableWrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+/* No Data State */
+.noDataContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  padding: 2rem;
+}
+
+.noDataContent {
+  text-align: center;
+  max-width: 400px;
+}
+
+.noDataIcon {
+  margin-bottom: 1rem;
+  color: #9ca3af;
+}
+
+.noDataTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.5rem;
+}
+
+.noDataDescription {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.noDataActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.noDataActionBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+/* Loading State */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  padding: 2rem;
+}
+
+.loadingSpinner {
+  margin-bottom: 1rem;
+}
+
+.loadingIcon {
+  color: #3b82f6;
+  animation: spin 1s linear infinite;
+}
+
+.loadingText {
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dataTableContainer {
+    padding: 0.5rem;
+  }
+  
+  .noDataContainer {
+    padding: 1rem;
+    min-height: 200px;
+  }
+  
+  .noDataTitle {
+    font-size: 1.125rem;
+  }
+  
+  .noDataDescription {
+    font-size: 0.875rem;
+  }
+  
+  .noDataActionBtn {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .noDataContainer {
+    padding: 0.75rem;
+  }
+  
+  .noDataTitle {
+    font-size: 1rem;
+  }
+  
+  .noDataDescription {
+    font-size: 0.8125rem;
+  }
+}

@@ -1,0 +1,72 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+.onGoingProjectsSection{ 
+  margin-top: 50px;
+  .calendarList {
+    list-style: none; padding-left: 0; margin: 0; 
+    display: flex; flex-wrap: wrap; 
+        li { 
+          flex: 0 0 33.3%; max-width:33.3%; padding: 15px;     display: flex;
+          .boxCalendar {
+            background: #F5EFE7; border-radius: 20px; padding: 30px;
+            border: 2px solid #D4D3D1; display: flex; flex-direction: column; justify-content: space-between;  
+            .calendarHeading {
+              display: flex; align-items: center; justify-content: space-between; margin-bottom: 0px;
+              h3 {font-size: 30px; font-weight: 500; color: #2B2B2B; flex: 0 0 70%; max-width:70%;
+                font-family: "Source Sans 3", sans-serif !important;     margin-bottom: 0px; }
+              .pdfIcon {  margin-left: 10px;}
+              svg {padding: 5px;}
+            } 
+        }
+      }
+      @include desktop{
+        li { 
+            .boxCalendar{
+               padding: 15px;  width: 100%;
+                .calendarHeading {
+                  h3{ font-size: 20px; line-height: 25px;}
+                  svg {width: 60px;}          
+                }
+              }
+            }
+      }
+      @include mini-desktop{
+        li { 
+            .boxCalendar{
+               padding: 15px;  width: 100%;
+                .calendarHeading {
+                  h3{ font-size: 20px; line-height: 25px;}
+                  svg {width: 60px;}          
+                }
+              }
+            }
+      }
+        @include tab{
+        li { 
+            flex: 0 0 50%; max-width:50%; padding: 10px; 
+            .boxCalendar{
+               padding: 15px;  width: 100%;
+                .calendarHeading {
+                  h3{ font-size: 20px; line-height: 25px;}
+                  svg {width: 60px;}          
+                }
+              }
+            }
+      }
+      @include phone{
+        li { 
+            flex: 0 0 100%; max-width:100%; padding: 10px; 
+            .boxCalendar{
+               padding: 15px;  width: 100%;
+                .calendarHeading {
+                  h3{ font-size: 20px; line-height: 25px;}
+                  svg {width: 60px;}          
+                }
+              }
+            }
+      }
+  }
+}
+

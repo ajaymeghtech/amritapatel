@@ -1,0 +1,173 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+.footerheading { 
+    font-size: 30px; font-weight: 400; color: #fff; 
+    margin-bottom: 30px; 
+    @include tab { margin-bottom: 15px; text-align: left;} 
+}
+
+.footer {
+ background: #1277BD;
+  color: #fff;
+  .footerTop {
+    flex-wrap: wrap; 
+    padding: 80px 0;
+
+    @include tab {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 30px;
+    }
+
+    @include phone {
+      padding: 50px 25px;
+    }
+  }
+
+
+  .logoSection {
+    flex: 1;text-align: center;display: flex;justify-content: center;
+    align-items: center;margin-bottom: 70px;
+
+    p {font-size: 16px;margin-top: 10px;font-weight: 500;}
+
+    img {margin-bottom: 10px;}
+
+    @include tab {
+      margin-bottom: 30px;
+    }
+
+    @include phone {
+      margin-bottom: 35px;
+      img {width: 200px;}
+    }
+  }
+
+
+  .quickLinks ul {
+    list-style: none;columns: 2;-webkit-columns: 2;
+    -moz-columns: 2;column-gap: 40px;padding: 0;margin: 0;
+ 
+    li {
+      margin-bottom: 8px;
+      a {
+        text-decoration: none;font-size: 20px;transition: 0.2s;font-weight: 400;color: #fff;
+        &:hover {text-decoration: underline;}
+      }
+    }
+
+    @include desktop {
+      li {
+        a {font-size: 18px;}
+      }
+    }
+
+    @include mini-desktop {
+        margin-bottom: 50px;
+      li {
+        text-align: left;
+        a {font-size: 18px;}
+      }
+    }
+
+    @include phone {
+      margin-bottom: 30px;columns: 1;
+      li {
+        text-align: left;
+        a {font-size: 18px;}
+      }
+    }
+  } 
+
+  .contactSection {
+    padding: 0px;margin: 0px;
+    display: flex;gap:20px;    
+    li{
+        flex: 0 0 40%;max-width: 40%;
+        &:nth-child(2){flex: 0 0 60%;max-width: 60%;}
+
+        h3 { font-size: 20px; margin-bottom: 20px; font-weight: 600; }
+        .contactItem { 
+            display: flex; align-items: flex-start; gap: 5px;position: relative;padding-left: 40px;
+            flex-direction: column;margin-bottom: 20px;
+            .emailblock { display: block; }
+            p, a { font-size: 22px; line-height: 30px; color: #fff; text-align: left; margin: 0px;}
+            .footericon {
+                max-width: 25px; height: 25px; object-fit: contain; margin-right: 10px;     margin-top: 4px;
+                position: absolute; top: 2px; left: 0; 
+            }
+
+            @include tab{
+                margin-bottom: 12px;
+                .footericon{height: 20px;}
+            }
+        }
+
+        .phone { font-weight: 600; }
+        .email { margin-top: 10px; }
+        .socialIcons { 
+            margin-top: 20px; display: flex; align-items: center; justify-content: flex-start;
+            a { 
+                color: #fff; margin-right: 18px; font-size: 18px; transition: 0.2s;
+                img{object-fit: contain;  height: 22px;width: auto;}
+                &:hover { color: #0056b3; }
+            }
+        }
+    }
+    
+
+
+    @include desktop {
+      li .contactItem {
+        p, a { font-size: 18px;line-height: 24px;}
+      }
+    }
+
+    @include mini-desktop {
+        flex-direction: column;
+        li{
+            flex: 0 0 100%;max-width: 100%;
+            .contactItem {
+                p, a { font-size: 18px; }
+            }
+        }
+      
+    }
+
+    @include tab{
+        flex-direction: row;
+        li{
+            flex: 0 0 50%;max-width: 50%;
+        }
+    }
+
+    @include phone {
+        flex-direction: column;
+        li{
+            flex: 0 0 100%;max-width: 100%;
+            .contactItem {
+                gap: 0;
+                p, a { font-size: 18px; margin-bottom: 0px; }
+            }
+        }
+      
+    }
+  }
+}
+
+.footerBottom { 
+    background: #004C81; color: #ffffff; padding: 8px 0; font-size: 16px; 
+    display: flex; justify-content: center; 
+    p { margin: 0px; display: inline-block; color: #ffffff; font-size: 16px; font-weight: $font-weight-normal; } 
+    .designby { 
+        display: flex; justify-content: flex-end; gap:5px; 
+        a { padding-left: 2px; padding-top: 2px; } 
+    } 
+    @include tab { p { font-size: 16px; } } 
+    @include phone { 
+        p { display: block; font-size: 14px; text-align: center; } 
+        .designby { justify-content: center; } 
+    } 
+}

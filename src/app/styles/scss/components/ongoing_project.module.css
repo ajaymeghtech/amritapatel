@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap");
+.onGoingProjectsSection {
+  margin-top: 50px;
+}
+.onGoingProjectsSection .calendarList {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.onGoingProjectsSection .calendarList li {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 33.3%;
+          flex: 0 0 33.3%;
+  max-width: 33.3%;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.onGoingProjectsSection .calendarList li .boxCalendar {
+  background: #F5EFE7;
+  border-radius: 20px;
+  padding: 30px;
+  border: 2px solid #D4D3D1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 0px;
+}
+.onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading h3 {
+  font-size: 30px;
+  font-weight: 500;
+  color: #2B2B2B;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 70%;
+          flex: 0 0 70%;
+  max-width: 70%;
+  font-family: "Source Sans 3", sans-serif !important;
+  margin-bottom: 0px;
+}
+.onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading .pdfIcon {
+  margin-left: 10px;
+}
+.onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading svg {
+  padding: 5px;
+}
+@media (max-width: 1600px) {
+  .onGoingProjectsSection .calendarList li .boxCalendar {
+    padding: 15px;
+    width: 100%;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading h3 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading svg {
+    width: 60px;
+  }
+}
+@media (max-width: 1199px) {
+  .onGoingProjectsSection .calendarList li .boxCalendar {
+    padding: 15px;
+    width: 100%;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading h3 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading svg {
+    width: 60px;
+  }
+}
+@media (max-width: 991px) {
+  .onGoingProjectsSection .calendarList li {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    max-width: 50%;
+    padding: 10px;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar {
+    padding: 15px;
+    width: 100%;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading h3 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading svg {
+    width: 60px;
+  }
+}
+@media (max-width: 767px) {
+  .onGoingProjectsSection .calendarList li {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar {
+    padding: 15px;
+    width: 100%;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading h3 {
+    font-size: 20px;
+    line-height: 25px;
+  }
+  .onGoingProjectsSection .calendarList li .boxCalendar .calendarHeading svg {
+    width: 60px;
+  }
+}/*# sourceMappingURL=ongoing_project.module.css.map */

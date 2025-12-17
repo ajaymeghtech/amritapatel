@@ -1,0 +1,32 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+.academicCalendar{
+  .calendarList {
+    list-style: none; padding-left: 0; margin: 0; 
+    display: flex; flex-wrap: wrap; 
+    li {
+      flex: 0 0 33.3%; max-width:33.3%; padding: 15px;
+      .boxCalendar {
+        background: #F5EFE7; border-radius: 20px; padding: 30px;
+        border: 2px solid #D4D3D1; display: flex; flex-direction: column; justify-content: space-between;  min-height: 400px;
+        .calendarHeading {
+          display: flex; align-items: center; justify-content: space-between; margin-bottom: 15px;
+          align-items: flex-start;
+          h3 {font-size: 30px; font-weight: 500; color: #2B2B2B; max-width: 300px;
+            font-family: "Source Sans 3", sans-serif !important;     margin-bottom: 0px; }
+          .pdfIcon {  margin-left: 10px;}
+        }
+        .calendarLink {
+          display: flex; flex-wrap: wrap;
+          a {
+            font-size: 20px; color: #6C6458; font-weight: 500; margin-bottom: 10px;
+            background-color: #D2C5B3; border-radius: 50px; padding: 5px 15px; margin-right: 15px;
+          }
+      }
+    }
+  }
+}
+}
+

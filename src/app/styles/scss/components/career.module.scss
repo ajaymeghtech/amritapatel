@@ -1,0 +1,32 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+
+.careerList{
+    padding: 0px;
+    li{ 
+        background: #F5EFE7;
+        border: 1px solid #D4D3D1;border-radius:20px;
+        padding: 50px;margin-bottom: 30px;
+        display: flex;justify-content: space-between;align-items: center;
+        .label{font-family: 'Source Serif Pro';font-weight: 400;font-size: 40px;line-height: 42px;margin:0px;}
+        a{font-weight: 800;font-size: 20px;line-height: 30px;color: #22AA78;padding: 5px;white-space: nowrap;}
+        .buttons{display: flex;gap: 100px;}
+
+
+        @include mini-desktop{
+            padding: 30px;
+            .label{font-size: 24px;line-height: 30px;}
+            a{font-size: 16px;white-space: nowrap;}
+            .buttons{gap: 30px;}
+        }
+
+        @include phone{
+            flex-direction: column;align-items: flex-start;
+            padding: 20px;margin-bottom: 20px;
+            .label{font-size: 20px;line-height: 26px;}
+            a{font-size: 14px;}
+        }
+    }
+}

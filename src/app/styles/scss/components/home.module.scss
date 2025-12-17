@@ -1,0 +1,1323 @@
+//home.module.scss
+@import '../variables.scss';
+@import '../mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+.homeHero {
+  position: relative; width: 100%; height: 100vh; min-height: 600px; overflow: hidden; margin-top: 0;
+  // &::before{
+  //   content:'';
+  //    background: linear-gradient(0deg, rgba(207, 240, 255, 0) 0%, #CFF0FF 40%);
+  //    position: absolute;top: 0;width: 100%;height: 40%;left: 0;
+  // }
+} 
+
+.heroBackground { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; &::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.3; z-index: 2; } }
+
+.heroBannerImage { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; top: 0; left: 0; transition: opacity 0.5s ease-in-out; }
+
+.imageLoading { opacity: 0; }
+
+.imageLoaded { opacity: 1; }
+
+.heroOverlay { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, #CFF0FF00 0%, #00183DE5 100%); z-index: 3; width: 100%; height: 380px; opacity: 1; }
+
+.heroContent { position: relative; z-index: 4; height: 100%; display: flex; align-items: flex-end; justify-content: center; text-align: center; color: white; padding: 0 20px 80px 20px; }
+
+.heroTextWrapper { max-width: 1200px; width: 100%; }
+
+.heroTitle { font-size: 90px; color: #FFFFFF; font-weight: $font-weight-semibold; text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3); line-height: 1.2;  letter-spacing: -2px; margin: 0 auto 20px; @include mini-desktop { font-size: 70px; } @include tab { font-size: 50px; padding-bottom: 60px; } @include phone { font-size: 36px; padding-bottom: 40px; letter-spacing: -0.5px; } }
+
+.heroSubtitle { font-size: 24px; color: #FFFFFF; font-weight: $font-weight-medium; text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); line-height: 1.4; margin: 0 auto 30px; max-width: 800px; @include tab { font-size: 20px; } @include phone { font-size: 18px; margin-bottom: 20px; } }
+
+.heroLink { display: inline-block; padding: 14px 32px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); color: #FFFFFF; font-size: 18px; font-weight: $font-weight-semibold; text-decoration: none; border-radius: 8px; border: 2px solid rgba(255, 255, 255, 0.3); transition: all 0.3s ease; margin-top: 20px; &:hover { background: rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); } @include phone { padding: 12px 24px; font-size: 16px; } }
+
+// Banner Navigation Dots
+.bannerDots {position: absolute;bottom: 30px;left: 50%;transform: translateX(-50%);display: flex;
+  gap: 12px; z-index: 5;
+
+  @include phone { bottom: 20px;  gap: 8px;}
+}
+
+.bannerDot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.5); background: transparent; cursor: pointer; transition: all 0.3s ease; padding: 0; outline: none; &:hover { background: rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.8); } @include phone { width: 10px; height: 10px; } }
+
+.activeDot { background: #FFFFFF; border-color: #FFFFFF; width: 32px; border-radius: 6px; @include phone { width: 24px; } }
+
+.bannerNavButton { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 2px solid rgba(255, 255, 255, 0.3); color: #FFFFFF; width: 50px; height: 50px; border-radius: 50%; font-size: 28px; cursor: pointer; z-index: 5; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; padding: 0; outline: none; &:hover { background: rgba(255, 255, 255, 0.3); border-color: rgba(255, 255, 255, 0.5); transform: translateY(-50%) scale(1.1); } &:active { transform: translateY(-50%) scale(0.95); } @include tab { width: 40px; height: 40px; font-size: 24px; } @include phone { width: 36px; height: 36px; font-size: 20px; } }
+
+.heroCTA { @include button-base; @include gradient-bg($primary-color, $secondary-color); color: white; padding: $spacing-md $spacing-xl; font-size: $font-size-lg; font-weight: $font-weight-semibold; border-radius: $border-radius-lg; box-shadow: $shadow-lg; &:hover { transform: translateY(-2px); box-shadow: $shadow-xl; } }
+
+// About Section
+// .aboutSection {
+//   padding: 80px 0;
+//   background: #ffffff;
+//   width: 100%;
+// }
+
+// .aboutContainer {
+//   display: flex;
+//   align-items: flex-start;
+//   justify-content: space-between;
+//   gap: 24px;
+// }
+
+.leftContent { flex: 1 1 50%; max-width: 50%; }
+
+.heading { font-size: 42px; font-weight: 700; color: #333333; line-height: 1.2; margin: 0 0 8px 0; letter-spacing: -0.5px; text-align: left; }
+
+.description { font-size: 17px; line-height: 1.7; color: #333333; margin: 0; font-weight: 400; text-align: left; p { margin: 0 0 16px 0; text-align: left; color: #333333; &:last-child { margin-bottom: 0; } } }
+
+// Academic Programs Section
+.academicProgramsSection {padding: 80px 0; background: #00417A; width: 100%;
+
+  .container { margin: 0 auto;  padding: 0 16px;  }
+}
+
+.sectionHeader { display: flex; justify-content: space-between;  align-items: center;  margin-bottom: 20px;
+  gap: 40px;  width: 100%;
+  @include phone{ display: block;  }
+}
+
+.headerContent {  flex: 1;  text-align: left;}
+
+.title { font-size: 42px; font-weight: 700; color: #333333; line-height: 1.2; margin: 0 0 12px 0;
+  letter-spacing: -0.5px; text-align: left;}
+
+.exploreMoreWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-left: auto;
+  align-self: auto;
+  margin-top: 0;
+  flex: 0 0 auto;
+}
+
+.exploreMoreButton {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px dashed #CCCCCC;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  text-align: center;
+  padding: 16px;
+  flex-shrink: 0; 
+
+  &:hover {
+    border-color: #999999;
+    color: #333333;
+    transform: scale(1.05);
+  }
+
+}
+
+.exploreMoreLabel {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.programsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+
+  .programCard {  background: #fff;  border-radius: 30px;  padding: 24px;  
+    margin: 15px;  position: relative;
+    overflow: hidden;     display: flex;  flex-direction: column; 
+    transition: all 0.3s ease;  cursor: pointer;    flex: 0 0 31.3%;
+    max-width: 31.3%;  
+
+    @include big-desktop {
+      flex: 0 0 30%;
+      max-width: 30%;
+      margin: 12px;
+      // height: 420px;
+      padding: 20px;
+    }
+
+    @include desktop {
+      flex: 1;
+      max-width: 100%;
+      height: auto;
+      // min-height: 380px;
+      margin: 0;
+      padding: 18px;
+    }
+
+     @include tab {
+      flex: 1;
+      max-width: 100%;
+      height: auto;
+      // min-height: 380px;
+      margin: 0;
+      padding: 18px;
+    }
+
+    .cardBackground { position: absolute;   top: 0;  left: 0;  right: 0;  bottom: 0;   z-index: 0;
+      background-size: cover;   background-position: center;  background-repeat: no-repeat;  opacity: 0.3;
+      border-radius: 12px;   transition: transform 0.5s ease;
+    }
+
+    .cardOverlay {  position: absolute;   top: 0;  left: 0;  right: 0;   bottom: 0;    z-index: 1;   border-radius: 12px;
+      transition: background 0.3s ease;
+    }
+
+    .cardContent {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .cardHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      min-height: 60px;
+
+      @include desktop {
+        margin-bottom: 16px;
+        min-height: 50px;
+      }
+    }
+
+    .cardTitle {
+      font-size: 30px;
+      font-weight: 400;
+      color: #00417A;
+      margin: 0;
+      line-height: 1.3;
+      flex: 1;
+      padding-right: 12px;
+
+      @include desktop {
+        font-size: 22px;
+        line-height: 1.2;
+      }
+    }
+
+    .cardIcon {
+      width: 70px;
+      height: 70px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        color: #333333;
+        stroke-width: 1.5;
+      }
+
+      @include desktop {
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+    .cardFooter {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-top: 8px;
+      margin-bottom: 25px;
+
+      .coursesList {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .courseTag {
+        display: inline-block;
+        padding: 8px 14px;
+        border-radius: 20px;
+        font-size: 20px;
+        font-weight: 500;
+        white-space: nowrap;
+        line-height: 1;
+
+        @include desktop {
+          font-size: 16px;
+          padding: 6px 12px;
+        }
+      }
+
+      .courseTagMedicine {
+        background: #D2C5B3;
+        color: #6C6458;
+      }
+
+      .navButton {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;  
+        border: none;
+        background: #00417A;
+        color: #fff;
+        border: 1px solid #707070;
+        font-size: 40px; line-height: 60px;
+        font-weight: 600;
+
+        @include desktop {
+          width: 50px;
+          height: 50px;
+          font-size: 30px; line-height: 40px;
+        }
+      }
+    }
+
+    &:hover {
+      .cardOverlay {
+        background: #FFD502;
+      }
+
+      // .cardTitle {
+      //   color: #fff
+      // } 
+
+      // .cardIcon {
+
+      //   svg,
+      //   img {
+      //     filter: brightness(0) invert(1);
+      //   }
+      // }
+
+      .cardFooter {
+        .courseTagMedicine {
+          background: #00183D;
+          color: #75A7F3;
+        }
+
+        // .navButton {
+        //   background-color: #00183D;
+        //   border: 1px solid #FFFFFF;
+        //   color: #fff;
+        // }
+      }
+    }
+  }
+
+  @include big-desktop {  margin: -12px; }
+  @include desktop {  display: grid;  grid-template-columns: repeat(3, 1fr);  gap: 16px;   margin: 0;  padding: 0 8px;  }
+  @include tab {  display: grid;  grid-template-columns: repeat(3, 1fr);  gap: 16px;   margin: 0;  padding: 0 8px;  }
+
+  @include phone {
+    display: block;
+
+    .programCard {
+      max-width: 100% !important;
+      height: auto !important;
+      padding: 12px;
+      // min-height: 250px;
+      width: 100%;
+      margin: 0;
+      margin-bottom: 15px;
+
+      .cardTitle {
+        font-size: 20px !important;
+        line-height: 1.2;
+      }
+
+      .cardFooter {
+        .courseTag {
+          font-size: 14px;
+        }
+
+        .navButton {
+          width: 40px;
+          height: 40px;
+          font-size: 25px;
+        }
+      }
+
+      .cardIcon {
+        img {
+          width: 70%;
+          height: 70%;
+        }
+      }
+    }
+  }
+}
+
+/* ---------- LEFT CONTENT ---------- */
+// .leftContent is defined earlier in the file
+.lifeSection {
+  background: #0046ad;
+  color: #fff;
+
+  .centerRow {
+    align-items: center;
+  }
+}
+
+.imagetitle {
+  font-size: 30px;
+  font-weight: $font-weight-semibold;
+  line-height: 1.3;
+  margin-bottom: 30px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #f0f0f0;
+  margin-bottom: 50px;
+}
+
+.tourButton {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1.5px dashed #fff;
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #fff;
+    color: #0046ad;
+    transform: scale(1.05);
+    a{color: #0046ad !important;}
+  }
+
+  @include desktop {
+    width: 120px;
+    height: 120px;
+  }
+
+  @include mini-desktop {
+    margin: 20px auto 0 auto;
+    display: flex;
+  }
+
+  @include phone {
+    margin: 20px auto 0 auto;
+    display: flex;
+
+    a {
+      font-size: 12px;
+    }
+  }
+}
+
+/* ---------- RIGHT GRID ---------- */
+.rightGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  @include tab {
+    justify-content: center;
+  }
+
+  @include phone {
+    justify-content: center;
+  }
+}
+
+.card {
+  flex: 0 0 30%;
+  max-width: 30%;
+  margin: 15px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  @include desktop {
+    margin: 12px;
+  }
+
+  @include tab {
+    flex: 0 0 44%;
+    max-width: 44%;
+  }
+
+  @include phone {
+    flex: 0 0 40%;
+    max-width: 40%;
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.areaTitle {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  font-size: 14px;
+  font-weight: 600;
+  background: linear-gradient(to top, #1D68D7, #0F367100);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.latestNewsSection {
+  .viewAll {
+    color: #007b5e;
+    font-size: 14px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  /* News Card - moved to root level for CSS Modules */
+  .newsCard {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    flex: 1;
+
+    .imageWrapper {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+
+      .dateBadge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #22AA78;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+        padding: 5px 20px;
+        border-radius: 50px;
+        white-space: nowrap;
+        z-index: 2;
+      }
+    }
+
+    .newsTitle {
+      font-size: 30px;
+      font-weight: 500;
+      color: #2B2B2B;
+      line-height: 40px;
+    }
+  }
+
+  @include desktop{
+  .newsCard{ 
+    .imageWrapper {
+    .dateBadge {  font-size: 16px;   } 
+    } 
+    .newsTitle {font-size: 20px; }
+   }
+  }
+  @include phone { 
+   .newsCard{ 
+    .imageWrapper {
+    .dateBadge {  font-size: 16px;   } 
+    } 
+    .newsTitle {font-size: 20px; }
+   }
+  }
+
+}
+ 
+.newsImage {
+  width: 100%;
+  height: 350px; object-fit: cover;
+  border-radius: 20px; margin-bottom: 30px;
+  @include phone { margin-bottom: 0px;}
+}
+ 
+ 
+  /* Left: Latest News */
+  // .newsColumn {
+  //   flex: 1;
+ 
+  //   .newsGrid {
+  //     display: flex;
+  //     gap: 24px;
+  //   }
+  // }
+ 
+  /* Right: Upcoming Events */
+  .eventsColumn {
+    padding-left: 40px;
+    .eventsList {
+      .eventDate {
+        background: #22AA78;
+        color: #fff;
+        border-radius: 20px; padding: 15px;  text-align: center; width: 100%;
+        .eventMonth {
+          display: block;
+          font-weight: 600;
+          font-size: 20px;
+        }
+ 
+        .eventDay {
+          display: block;
+          font-weight: 300;
+          font-size: 60px; line-height: 60px;
+        }
+        strong {
+          display: block;
+          font-size: 48px;
+          font-weight: 300;
+        }
+      }
+ 
+      .eventTitle {
+        font-size: 20px;
+        color: #2B2B2B;
+        font-weight: $font-weight-semibold; margin: 0;
+        padding-left: 20px;
+      }
+    }
+ @include desktop {
+  padding-left: 20px;
+          .eventsList {
+            .eventDate {
+              .eventMonth {
+                font-size: 18px;
+              }
+    
+              .eventDay {
+                font-size: 50px;
+              }
+            }
+            .eventTitle {font-size: 18px;}
+          }
+    
+        }
+        @include phone {
+          .eventsList {
+            .eventDate {
+              .eventMonth {
+                font-size: 18px;
+              }
+    
+              .eventDay {
+                font-size: 50px;
+              }
+            }
+            .eventTitle {font-size: 18px;}
+          }
+    
+        }
+  }
+
+/* university life section */
+
+.universityLifeSection {
+  background: #f9f5ef;
+  text-align: center;
+
+  .sectionheading {
+    color: #00183D;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+
+  .sectiondescription {
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+}
+
+// Admissions Banner
+.admissionsBanner {
+  background: #22AA78;
+  color: #ffffff;
+  padding: 24px 0;
+  width: 100%;
+  position: relative;
+
+  .admissionsLabel {
+    font-size: 18px;
+    font-weight: $font-weight-semibold;
+    color: #ffffff;
+    white-space: nowrap;
+    background: transparent;
+    flex-shrink: 0;
+    margin-top: 4px;
+    text-align: left;
+  }
+
+  .admissionsContentBlock {
+    .admissionsHeading {
+      font-size: 25px;
+      font-weight: $font-weight-bold;
+      margin: 0;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    .admissionsDescription {
+      font-size: 15px;
+      color: #ffffff;
+      line-height: 1.6;
+      margin: 8px 0 0 0;
+      opacity: 0.95;
+      text-align: left;
+    }
+
+    h2 {
+      color: #ffffff;
+    }
+  }
+}
+
+/* Left Label */
+
+.viewAllLink {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 8px;
+  display: inline-block;
+  text-align: left;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+/* Close Button */
+.closeButton {
+  background: #ffffff;
+  border: none;
+  border-radius: 50%;
+  color: #22AA78;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  align-self: flex-start;
+
+  &:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@include mini-desktop {
+  .admissionsHeading {
+    font-size: 22px;
+  }
+
+  .admissionsDescription {
+    font-size: 14px;
+  }
+}
+
+// Announcement Banner
+.announcementBar {
+  background: #00417A;
+  color: #ffffff;
+  padding: 12px 0;
+  width: 100%; 
+}
+
+.announcementContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: nowrap;
+
+  @include phone {
+    display: block;
+  }
+}
+
+.announcementItemsWrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+
+  &:hover .announcementMarquee {
+    animation-play-state: paused;
+  }
+}
+
+.announcementMarquee {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  animation: marquee 30s linear infinite;
+  width: fit-content;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.announcementItems {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  white-space: nowrap;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.announcementItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-size: 20px;
+  color: #fff;
+  font-weight: $font-weight-bold;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.announcementIcon {
+  width: 25px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex; 
+  margin-left: 10px;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@include desktop{
+  .announcementItem {
+    font-size: 16px;
+  }
+}
+
+// Responsive
+@include tab {
+  .announcementContainer {
+    gap: 16px;
+  }
+
+  .announcementItemsWrapper {
+    min-width: 0;
+  }
+
+  .announcementItems {
+    gap: 24px;
+  }
+
+  .announcementLabel {
+    font-size: 15px;
+  }
+
+  .announcementItem {
+    font-size: 13px;
+  }
+}
+
+@include phone {
+  .announcementBar {
+    padding: 10px 0;
+  }
+
+  .announcementLabel {
+    font-size: 18px;
+  }
+
+  .announcementItems {
+    gap: 16px;
+  }
+
+  .announcementMarquee {
+    animation-duration: 25s;
+  }
+
+  .announcementItem {
+    font-size: 14px;
+  }
+}
+
+// Connect Tab
+.connectTab {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.connectTabContent {
+  background: #FFD502;
+  padding: 24px 16px;
+  font-weight: $font-weight-semibold;
+  font-size: 16px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  border-radius: 8px 0 0 8px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &:hover {
+    background: #1e7a1e;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
+    transform: translateX(-4px);
+  }
+
+  &:active {
+    transform: translateX(-2px);
+  }
+}
+
+// Responsive - Hide on mobile
+@include tab {
+  .connectTab {
+    display: none;
+  }
+}
+
+@include phone {
+  .connectTab {
+    display: none;
+  }
+}
+
+// Header
+.header {
+  background: linear-gradient(to top, #CFF0FF00 0%, rgba(207, 240, 255, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.headerContainer {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-width: 320px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoIcon { width: 50px;  height: 50px;  flex-shrink: 0;
+  svg { width: 100%;  height: 100%; }
+}
+
+.logoText { display: flex; flex-direction: column;  gap: 2px;}
+
+.logoTextTop {
+  font-size: 11px;
+  font-weight: $font-weight-medium;
+  color: #333333;
+  line-height: 1.3;
+}
+
+.logoTextMain {
+  font-size: 24px;
+  font-weight: $font-weight-bold;
+  color: #333333;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.logoTextTagline {
+  font-size: 11px;
+  color: #333333;
+  font-style: normal;
+  line-height: 1.2;
+}
+
+.universityLogoImage {
+  height: auto;
+  max-width: 200px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.mainNav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 8px;
+}
+
+.topNav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.topNavLink {
+  font-size: 18px;
+  color: #333333;
+  text-decoration: none;
+  font-weight: $font-weight-semibold;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+  }
+}
+
+.mainNavList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mainNavItem {
+  margin: 0;
+}
+
+.mainNavLink {
+  font-size: 22px;
+  font-weight: $font-weight-semibold;
+  color: #333333;
+  text-decoration: none;
+  transition: opacity 0.2s;
+  padding: 4px 0;
+  white-space: nowrap;
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.7;
+    text-decoration: underline;
+  }
+
+  @include desktop{
+    font-size: 18px;line-height: 20px;
+  } 
+}
+
+.rightLogos {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+}
+
+.hospitalLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hospitalLogoImage {
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.hospitalIcon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.hospitalText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.hospitalName {
+  font-size: 12px;
+  font-weight: $font-weight-semibold;
+  color: #333333;
+  line-height: 1.2;
+}
+
+.hospitalTagline {
+  font-size: 9px;
+  color: #333333;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  font-weight: $font-weight-normal;
+  text-transform: uppercase;
+}
+
+.mandalLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mandalLogoImage {
+  height: auto;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.mandalIcon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.mandalText {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.mandalName {
+  font-size: 10px;
+  font-weight: $font-weight-semibold;
+  color: #333333;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mandalTrust {
+  font-size: 9px;
+  color: #333333;
+  line-height: 1.2;
+  font-weight: $font-weight-medium;
+}
+
+// Responsive Design - Keep menu visible, just adjust sizes
+@include mini-desktop {
+  .headerContainer {
+    padding: 0 24px;
+  }
+
+  .mainNavList {
+    gap: 28px;
+  }
+
+  .mainNavLink {
+    font-size: 15px;
+  }
+
+  .logoSection {
+    min-width: 280px;
+  }
+}
+
+@include tab {
+  .headerContainer {
+    padding: 0 20px;
+  }
+
+  .mainNavList {
+    gap: 20px;
+  }
+
+  .mainNavLink {
+    font-size: 14px;
+  }
+
+  .logoSection {
+    min-width: 250px;
+  }
+
+  .logoTextMain {
+    font-size: 20px;
+  }
+
+  .rightLogos {
+    gap: 16px;
+  }
+}
+
+@include phone {
+  .headerContainer {
+    padding: 12px 16px;
+  }
+
+  .topNav {
+    gap: 20px;
+  }
+
+  .topNavLink {
+    font-size: 12px;
+  }
+
+  .logo {
+    gap: 10px;
+  }
+
+  .logoIcon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .logoSection {
+    min-width: 220px;
+  }
+
+  .logoTextMain {
+    font-size: 18px;
+  }
+
+  .logoTextTop {
+    font-size: 10px;
+  }
+
+  .logoTextTagline {
+    font-size: 10px;
+  }
+
+  .mainNavList {
+    gap: 16px;
+  }
+
+  .mainNavLink {
+    font-size: 18px;
+  }
+
+  .rightLogos {
+    gap: 12px;
+  }
+
+  .hospitalLogo,
+  .mandalLogo {
+    gap: 6px;
+  }
+
+  .hospitalIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .mandalIcon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .hospitalName {
+    font-size: 10px;
+  }
+
+  .hospitalTagline {
+    font-size: 8px;
+  }
+
+  .mandalName {
+    font-size: 9px;
+  }
+
+  .mandalTrust {
+    font-size: 8px;
+  }
+}

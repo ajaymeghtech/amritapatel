@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap");
+.detailContainer .titleSection {
+  padding-bottom: 40px;
+}
+.detailContainer .titleSection h3 {
+  font-size: 40px;
+  line-height: 40px;
+  color: #232323;
+  font-family: "Source Serif Pro";
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+.detailContainer .meta {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1.5rem;
+  font-size: 25px;
+  line-height: 25px;
+  color: #6C6458;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.detailContainer .meta span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+}
+.detailContainer .meta span strong {
+  color: #333;
+  font-weight: 600;
+}
+.detailContainer .announcementDetail {
+  width: 100%;
+}
+.detailContainer .announcementDetail .imageSection {
+  float: right;
+  width: 50%;
+  margin: 0 0 20px 20px;
+}
+.detailContainer .announcementDetail .featuredImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.detailContainer .clear {
+  clear: both;
+}/*# sourceMappingURL=announcement-detail.module.css.map */

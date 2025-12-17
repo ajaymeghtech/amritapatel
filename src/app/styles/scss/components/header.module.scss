@@ -1,0 +1,192 @@
+//header.module.scss
+@import '../variables.scss';
+@import '../mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+
+.mainHeader{
+    position: relative;
+    z-index: 99;
+    width: 100%;      padding: 5px 0px;
+    background: #fff;
+}
+ 
+.headerRow{ 
+    padding: 5px 0px;
+}
+.headerLogo{
+    max-width: 350px;
+    @include desktop{ 
+        max-width: 260px;
+    }
+    @include mini-desktop{
+        max-width: 240px;
+    }
+    @include phone{
+        max-width: 180px;
+    }
+}
+
+
+.headerRow{
+  display: flex;justify-content: space-between;align-items: center;
+}
+
+.navbarLink{
+    display: flex;
+    flex-direction: column;
+    // align-items: center;
+    ul{
+        padding: 0px;display: flex; justify-content: flex-end;
+        margin: 0px;
+        &.topNav{
+            margin-bottom: 20px;
+            .mainNavLink{color: #696969 !important;}
+            path{fill: #696969 !important;}
+            @include mini-desktop{
+                margin-bottom: 5px;
+            }
+        }
+        li{   
+            margin:0 5px;
+            position: relative;
+            .mainNavLink{ 
+                font-size: 22px;line-height: 22px;font-weight: 600;color: #232323;
+                text-decoration: none;transition: opacity 0.2s;padding:10px 5px;
+                white-space: nowrap;display: block;
+                
+            }
+            @include desktop{
+                svg{height: 8px;}
+                 .mainNavLink{ font-size: 16px;line-height: 20px;padding:7px 5px;}
+            } 
+
+            //Main Header Navigation Hover Effect
+            &.active ,&:hover{
+                a { 
+                   //opacity: 0.7;text-decoration: underline;
+                }
+            }  
+            
+
+            @include mini-desktop{
+                margin:0 5px;
+                a{font-size: 14px;line-height: 16px;}
+            }
+
+            //For Showing Dropdown on Hover css in Desktop
+            &:hover, &:focus{
+                .dropdownMenu{
+                   display: block;opacity: 1;visibility: visible;
+                } 
+            }
+
+            .dropdownMenu{
+                position: absolute;left: 0;top: 100%;display: flex;flex-direction: column;
+                display: none;opacity: 0;visibility: hidden;box-shadow: 0px 4px 50px 10px #00000040;
+                background: #fff;padding: 7px 0px;min-width: 250px;border-radius:5px;z-index: 1;
+                li{
+                    margin: 0px; border-bottom: 1px solid #D9D9D9;
+                    a{
+                        font-weight: 600;font-size: 20px;line-height: 24px; color: #666666;
+                        padding: 15px 10px;display: block;    white-space: nowrap;
+                    }
+                    &.active a, &:hover a{
+                        color: #00417A;
+                    }
+                }
+
+                @include desktop{
+                    li{
+                        a{
+                            font-size: 16px;line-height: 20px;
+                        }
+                    }
+                }
+                @include tab{
+                    display: none !important;
+                    &.active{
+                        display: block !important;
+                    }
+                }
+            }
+
+        }
+        @include tab {
+            flex-direction: column;margin: 0 auto;width: 100%;
+            &.topNav{width: 100%;}
+            li{
+                text-align: left;padding: 5px 10px;border-bottom: 1px solid #0000002b;
+                a{color: #000 !important;padding: 10px 20px;font-size: 18px;line-height: 22px;}
+
+                .dropdownMenu{
+                    position: relative;top: 0;background: transparent;box-shadow: none;
+                    li{
+                        a{font-size: 14px;line-height: 16px;}
+                        &:last-child{border:0px;}
+                    }
+                }
+            }
+            li > .dropdown-menu{position: relative!important;transform: none!important}
+        }
+    }
+
+    //Burger Menu CSS
+    &.active {left:0;}
+    @include tab {
+        background: #CFF0FF;   
+        width: 100%;position: fixed; top: 0;left: -100%; 
+        height: 100vh;z-index: 999; transition: all 0.3s; 
+        overflow-y: scroll;text-align: center;
+        padding-top: 80px;
+    }
+        
+}  
+
+.rightLogos {
+  display: flex;align-items: center;gap: 24px;
+  .hospitalLogoImage{max-width: 160px;}
+
+  @include mini-desktop{
+    gap: 10px;
+    img{max-width: max-content !important;object-fit: contain;}
+    .hospitalLogoImage{max-height: 50px;}
+    .mandalLogoImage{max-height: 60px;}
+  }
+}
+
+
+.sidebarCollapse{
+  display: none;
+  @include tab {
+    display: inline-block;order:1;z-index: 5555;
+  }
+}
+.crossLine{
+    position: relative;padding:0px; 
+    width: 45px; height:25px; cursor: pointer;border:inherit;
+    &:focus, &:hover{border: inherit;outline: none;}  
+    .line{display: block;background: #000;height: 3px; width: 30px; position: absolute; left:0px; right:0px; margin: auto;
+        &.crossLine1{top:0px; transition:0.5s ease-in-out;}
+      &.crossLine2{top:45%; transition:0.5s ease-in-out;}    
+      &.crossLine3{bottom:0px;transition:0.5s ease-in-out;}
+    }
+    &.active{ 
+        .line{
+            &.crossLine1{top:45%; transform: rotate(45deg);}
+            &.crossLine2{opacity:0;}
+            &.crossLine3{bottom:45%;transform: rotate(135deg);}
+        }
+    }
+    @include tab{ 
+        &.active{background: inherit;padding:25px 0;
+            //.line{background: #fff;}
+        } 
+        &.active .line.crossLine3{bottom: 50%;}
+    } 
+  
+    @include phone-xs{
+         
+    }
+}
+

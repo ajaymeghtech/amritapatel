@@ -1,0 +1,176 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap");
+.pressList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding: 0px;
+}
+.pressList li {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 25%;
+          flex: 0 0 25%;
+  max-width: 25%;
+  padding: 0 15px;
+  margin: 15px 0px;
+}
+.pressList li .pressBox {
+  padding: 30px;
+  background: #F5EFE7;
+  border-radius: 20px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.pressList li .pressBox .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 20px;
+}
+.pressList li .pressBox .title h2 {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 30px;
+  margin-bottom: 0px;
+}
+.pressList li .pressBox .title p {
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: right;
+  color: #22AA78;
+  margin-bottom: 0px;
+}
+.pressList li .pressBox .title p span {
+  display: block;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
+  text-align: right;
+  color: #666666;
+}
+.pressList li .pressBox:hover {
+  -webkit-box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.2509803922);
+          box-shadow: 0px 4px 50px 10px rgba(0, 0, 0, 0.2509803922);
+}
+@media (max-width: 1199px) {
+  .pressList li {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 33.3%;
+            flex: 0 0 33.3%;
+    max-width: 33.3%;
+    padding: 0 10px;
+    margin: 10px 0px;
+  }
+  .pressList li .pressBox {
+    padding: 15px;
+  }
+  .pressList li .pressBox .title {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    text-align: left;
+  }
+  .pressList li .pressBox .title h2 {
+    margin-bottom: 5px;
+    font-size: 20px;
+    line-height: 22px;
+  }
+  .pressList li .pressBox .title p {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
+            flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    width: 100%;
+    font-size: 22px;
+    line-height: 22px;
+  }
+  .pressList li .pressBox .title p span {
+    display: inline-block;
+  }
+}
+@media (max-width: 767px) {
+  .pressList li {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+@media (max-width: 450px) {
+  .pressList li {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+.pressList.annoucementList li .pressBox {
+  background: transparent;
+  -webkit-box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2509803922);
+          box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.2509803922);
+  position: relative;
+}
+.pressList.annoucementList li .pressBox.date {
+  background: #22AA78;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.filterButtons {
+  margin-bottom: 30px;
+  background: #D2C5B3;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 50px;
+  padding: 5px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.filterButtons button {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  color: #6C6458;
+  padding: 10px 50px;
+  border-radius: 50px;
+}
+.filterButtons button.active {
+  background: #00183D;
+  color: #fff;
+}
+@media (max-width: 767px) {
+  .filterButtons button {
+    padding: 10px 30px;
+  }
+}
+@media (max-width: 450px) {
+  .filterButtons button {
+    padding: 10px 20px;
+  }
+}/*# sourceMappingURL=press.module.css.map */

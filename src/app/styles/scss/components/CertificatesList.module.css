@@ -1,0 +1,145 @@
+.listContainer {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  table-layout: auto;
+}
+.table thead {
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #e0e0e0;
+}
+.table th, .table td {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 500;
+  color: #333;
+  vertical-align: middle;
+  white-space: normal;
+}
+.table tbody tr:hover {
+  background-color: #fafafa;
+}
+
+.logoCell {
+  text-align: center;
+}
+
+.logo {
+  max-width: 60px;
+  max-height: 60px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 4px;
+}
+
+.titleCell,
+.descriptionCell {
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.titleCell {
+  font-weight: 500;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.descriptionCell {
+  color: #666;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.statusCell {
+  text-align: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.badge.active {
+  background-color: #d4edda;
+  color: #155724;
+}
+.badge.inactive {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.orderCell {
+  text-align: center;
+  font-weight: 500;
+}
+
+.actionsCell {
+  width: 1%;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 10px;
+  margin: 0 4px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+.btn.btnEdit {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+.btn.btnEdit:hover {
+  background-color: #bbdefb;
+}
+.btn.btnDelete {
+  background-color: #ffebee;
+  color: #d32f2f;
+}
+.btn.btnDelete:hover {
+  background-color: #ffcdd2;
+}
+
+@media (max-width: 768px) {
+  .table {
+    font-size: 12px;
+  }
+  .table th, .table td {
+    padding: 6px 8px;
+    white-space: normal;
+  }
+  .titleCell,
+  .descriptionCell {
+    max-width: 120px;
+  }
+  .logo {
+    max-width: 40px;
+    max-height: 40px;
+  }
+  .actionsCell {
+    width: 1%;
+  }
+}/*# sourceMappingURL=CertificatesList.module.css.map */

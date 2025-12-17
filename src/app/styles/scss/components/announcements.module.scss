@@ -1,0 +1,180 @@
+@import '../variables.scss';
+@import '../mixins.scss';
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+.filterButtons {
+  margin-bottom: 30px;
+  background: #D2C5B3;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  padding: 5px;
+  flex-wrap: wrap;
+
+  button { 
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 20px;
+    color: #6C6458;
+    padding: 10px 50px;
+    border-radius: 50px;
+
+    &.active {
+      background: #00183D;
+      color: #fff;
+    }
+
+    @include phone {
+      padding: 10px 30px;
+    }
+
+    @include phone450 {
+      padding: 10px 20px;
+    }
+  }
+}
+
+.active {
+  background-color: #00183d !important;
+  color: #fff !important;
+  border-color: #00183d !important;
+}
+
+.announcementsList {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px;
+  gap: 30px;
+
+
+  li {
+    flex: 0 0 30%;
+    max-width: 30%;
+    padding: 0 10px;
+    margin: 10px 0px;
+
+    a {
+      text-decoration: none;
+      display: block;
+      height: 100%;
+    }
+
+    .announcementBox {
+      padding: 50px 50px 50px 40px;
+      background: #fff;
+      border-radius: 20px;
+      transition: all 0.5s ease-in-out;
+      overflow: hidden;
+      // width: 554px;
+      // height: 550px;
+      box-shadow: 0px 4px 50px 10px #00000040;
+
+
+      .imageWrapper {
+        position: relative;
+        width: 100%;
+        // margin: -30px -30px 20px -30px;
+
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+          border-radius: 20px 20px 0 0;
+        }
+
+        .dateBadge {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          background-color: #22AA78;
+          color: #fff;
+          padding: 8px 16px;
+          border-radius: 25px;
+          font-size: 20px;
+          font-weight: 600;
+          display: inline-block;
+        }
+      }
+
+      .title {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        h2 {
+          font-weight: 500;
+          font-size: 30px;
+          line-height: 30px;
+          margin-bottom: 0px;
+          margin: 0;
+        }
+      }
+
+      &:hover {
+        box-shadow: 0px 4px 50px 10px #00000040;
+      }
+    }
+
+    @include mini-desktop {
+      flex: 0 0 33.3%;
+      max-width: 33.3%;
+      padding: 0 10px;
+      margin: 10px 0px;
+
+      .announcementBox {
+        padding: 15px;
+
+        .imageWrapper {
+          margin: -15px -15px 15px -15px;
+
+          .dateBadge {
+            top: 10px;
+            left: 10px;
+            padding: 6px 12px;
+            font-size: 12px;
+          }
+        }
+
+        .title {
+          h2 {
+            margin-bottom: 5px;
+            font-size: 30px;
+            line-height: 40px;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+
+    @include phone {
+      flex: 0 0 50%;
+      max-width: 50%;
+      padding: 0 5px;
+      margin: 8px 0px;
+
+      .announcementBox {
+        padding: 12px;
+
+        .imageWrapper {
+          margin: -12px -12px 12px -12px;
+
+          .dateBadge {
+            top: 8px;
+            left: 8px;
+            padding: 5px 10px;
+            font-size: 11px;
+          }
+        }
+
+        .title {
+          h2 {
+            font-size: 16px;
+            line-height: 18px;
+          }
+        }
+      }
+    }
+  }
+}
