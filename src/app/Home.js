@@ -530,7 +530,7 @@ export default function Home() {
               </p>
               <p className="sectiondescription"> Her contribution to the dairy industry is a tale of trials and triumphs. She is also a passionate community health professional deeply concerned about the health of the rural poor. Her entire life has been spent in the service of the less privileged and empowering them, especially the women of India. All the organizations she has served have a main goal: improving the health, income, and welfare of India’s rural poor.</p>
               <div className="buttonAndLogos">
-                <a href="/about-us/overview" className="sectionlink getMoreInfoButton">Explore More</a>
+                <a href="/about-us" className="sectionlink getMoreInfoButton">Explore More</a>
               </div>
             </div>
             <div className="col-xl-6 col-lg-5 col-md-5 col-sm-12 col-12">

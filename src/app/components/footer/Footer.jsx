@@ -63,7 +63,7 @@ export default function Footer() {
                                 <div className={styles.quickLinks}>
                                     <h2 className={styles.footerheading}>Quick Links</h2>
                                     <ul>
-                                        <li><a href="/about-us/overview">About Us</a></li>
+                                        <li><a href="/about-us">About Us</a></li>
                                         <li><a href="/academics/programs-short-courses">Academics</a></li>
                                         <li><a href="/sparsh-field-activities/sparsh">SPARSH & Field Activities</a></li>
                                         <li><a href="/research/projects-grants">Research Projects & Grants</a></li>
