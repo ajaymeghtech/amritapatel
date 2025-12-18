@@ -3,10 +3,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 .footerheading { 
     font-size: 30px; font-weight: 400; color: #fff; 
-    margin-bottom: 30px; 
+    margin-bottom: 20px; 
     @include tab { margin-bottom: 15px; text-align: left;} 
     @include phone {font-size: 25px;} 
-
 }
 
 .footer {
@@ -30,12 +29,10 @@
 
 
   .logoSection {
-    flex: 1;text-align: center;display: flex;justify-content: center;
-    align-items: center;margin-bottom: 70px;
-
+    flex: 1;text-align: center;display: flex;justify-content: flex-start;
+    align-items: flex-start;margin-bottom: 70px;
     p {font-size: 16px;margin-top: 10px;font-weight: 500;}
-
-    img {margin-bottom: 10px;}
+    img {margin-bottom: 10px; max-width: 80%;}
 
     @include tab {
       margin-bottom: 30px;
@@ -83,9 +80,9 @@
 
   .contactSection {
     padding: 0px;margin: 0px;
-    display: flex;gap:20px;    
+    display: flex;gap:0px; flex-direction: row; flex-wrap: wrap;
     li{
-        flex: 0 0 40%;max-width: 40%;
+        flex: 0 0 100%;max-width: 100%;
         &:nth-child(2){flex: 0 0 60%;max-width: 60%;}
 
         h3 { font-size: 20px; margin-bottom: 20px; font-weight: 600; }
@@ -176,3 +173,48 @@
         .designby { justify-content: center; } 
     } 
 }
+
+
+.activeQuickLink {
+  color: #FFD200  !important; 
+  font-weight: 600 !important;
+  text-decoration: underline;
+}
+
+
+.scrollTopBtn {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #00417A;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.scrollTopBtn:hover {
+  background-color: #1277BD;
+  transform: translateY(-3px);
+}
+
+@include phone {
+  .scrollTopBtn {
+    right: 15px;
+    bottom: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+

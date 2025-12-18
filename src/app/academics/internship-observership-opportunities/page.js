@@ -163,7 +163,7 @@ export default function InternshipObservershipOpportunities() {
                         <div className="visionDes">
                             <h2 className="sectionheading text-white">Eligibility</h2>
                             <ul className="list">
-                                <li>Bachelor’s degre</li>
+                                <li>Bachelor’s degree</li>
                                 <li>Experience or demonstrated interest in public health, development, or NGOs</li>
                                 <li>Bachelor’s degree Experience or demonstrated interest in public health, development, or NGOs Competency in Excel, Word, PowerPoint, and Photoshop
                                     Good communication skills Someone willing to learn and produce professional quality work in a challenging work environment</li>

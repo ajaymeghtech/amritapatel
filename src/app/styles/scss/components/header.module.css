@@ -19,9 +19,19 @@
     max-width: 260px;
   }
 }
+@media screen and (max-width: 1400px) {
+  .headerLogo {
+    max-width: 250px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .headerLogo {
+    max-width: 210px;
+  }
+}
 @media (max-width: 1199px) {
   .headerLogo {
-    max-width: 240px;
+    max-width: 210px;
   }
 }
 @media (max-width: 767px) {

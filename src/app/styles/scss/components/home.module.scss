@@ -26,7 +26,16 @@
 
 .heroTextWrapper { max-width: 1200px; width: 100%; }
 
-.heroTitle { font-size: 90px; color: #FFFFFF; font-weight: $font-weight-semibold; text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3); line-height: 1.2;  letter-spacing: -2px; margin: 0 auto 20px; @include mini-desktop { font-size: 70px; } @include tab { font-size: 50px; padding-bottom: 60px; } @include phone { font-size: 36px; padding-bottom: 40px; letter-spacing: -0.5px; } }
+.heroTitle { font-size: 90px; color: #FFFFFF; font-weight: $font-weight-semibold; 
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3); 
+  line-height: 1.2;  letter-spacing: -2px; margin: 0 auto 20px; 
+
+  @include mini-desktop { font-size: 70px; } 
+    @media screen and (max-width:1400px){
+    font-size: 70px;
+  }
+  @include tab { font-size: 50px; padding-bottom: 60px; } 
+  @include phone { font-size: 36px; padding-bottom: 40px; letter-spacing: -0.5px; } }
 
 .heroSubtitle { font-size: 24px; color: #FFFFFF; font-weight: $font-weight-medium; text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.5); line-height: 1.4; margin: 0 auto 30px; max-width: 800px; @include tab { font-size: 20px; } @include phone { font-size: 18px; margin-bottom: 20px; } }
 

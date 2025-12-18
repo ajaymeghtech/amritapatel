@@ -18,10 +18,26 @@ export default function Header() {
 
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
   const pathname = usePathname();
+
   const isActive = (href) => {
     if (!href) return false;
     return pathname === href || pathname.startsWith(href + "/");
   };
+
+  const isDropdownActive = (item) => {
+    if (!item.dropdown) return false;
+    return item.dropdown.some((sub) => isActive(sub.href));
+  };
+
+  useEffect(() => {
+    const activeItem = mainNavItems.find(
+      (item) => isActive(item.href) || isDropdownActive(item)
+    );
+    if (activeItem) {
+      setOpenDropdown(activeItem.id);
+    }
+  }, [pathname]);
+
 
   const fetchStudentLife = async () => {
     try {
@@ -132,10 +148,10 @@ export default function Header() {
     {
       id: "research-projects-grants",
       label: "Research Projects & Grants",
-      href: "/research-projects",
+      href: "/research-projects-grants",
       dropdown: [
-        { label: "Publications", href: "/research/publications" },
-        { label: "Projects & Grants ", href: "/research/projects-grants" },
+        { label: "Publications", href: "/research-projects-grants/publications" },
+        { label: "Projects & Grants ", href: "/research-projects-grants/projects-grants" },
       ],
     },
     {
@@ -192,7 +208,8 @@ export default function Header() {
                     {item.dropdown ? (
                       <button
                         type="button"
-                        className={styles.mainNavLink}
+                        // className={styles.mainNavLink}
+                        className={`${styles.mainNavLink} ${isActive(item.href) ? styles.activeNav : ""}`}
                         onClick={() => toggleDropdown(item.id)}
                       >
                         {item.label}
@@ -240,9 +257,9 @@ export default function Header() {
                     <ul className={`${styles.dropdownMenu} ${openDropdown === item.id ? styles.active : ""}`}>
                       {item.dropdown.map((sub, index) => (
                         <li key={index}>
-                          <Link href={sub.href} 
-                          // className="block px-3 py-2 hover:bg-gray-100"
-                           className={`block px-3 py-2 ${isActive(sub.href) ? styles.activeDropdown : ""}`}
+                          <Link href={sub.href}
+                            // className="block px-3 py-2 hover:bg-gray-100"
+                            className={`block px-3 py-2 ${isActive(sub.href) ? styles.activeDropdown : ""}`}
                           >
                             {sub.label}
                           </Link>
@@ -262,13 +279,16 @@ export default function Header() {
                       <button
                         type="button"
                         // className={styles.mainNavLink}
-                         className={`${styles.mainNavLink} ${isActive(item.href) ? styles.activeNav : ""  }`}
+                        className={`${styles.mainNavLink} ${isActive(item.href) ? styles.activeNav : ""}`}
                         onClick={() => toggleDropdown(item.id)}
                       >
                         {item.label}
                       </button>
                     ) : (
-                      <Link href={item.href} className={styles.mainNavLink}>
+                      <Link href={item.href} 
+                      // className={styles.mainNavLink}
+                      className={`${styles.mainNavLink} ${isActive(item.href) ? styles.activeNav : ""}`}
+                      >
                         {item.label}
                       </Link>
                     )}
@@ -325,7 +345,10 @@ export default function Header() {
                     <ul className={`${styles.dropdownMenu} ${openDropdown === item.id ? styles.active : ""}`}>
                       {item.dropdown.map((sub, index) => (
                         <li key={index}>
-                          <Link href={sub.href} className="block px-3 py-2 hover:bg-gray-100">
+                          <Link href={sub.href} 
+                          // className="block px-3 py-2 hover:bg-gray-100"
+                            className={`block px-3 py-2 ${isActive(sub.href) ? styles.activeDropdown : "" }`}
+                          >
                             {sub.label}
                           </Link>
                         </li>

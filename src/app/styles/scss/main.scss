@@ -112,9 +112,16 @@ li {
   color: #232323;
   line-height: 60px;
 
+ 
+
   @include desktop {
     font-size: 50px;
     margin-bottom: 30px;
+  }
+
+     @media screen and (max-width:1400px) {
+    font-size: 40px;
+    margin-bottom: 30px; line-height:45px;
   }
 
   @include mini-desktop {
@@ -1039,8 +1046,8 @@ li {
     color: #fff;
     font-weight: 600;
     text-align: center;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 17px;
+    line-height: 22px;
   }
 
   thead {
@@ -1080,6 +1087,10 @@ li {
         width: 20%;
       }
 
+        @media screen and (max-width:1400px) {
+        font-size: 17px;
+       
+      }
       @include phone {
         font-size: 14px;
         padding: 8px;
@@ -1145,6 +1156,11 @@ li {
 
       }
     }
+
+      @media screen and (max-width:1400px) {
+        font-size: 17px;
+        
+      }
 
     @include phone {
       font-size: 14px;
@@ -1873,6 +1889,24 @@ li {
       background-color: #00417A;
       border-radius: 50%;
     }
+
+    @media screen and (max-width:1400px) { 
+
+      &.slick-prev{
+        left:87%;
+      }
+    }
+    @include tab {
+       top: -40px;
+      &.slick-prev{
+        left:83%;
+      }
+    }
+    @include phone {
+      &.slick-prev{
+        left:70%;
+      }
+    }
   }
 
   // arrow icons
@@ -1964,8 +1998,8 @@ li {
     }
 
     .visionDes {
-      flex: 0 0 70%;
-      max-width: 70%;
+      flex: 0 0 100%;
+      max-width: 100%;
 
     }
 
@@ -2066,8 +2100,14 @@ li {
     border-radius: 30px;
     list-style: none;
     width: 100%;
-    box-shadow: 0px 4px 50px 20px #0000001A;
+    box-shadow: 0px 4px 50px 20px #0000001A; display:flex; flex-direction: column; justify-content: space-between;
 
+    .eventmaincardbox{
+          display: flex;
+    flex-direction: COLUMN; 
+    justify-content: flex-start;
+ 
+    }
     .event-header {
       display: flex;
       justify-content: space-between;
@@ -2129,29 +2169,53 @@ li {
         margin: 0 0 10px 0;
       }
 
-      .gallery-link {
-        margin-top: 10px;
-        font-weight: 700;
-        color: #00417A;
-        text-decoration: none;
-        font-size: 18px;
-        line-height: 18px;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
+      
     }
 
     
   }
 
+  .gallery-link {
+        margin-top: 10px;
+        font-weight: 700;
+        color: #00417A!important;
+        text-decoration: none;
+        font-size: 18px;
+        line-height: 18px; text-align: left;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
   .dflex{
   display: flex;
 }
 .dcolumn{
   flex-direction: column;
 }
+
+@media screen and (max-width: 1400px) {  
+  
+.event-card {
+      flex: 0 0 30%;
+      max-width: 30%;
+      .event-header{
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 10px;
+       
+     
+    }
+      .event-body {
+        .label{
+          font-size:16px;
+        }
+         .value{
+          font-size:19px;
+        }
+       }
+    }
+  }
 
   @include mini-desktop{  
      .dflex{

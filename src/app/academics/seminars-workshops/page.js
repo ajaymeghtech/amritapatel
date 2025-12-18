@@ -394,6 +394,7 @@ export default function SeminarsWorkshops() {
           <ul className="seminarList">
             {seminarData.slice(0, visibleCount).map((item, index) => (
               <li className="event-card" key={index}>
+                <div className="eventmaincardbox">
                 <div className="event-header">
                   <h4>{item.title}</h4>
                   <div className="dflex dcolumn">
@@ -410,10 +411,15 @@ export default function SeminarsWorkshops() {
                     <p className="label">Event Type</p>
                     <p className="value">{item.eventType}</p>
                   </div>
+                  
 
                   <div className="eventBox">
                     <p className="label">Lead Facilitator(s) / Speaker</p>
                     <p className="value">{item.speaker}</p>
+                  </div>
+                    <div className="eventBox">
+                    <p className="label">Venue / Affiliation</p>
+                    <p className="value">{item.venue}</p>
                   </div>
 
                   <div className="eventBox">
@@ -421,16 +427,17 @@ export default function SeminarsWorkshops() {
                     <p className="value">{item.coFacilitator}</p>
                   </div>
 
-                  <div className="eventBox">
-                    <p className="label">Venue / Affiliation</p>
-                    <p className="value">{item.venue}</p>
-                  </div>
+                
 
                   {/* <a href={item.galleryLink} className="gallery-link">
                     View Event Gallery →
                   </a> */}
 
-                  {item.images?.length > 0 && (
+                 
+
+                </div>
+                </div>
+                 {item.images?.length > 0 && (
                     <button
                       type="button"
                       className="gallery-link"
@@ -439,8 +446,6 @@ export default function SeminarsWorkshops() {
                       View Event Gallery →
                     </button>
                   )}
-
-                </div>
               </li>
             ))}
           </ul>

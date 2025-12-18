@@ -10,7 +10,7 @@ export default function StudentCorner() {
     return (
         <>
             <Header />
-            <Innerbanner title="Student Corner" image={academicBanner} />
+            <Innerbanner title="Students Corner" image={academicBanner} />
 
             <div className="sectionPadding">
                 <div className="container">

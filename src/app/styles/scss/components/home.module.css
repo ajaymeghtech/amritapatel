@@ -98,6 +98,11 @@
     font-size: 70px;
   }
 }
+@media screen and (max-width: 1400px) {
+  .heroTitle {
+    font-size: 70px;
+  }
+}
 @media (max-width: 991px) {
   .heroTitle {
     font-size: 50px;
