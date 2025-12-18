@@ -48,10 +48,10 @@ export default function ContactUsPage() {
 
   useEffect(() => {
     generateCaptcha();
-    loadInstitutes();
+    // loadInstitutes();
     setIsLoading(false);
 
-    loadSettings();
+    // loadSettings();
   }, []);
 
   const loadSettings = async () => {
@@ -89,7 +89,6 @@ export default function ContactUsPage() {
       [name]: value
     }));
 
-    // Remove error instantly when user types
     setErrors(prev => ({ ...prev, [name]: '' }));
   };
 
@@ -335,7 +334,6 @@ export default function ContactUsPage() {
             <div className={`col-lg-4 col-md-12 col-sm-12 col-12 ${contactStyles.reachUsSection}`}>
               <div >
                 <h2 className="sectionheading">Reach Us</h2>
-
                 <div className={contactStyles.reachUsItem}><div className={contactStyles.reachUsContent}>
                   <div className={contactStyles.reachUsTitleText}>
                     Amrita Patel Centre for Public Health
@@ -379,15 +377,15 @@ export default function ContactUsPage() {
                   </span>
 
                   <div className={contactStyles.reachUsContent}>
-
-                    {/* FIRST LINE (special class) */}
                     <div className={contactStyles.reachUsTitleText}>
-                      {firstLine}
+                      {/* {firstLine} */}
+                      Bhaikaka University
                     </div>
 
                     {/* OTHER LINES (normal class) */}
                     <div className={contactStyles.reachUsText}>
-                      {otherLines}
+                      {/* {otherLines} */}
+                      Gokal Nagar, Karamsad (Gujarat) 388325
                     </div>
 
                   </div>
@@ -397,7 +395,10 @@ export default function ContactUsPage() {
                   <span className={contactStyles.reachUsIcon}><Image src={callIcon} alt="call_icon" width={31} className={contactStyles.socialImg} /></span>
                   <div className={contactStyles.reachUsContent}>
                     <div className={contactStyles.reachUsText}>
-                      <a href={`tel:${settings?.phone}`}>{settings?.phone}</a>
+                      <a href={`tel:${settings?.phone}`}>
+                        +91 964757397
+                        {/* {settings?.phone} */}
+                        </a>
                     </div>
                   </div>
                 </div>
@@ -406,7 +407,10 @@ export default function ContactUsPage() {
                   <span className={contactStyles.reachUsIcon}><Image src={emailIcon} alt="email_icon" width={31} className={contactStyles.socialImg} /></span>
                   <div className={contactStyles.reachUsContent}>
                     <div className={contactStyles.reachUsText}>
-                      <div><a href="mailto:info@bhaikakauniv.edu.in">{settings?.contactEmail}</a></div>
+                      <div><a href="mailto:info@bhaikakauniv.edu.in">
+                        support@bhaikakauniv.edu.com
+                        {/* {settings?.contactEmail} */}
+                        </a></div>
                       {/* <div><a href="mailto:admission@bhaikakauniv.edu.in">{settings?.emailAdmission}</a></div>
                       <div><a href="mailto:docverification@charuthealth.org">{settings?.emailVerification}</a></div> */}
                     </div>
@@ -426,7 +430,7 @@ export default function ContactUsPage() {
                 </div>
 
                 <div className={contactStyles.socialIcons}>
-                  <a href={settings?.facebookUrl} target="_blank" rel="noopener noreferrer" title="Facebook">
+                  {/* <a href={settings?.facebookUrl} target="_blank" rel="noopener noreferrer" title="Facebook">
                     <Image src={facebookIcon} alt="facebook_icon" width={31} className={contactStyles.socialImg} />
                   </a>
                   <a href={settings?.twitterUrl} target="_blank" rel="noopener noreferrer" title="Twitter">
@@ -436,6 +440,19 @@ export default function ContactUsPage() {
                     <Image src={youtubeIcon} alt="youtube_icon" width={31} className={contactStyles.socialImg} />
                   </a>
                   <a href={settings?.instagramUrl} target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <Image src={instagramIcon} alt="instagram_icon" width={31} className={contactStyles.socialImg} />
+                  </a> */}
+
+                   <a href="#" target="_blank" rel="noopener noreferrer" title="Facebook">
+                    <Image src={facebookIcon} alt="facebook_icon" width={31} className={contactStyles.socialImg} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" title="Twitter">
+                    <Image src={twitterIcon} alt="twitter_icon" width={31} className={contactStyles.socialImg} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" title="YouTube">
+                    <Image src={youtubeIcon} alt="youtube_icon" width={31} className={contactStyles.socialImg} />
+                  </a>
+                  <a href="#" target="_blank" rel="noopener noreferrer" title="Instagram">
                     <Image src={instagramIcon} alt="instagram_icon" width={31} className={contactStyles.socialImg} />
                   </a>
                 </div>

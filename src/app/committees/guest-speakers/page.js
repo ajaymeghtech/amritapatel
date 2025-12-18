@@ -22,6 +22,8 @@ import bhaveshmodi from "@/app/assets/images/guest/bhaveshmodi.jpg";
 import urvishjoshi from "@/app/assets/images/guest/urvishjoshi.jpg";
 import kishorsochaliya from "@/app/assets/images/guest/kishorsochaliya.jpg";
 import vinayakpatel from "@/app/assets/images/guest/vinayakpatel.jpg";
+import krupal from "@/app/assets/images/guest/krupal.jpg";
+import hamid from "@/app/assets/images/guest/hamid.jpg";
 
 export default function GuestSpeakersPage() {
 
@@ -106,7 +108,7 @@ export default function GuestSpeakersPage() {
       name: "Dr. Abdul Hamid",
       designation:
         "Occupational Health Physician, Kuwait Integrated Petroleum Industries Company (KIPIC–HEISCO), Kuwait",
-      image: vinayakpatel,
+      image: hamid,
       description:
         "Dr. Abdul Hamid Mavli is an experienced Occupational Health Physician with over 12 years of clinical and public health experience across industrial, community, and hospital settings. Currently serving at Kuwait Integrated Petroleum Industries Company (KIPIC–HEISCO), he specializes in workplace health surveillance, occupational injury management, fitness-to-work certifications, and employee wellness programs. He holds an MD in Community Health & Preventive Medicine and a Professional Diploma in Occupational Medicine from the Royal College of Physicians of Ireland. His expertise includes corporate wellness, industrial health promotion, implementation of return-to-work programs, and management of acute and chronic illnesses. Dr. Mavli has previously worked as a General Practitioner in Kuwait and India, Assistant Professor in Community Medicine, and Medical Officer in government health services, with strong research credentials and multiple peer-reviewed publications."
     },
@@ -155,7 +157,7 @@ export default function GuestSpeakersPage() {
       name: "Dr. Krupal Joshi",
       designation:
         "-",
-      image: vinayakpatel,
+      image: krupal,
       description:
         "-"
     },

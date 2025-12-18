@@ -207,16 +207,16 @@ export default function AdminLayout({ children }) {
       //     </svg>
       //   )
       // },
-      {
-        label: "Career",
-        path: "/admin/career",
-        permission: "career.create",
-        icon: (
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7 12a5 5 0 1110 0 5 5 0 01-10 0z" />
-          </svg>
-        )
-      },
+      // {
+      //   label: "Career",
+      //   path: "/admin/career",
+      //   permission: "career.create",
+      //   icon: (
+      //     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7 12a5 5 0 1110 0 5 5 0 01-10 0z" />
+      //     </svg>
+      //   )
+      // },
       {
         label: "Events",
         path: "/admin/events",
@@ -226,6 +226,48 @@ export default function AdminLayout({ children }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
         )
+      },
+      {
+        label: "Activities",
+        path: null,
+        permission: "activities.manage",
+        icon: (
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+          </svg>
+        ),
+        submenu: [
+          {
+            label: "All Activities",
+            path: "/admin/activities",
+            permission: "activities.manage",
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            )
+          },
+          {
+            label: "Sub-Activities",
+            path: "/admin/sub-activities",
+            permission: "activities.manage",
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            )
+          },
+          {
+            label: "Third Categories",
+            path: "/admin/third-categories",
+            permission: "activities.manage",
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            )
+          },
+        ]
       },
       {
         label: "Home Gallery",
@@ -249,7 +291,7 @@ export default function AdminLayout({ children }) {
       },
       {
         label: "News",
-        path: "/admin/news",
+        path: null,
         permission: "news.create",
         icon: (
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,7 +300,7 @@ export default function AdminLayout({ children }) {
         ),
         submenu: [
           {
-            label: "Category",
+            label: "News Categories",
             path: "/admin/news-category",
             permission: "news-category.manage",
             icon: (
@@ -268,19 +310,19 @@ export default function AdminLayout({ children }) {
             )
           },
           {
-            label: "Sub Category",
+            label: "All News",
             path: "/admin/news",
             permission: "news.create",
             icon: (
               <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2l4 4-4 4-4-4 4-4zm0 8v12m0-12a4 4 0 100 8 4 4 0 000-8z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
               </svg>
             )
           },
         ]
       },
       {
-        label: "Programs Offered",
+        label: "Courses",
         path: "/admin/courses",
         permission: "courses.manage",
         icon: (
@@ -289,51 +331,51 @@ export default function AdminLayout({ children }) {
           </svg>
         )
       },
-      {
-        label: "Press Releases",
-        path: "/admin/press-releases",
-        permission: "press-releases.manage",
-        icon: (
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v12m6-6H6m-2 7h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        ),
-        submenu: [
-          {
-            label: "Category",
-            path: "/admin/press-releases-category",
-            permission: "press-releases-category.manage",
-            icon: (
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6m-6 0a4 4 0 01-3-3.87M9 20a4 4 0 013-3.87M12 12a4 4 0 100-8 4 4 0 000 8z" />
-              </svg>
-            )
-          },
-          {
-            label: "Sub Category",
-            path: "/admin/press-releases",
-            permission: "press-releases.manage",
-            icon: (
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2l4 4-4 4-4-4 4-4zm0 8v12m0-12a4 4 0 100 8 4 4 0 000-8z" />
-              </svg>
-            )
-          },
-        ]
-      },
-      {
-        label: "Projects",
-        path: "/admin/projects",
-        permission: "projects.create",
-        icon: (
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 10h18M3 14h18M3 18h18M7 6v12M17 6v12" />
-          </svg>
-        )
-      },
+      // {
+      //   label: "Press Releases",
+      //   path: "/admin/press-releases",
+      //   permission: "press-releases.manage",
+      //   icon: (
+      //     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v12m6-6H6m-2 7h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      //     </svg>
+      //   ),
+      //   submenu: [
+      //     {
+      //       label: "Category",
+      //       path: "/admin/press-releases-category",
+      //       permission: "press-releases-category.manage",
+      //       icon: (
+      //         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6m-6 0a4 4 0 01-3-3.87M9 20a4 4 0 013-3.87M12 12a4 4 0 100-8 4 4 0 000 8z" />
+      //         </svg>
+      //       )
+      //     },
+      //     {
+      //       label: "Sub Category",
+      //       path: "/admin/press-releases",
+      //       permission: "press-releases.manage",
+      //       icon: (
+      //         <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2l4 4-4 4-4-4 4-4zm0 8v12m0-12a4 4 0 100 8 4 4 0 000-8z" />
+      //         </svg>
+      //       )
+      //     },
+      //   ]
+      // },
+      // {
+      //   label: "Projects",
+      //   path: "/admin/projects",
+      //   permission: "projects.create",
+      //   icon: (
+      //     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 10h18M3 14h18M3 18h18M7 6v12M17 6v12" />
+      //     </svg>
+      //   )
+      // },
       {
         label: "Research",
-        path: "/admin/research",
+        path: null,
         permission: "research.create",
         icon: (
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -342,7 +384,7 @@ export default function AdminLayout({ children }) {
         ),
         submenu: [
           {
-            label: "Category",
+            label: "Research Categories",
             path: "/admin/research-category",
             permission: "research-category.manage",
             icon: (
@@ -352,12 +394,12 @@ export default function AdminLayout({ children }) {
             )
           },
           {
-            label: "Sub Category",
+            label: "All Research",
             path: "/admin/research",
             permission: "research.manage",
             icon: (
               <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 2l4 4-4 4-4-4 4-4zm0 8v12m0-12a4 4 0 100 8 4 4 0 000-8z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 10h18M3 14h18M3 18h18M7 6v12M17 6v12" />
               </svg>
             )
           },
@@ -365,7 +407,7 @@ export default function AdminLayout({ children }) {
       },
 
       {
-        label: "Student Life",
+        label: "Committees",
         path: "/admin/student-life",
         permission: "gallery.manage",
         icon: (

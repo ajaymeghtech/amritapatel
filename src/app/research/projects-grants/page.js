@@ -44,55 +44,55 @@ export default function OngoingProjects() {
                     <td>SPARSH 3.0</td>
                     <td>2025 - 2028</td>
                     <td>GMM Pfaudler Limited, Karamsad</td>
-                    <td>Ongoing</td>
+                    <td><strong>Ongoing</strong></td>
                   </tr>
                   <tr>
                     <td>Health Leadership Enhancement Programme - Third Party Evaluation</td>
                     <td>2025 (Oct-Nov)</td>
                     <td>Indian Institute of Public Health (IIPH), Gandhinagar & State Health System and Resource Centre (SHSRC), Ahemdavad</td>
-                    <td>Completed</td>
+                    <td><strong>Completed</strong> </td>
                   </tr>
                   <tr>
                     <td>Women Empowerment-Cancer Awareness Nexus (WE-CAN): An Implementation Research Study of Cervical Cancer Prevention through HPV Self-Sampling and Education in India</td>
                     <td>2023 - 2026</td>
                     <td>Indian Council of Medical Research (ICMR) and Canadian Institute of Health Research (CIHR)</td>
-                    <td>Ongoing</td>
+                    <td><strong>Ongoing</strong></td>
                   </tr>
                   <tr>
                     <td>SPARSH 2.0</td>
                     <td> 2022-2025 </td>
                     <td> GMM Pfaudler Foundation </td>
-                    <td>Completed</td>
+                    <td><strong>Completed</strong></td>
                   </tr>
                   <tr>
                     <td> Innovation and Learning Centre</td>
                     <td>2018 - 2024</td>
                     <td> National Health System and Resource Centre (NHSRC), New Delhi </td>
-                    <td>Completed</td>
+                    <td><strong>Completed</strong></td>
                   </tr>
                   <tr>
                     <td> Innovation Learning Centre - Dahod Block</td>
                     <td> 2018-2021</td>
                     <td> National Health Systems Resource Centre (NHSRC), New Delhi </td>
-                    <td>Completed</td>
+                    <td><strong>Completed</strong></td>
                   </tr>
                   <tr>
                     <td>SPARSH - 150</td>
                     <td> 2018-2021</td>
                     <td> Sir Dorabji Tata Trust & GMM Pfaudler Ltd.</td>
-                    <td>Completed</td>
+                    <td><strong>Completed</strong></td>
                   </tr>
                   <tr>
                     <td>Shree Krishna Hospital Programme for Advancement of Rural and social health (SPARSH)</td>
                     <td>2016-2018</td>
                     <td> GMM Pfaudler Ltd. & Shamdasani Foundation</td>
-                    <td>Completed</td>
+                    <td><strong>Completed</strong></td>
                   </tr>
                   <tr>
                     <td> Cancer Prevention and Care Programme</td>
                     <td> 2014-2017</td>
                     <td> Sir Dorabji Tata Trust	</td>
-                    <td>Completed</td>
+                    <td><strong>Completed</strong></td>
                   </tr>
                   <tr>
                     <td colSpan={4}></td>

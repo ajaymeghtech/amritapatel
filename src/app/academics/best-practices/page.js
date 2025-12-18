@@ -12,7 +12,7 @@ export default function ExaminationResults() {
     return (
         <>
             <Header />
-            <Innerbanner title="Examination Results" image={academicBanner} />
+            <Innerbanner title="Best Practices" image={academicBanner} />
 
             <div className="aboutinnerSec sectionPadding">
                 <div className="container">

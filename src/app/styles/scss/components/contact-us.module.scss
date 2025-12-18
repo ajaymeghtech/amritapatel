@@ -3,7 +3,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
 
 
-.contactUsMain{ background-color: #F5EFE7;border-radius: 50px;}
+.contactUsMain{ background-color: #F5EFE7;border-radius: 50px;
+.mb-3{
+     margin-bottom: 25px!important;
+}
+}
 
 .sendMsgSection { padding: 100px 50px;
      @include phone{  padding: 50px 25px;}
@@ -12,13 +16,39 @@
 .formGroup { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;
      @include phone { grid-template-columns: 1fr; gap: 15px; } }
 
-.formLabel { display: block; font-size: 25px; font-weight: 500; line-height: 25px; color: #6C6458; margin-bottom: 8px;  }
+.formLabel { display: block; font-size: 20px; font-weight: 500; line-height: 25px; 
+     color: #6C6458; margin-bottom: 8px;  
+@media screen and (max-width:1500px){ font-size: 18px; } 
+     @include phone { font-size: 18px; } 
+} 
 
-.formInput, .formSelect, .formTextarea { width: 100%; padding: 12px 16px; border: none; border-radius: 6px; background: #E5E7EB;
-      font-size: 20px; color: #333333;
-       transition: all 0.3s ease; &:focus { outline: none; background: #D9D9D9; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); } }
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  height: 52px;             
+  padding: 12px 16px;
+  border: none;
+  border-radius: 6px;
+  background: #E5E7EB;
+  font-size: 20px;
+  line-height: 28px;          // ✅ normalize text alignment
+  color: #333333;
+  transition: all 0.3s ease;
 
-.formTextarea { resize: vertical; min-height: 150px; }
+  &:focus {
+    outline: none;
+    background: #D9D9D9;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}
+
+.formTextarea {
+  height: auto;
+  min-height: 150px;
+  resize: vertical;
+}
+
 
 .captchaWrapper { display: flex; gap: 12px; align-items: flex-end; }
 
@@ -31,7 +61,10 @@
 .reachUsSection { flex: 1; background: #00417A; color: #FFFFFF; 
      padding: 100px 50px; border-radius: 50px; display: flex; flex-direction: column; justify-content: space-between;
      .sectionheading,h2 { color: #FFFFFF;}
-      @include desktop { padding: 30px 25px; } @include phone { padding: 25px 20px; } }
+      @include desktop { padding: 30px 25px; } @include phone { padding: 25px 20px; } 
+     
+     
+     }
 
 .reachUsItem { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 24px;
       @include phone { margin-bottom: 18px; } }
@@ -39,10 +72,10 @@
 .reachUsIcon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
 
 .reachUsText { font-size: 25px; line-height: 36px; font-weight: 400;
-     @include phone { font-size: 14px; } }
+     @include phone { font-size: 18px; } }
 
 .reachUsTitleText { font-size: 25px; line-height: 36px; font-weight: 700;
-     @include phone { font-size: 14px; } }
+     @include phone { font-size:18px; } }
 
 .socialIcons { display: flex; gap: 16px; margin-top: 30px; justify-content: flex-start; padding-left: 46px;
      a { width: 38px; display: flex; align-items: center; justify-content: center; 
@@ -56,3 +89,24 @@
 .reachUsIcon { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; flex-shrink: 0; img { width: 100%; height: 100%; object-fit: contain; } }
 
 .mapSection{ margin-top: 150px;}
+
+.formSelect {
+  appearance: none;          
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236C6458' viewBox='0 0 16 16'%3E%3Cpath d='M1.5 5.5l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  background-size: 14px;
+  padding-right: 42px;        
+  cursor: pointer;
+}
+
+
+@media screen and (max-width:1400px){
+   .reachUsSection{
+     .reachUsTitleText{
+          font-size:25px;
+     }
+   }
+}

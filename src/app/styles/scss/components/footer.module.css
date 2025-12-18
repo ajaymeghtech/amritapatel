@@ -11,6 +11,11 @@
     text-align: left;
   }
 }
+@media (max-width: 767px) {
+  .footerheading {
+    font-size: 25px;
+  }
+}
 
 .footer {
   background: #1277BD;
@@ -71,6 +76,9 @@
 @media (max-width: 767px) {
   .footer .logoSection {
     margin-bottom: 35px;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
   }
   .footer .logoSection img {
     width: 200px;
@@ -107,28 +115,23 @@
   }
 }
 @media (max-width: 1199px) {
-  .footer .quickLinks ul {
-    margin-bottom: 50px;
-  }
-  .footer .quickLinks ul li {
-    text-align: left;
-  }
   .footer .quickLinks ul li a {
     font-size: 18px;
   }
 }
 @media (max-width: 767px) {
-  .footer .quickLinks ul {
-    margin-bottom: 30px;
-    -webkit-columns: 1;
-       -moz-columns: 1;
-            columns: 1;
+  .footer .quickLinks ul li a {
+    font-size: 16px;
   }
+}
+@media (max-width: 1199px) {
   .footer .quickLinks ul li {
     text-align: left;
   }
-  .footer .quickLinks ul li a {
-    font-size: 18px;
+}
+@media (max-width: 1199px) {
+  .footer .quickLinks ul {
+    margin-bottom: 50px;
   }
 }
 .footer .contactSection {
@@ -199,6 +202,11 @@
   }
   .footer .contactSection li .contactItem .footericon {
     height: 20px;
+  }
+}
+@media (max-width: 767px) {
+  .footer .contactSection li .contactItem p, .footer .contactSection li .contactItem a {
+    font-size: 16px;
   }
 }
 .footer .contactSection li .phone {
@@ -289,7 +297,7 @@
     gap: 0;
   }
   .footer .contactSection li .contactItem p, .footer .contactSection li .contactItem a {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 0px;
   }
 }

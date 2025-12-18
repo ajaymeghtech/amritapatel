@@ -27,6 +27,7 @@ const initialFormState = {
 
 const initialImageFormState = {
   title: "",
+  short_description: "",
   description: "",
   file: null,
   preview: "",
@@ -55,7 +56,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
             <div className={styles.modalTitleSection}>
               <h2 className={styles.modalTitle}>{title}</h2>
               <p className={styles.modalSubtitle}>
-                {title.includes("Edit") ? "Update student life entry" : "Create a new student life entry"}
+                {title.includes("Edit") ? "Update committee entry" : "Create a new committee entry"}
               </p>
             </div>
           </div>
@@ -89,6 +90,7 @@ export default function StudentLifeList() {
     loading: false,
   });
   const [imageForm, setImageForm] = useState(initialImageFormState);
+  const [imageEditorInstance, setImageEditorInstance] = useState(null);
   const [imageUploading, setImageUploading] = useState(false);
   const [imageDeleteModal, setImageDeleteModal] = useState({ isOpen: false, id: null, title: "" });
   const [showImageUploadForm, setShowImageUploadForm] = useState(false);
@@ -100,7 +102,23 @@ export default function StudentLifeList() {
       setLoading(true);
       const response = await fetch(STUDENT_LIFE_ENDPOINT);
       const data = await response.json();
-      setItems(data.data || []);
+      const itemsWithImageCounts = await Promise.all(
+        (data.data || []).map(async (item) => {
+          try {
+            const imageResponse = await fetch(
+              `${STUDENT_LIFE_IMAGE_ENDPOINT}?student_life_id=${item._id}`
+            );
+            const imageData = await imageResponse.json();
+            return {
+              ...item,
+              imageCount: imageData.count || (imageData.data?.length || 0),
+            };
+          } catch (err) {
+            return { ...item, imageCount: 0 };
+          }
+        })
+      );
+      setItems(itemsWithImageCounts);
     } catch (error) {
       toast.error("Failed to load data");
     } finally {
@@ -210,6 +228,7 @@ export default function StudentLifeList() {
       loading: true,
     });
     setImageForm(initialImageFormState);
+    setImageEditorInstance(null);
     setShowImageUploadForm(false);
     fetchStudentLifeImages(entry._id);
   };
@@ -222,6 +241,7 @@ export default function StudentLifeList() {
       loading: false,
     });
     setImageForm(initialImageFormState);
+    setImageEditorInstance(null);
     setShowImageUploadForm(false);
   };
 
@@ -241,7 +261,7 @@ export default function StudentLifeList() {
   const handleImageUploadSubmit = async (event) => {
     event.preventDefault();
     if (!imageManager.entry?._id) {
-      toast.error("Student life entry not selected");
+      toast.error("Committee entry not selected");
       return;
     }
     if (!imageForm.file) {
@@ -251,10 +271,12 @@ export default function StudentLifeList() {
 
     try {
       setImageUploading(true);
+      const latestDescription = imageEditorInstance?.getData ? imageEditorInstance.getData() : imageForm.description;
       const payload = new FormData();
       payload.append("student_life_id", imageManager.entry._id);
       payload.append("title", imageForm.title);
-      payload.append("description", imageForm.description);
+      payload.append("short_description", imageForm.short_description || "");
+      payload.append("description", latestDescription || "");
       payload.append("image", imageForm.file);
 
       const response = await fetch(STUDENT_LIFE_IMAGE_ENDPOINT, {
@@ -269,8 +291,10 @@ export default function StudentLifeList() {
 
       toast.success("Image uploaded successfully");
       setImageForm(initialImageFormState);
+      setImageEditorInstance(null);
       setShowImageUploadForm(false);
       fetchStudentLifeImages(imageManager.entry._id);
+      fetchItems(); // Refresh list to update image counts
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -301,6 +325,7 @@ export default function StudentLifeList() {
       setImageDeleteModal({ isOpen: false, id: null, title: "" });
       if (imageManager.entry?._id) {
         fetchStudentLifeImages(imageManager.entry._id);
+        fetchItems(); // Refresh list to update image counts
       }
     } catch (error) {
       toast.error(error.message);
@@ -356,26 +381,31 @@ export default function StudentLifeList() {
       sortable: false,
       filterable: false,
       renderCell: (params) => (
-        <button
-          onClick={() => openImageManager(params.row)}
-          className="btn btn-sm d-flex align-items-center justify-content-center"
-          style={{
-            width: "32px",
-            height: "32px",
-            backgroundColor: "#e0f2fe",
-            border: "none",
-            borderRadius: "6px",
-            padding: 0
-          }}
-          title="Manage images"
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#bae6fd")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e0f2fe")}
-        >
-          <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m3-3l-3 3v4H4a2 2 0 01-2-2V6a2 2 0 012-2h12" />
-          </svg>
-        </button>
+        <div className="d-flex align-items-center gap-2">
+          <span className="badge bg-info" style={{ fontSize: '12px', padding: '4px 8px' }}>
+            {params.row.imageCount || 0}
+          </span>
+          <button
+            onClick={() => openImageManager(params.row)}
+            className="btn btn-sm d-flex align-items-center justify-content-center"
+            style={{
+              width: "32px",
+              height: "32px",
+              backgroundColor: "#e0f2fe",
+              border: "none",
+              borderRadius: "6px",
+              padding: 0
+            }}
+            title="Manage images"
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#bae6fd")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e0f2fe")}
+          >
+            <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m3-3l-3 3v4H4a2 2 0 01-2-2V6a2 2 0 012-2h12" />
+            </svg>
+          </button>
+        </div>
       ),
     },
     {
@@ -486,7 +516,7 @@ export default function StudentLifeList() {
                 </svg>
                 <input
                   type="text"
-                  placeholder="Search student life..."
+                  placeholder="Search committees..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className={styles.searchInput}
@@ -511,7 +541,7 @@ export default function StudentLifeList() {
               <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v12m6-6H6" />
               </svg>
-              <span className={styles.buttonTextFull}>Add Student Life</span>
+              <span className={styles.buttonTextFull}>Add Committee</span>
               <span className={styles.buttonTextShort}>Add</span>
             </button>
           </div>
@@ -547,7 +577,7 @@ export default function StudentLifeList() {
       <Modal
         isOpen={formMode !== null}
         onClose={resetForm}
-        title={formMode === "edit" ? "Edit Student Life" : "Add Student Life"}
+        title={formMode === "edit" ? "Edit Committee" : "Add Committee"}
       >
         <div className={styles.modalFormContent}>
           <form onSubmit={handleFormSubmit} className={styles.formContainer}>
@@ -556,7 +586,7 @@ export default function StudentLifeList() {
             <div className={styles.formSection}>
               <div className={styles.formSectionHeader}>
                 <h3 className={styles.formSectionTitle}>Basic Information</h3>
-                <p className={styles.formSectionDescription}>Add essential details of student life</p>
+                <p className={styles.formSectionDescription}>Add essential details of committee</p>
               </div>
 
               {/* TITLE */}
@@ -665,14 +695,64 @@ export default function StudentLifeList() {
                 </div>
 
                 <div className={styles.formField}>
-                  <label className={styles.formLabel}>Description</label>
-                  <textarea
-                    rows={3}
-                    className={styles.formTextarea}
-                    value={imageForm.description}
-                    onChange={(e) => handleImageFieldChange("description", e.target.value)}
-                    placeholder="Description (optional)"
+                  <label className={styles.formLabel}>Short Description</label>
+                  <input
+                    type="text"
+                    className={styles.formInput}
+                    value={imageForm.short_description}
+                    onChange={(e) => handleImageFieldChange("short_description", e.target.value)}
+                    placeholder="Short description (optional)"
                   />
+                </div>
+
+                <div className={styles.formField}>
+                  <label className={styles.formLabel}>Description</label>
+                  <div style={{ minHeight: '200px' }}>
+                    <CKEditorWrapper
+                      data={imageForm.description || ''}
+                      config={editorConfiguration}
+                      onReady={(editor) => {
+                        setImageEditorInstance(editor);
+                        if (!editor) return;
+                        const IMAGE_UPLOAD_URL = `${API_BASE_URL}/api/cms/upload-image`;
+                        editor.config.filebrowserUploadUrl = IMAGE_UPLOAD_URL;
+                        editor.config.filebrowserImageUploadUrl = IMAGE_UPLOAD_URL;
+                        editor.on('fileUploadRequest', (evt) => {
+                          const fileLoader = evt.data.fileLoader;
+                          const xhr = fileLoader.xhr;
+                          const formData = new FormData();
+                          xhr.open('POST', IMAGE_UPLOAD_URL, true);
+                          formData.append('image', fileLoader.file, fileLoader.fileName);
+                          fileLoader.xhr.send(formData);
+                          evt.stop();
+                        });
+                        editor.on('fileUploadResponse', (evt) => {
+                          evt.stop();
+                          try {
+                            const response = JSON.parse(evt.data.xhr.responseText || '{}');
+                            if (!response?.success || !response?.url) {
+                              evt.cancel();
+                              toast.error(response?.message || 'Image upload failed.');
+                              return;
+                            }
+                            const fullUrl = response.url.startsWith('http') ? response.url : `${API_BASE_URL}${response.url}`;
+                            evt.data.url = fullUrl;
+                            toast.success('Image uploaded!', { autoClose: 2000 });
+                          } catch (parseError) {
+                            evt.cancel();
+                            toast.error('Upload failed.');
+                          }
+                        });
+                      }}
+                      onChange={(event, editor) => {
+                        const data = editor?.getData ? editor.getData() : event.target.value;
+                        handleImageFieldChange("description", data);
+                      }}
+                    />
+                  </div>
+                  <small className={styles.formHelp}>
+                    Format your description using the toolbar. You can add images, links, and formatted text.
+                  </small>
                 </div>
 
                 <div className={styles.formField}>
@@ -736,6 +816,7 @@ export default function StudentLifeList() {
                     className={styles.formCancelBtn}
                     onClick={() => {
                       setImageForm(initialImageFormState);
+                      setImageEditorInstance(null);
                       setShowImageUploadForm(false);
                     }}
                   >
@@ -753,9 +834,9 @@ export default function StudentLifeList() {
             <div className={styles.formSectionHeader}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                 <div>
-                  <h3 className={styles.formSectionTitle}>Student Life Images</h3>
+                  <h3 className={styles.formSectionTitle}>Committee Images</h3>
                   <p className={styles.formSectionDescription}>
-                    Manage uploaded images for this student life entry
+                    Manage uploaded images for this committee entry
                   </p>
                 </div>
                 <button
@@ -808,7 +889,7 @@ export default function StudentLifeList() {
                         <div style={{ padding: "0.5rem" }}>
                           <img
                             src={getImageUrl(params.row.image)}
-                            alt={params.row.title || "Student life image"}
+                            alt={params.row.title || "Committee image"}
                             style={{
                               width: "80px",
                               height: "80px",
@@ -836,14 +917,28 @@ export default function StudentLifeList() {
                     ),
                   },
                   {
+                    field: "short_description",
+                    headerName: "Short Description",
+                    width: 200,
+                    renderCell: (params) => (
+                      <Tooltip content={params.row.short_description || "—"}>
+                        <div className="text-truncate text-muted" style={{ maxWidth: "180px" }}>
+                          {params.row.short_description || "—"}
+                        </div>
+                      </Tooltip>
+                    ),
+                  },
+                  {
                     field: "description",
                     headerName: "Description",
                     width: 350,
                     renderCell: (params) => (
-                      <Tooltip content={params.row.description || "—"}>
-                        <div className="text-truncate text-muted" style={{ maxWidth: "330px" }}>
-                          {params.row.description || "—"}
-                        </div>
+                      <Tooltip content={params.row.description?.replace(/<[^>]*>/g, '') || "—"}>
+                        <div 
+                          className="text-truncate text-muted" 
+                          style={{ maxWidth: "330px" }}
+                          dangerouslySetInnerHTML={{ __html: params.row.description?.substring(0, 100) + '...' || "—" }}
+                        />
                       </Tooltip>
                     ),
                   },
@@ -937,7 +1032,7 @@ export default function StudentLifeList() {
         <Modal
           isOpen={true}
           onClose={() => setViewModal({ isOpen: false, entry: null })}
-          title="View Student Life Details"
+          title="View Committee Details"
         >
           <div className={styles.viewModalContent}>
 

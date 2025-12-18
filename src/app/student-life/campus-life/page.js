@@ -42,7 +42,7 @@ function CampusLifeContent() {
         setLoading(false);
       }
     }
-    loadData();
+    // loadData();
   }, [id]);
 
   const handleToggle = (index) => {

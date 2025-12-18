@@ -34,7 +34,7 @@ export default function Footer() {
             }
         };
 
-        loadSettings();
+        // loadSettings();
     }, []);
 
     if (loading) {

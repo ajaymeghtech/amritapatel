@@ -112,7 +112,7 @@ export default function BannerList() {
   });
 
   useEffect(() => {
-    fetchBanners();
+    // fetchBanners();
   }, []);
 
   const fetchBanners = async () => {

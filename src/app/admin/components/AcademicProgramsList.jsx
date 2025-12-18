@@ -72,7 +72,7 @@ export default function ProgramsList() {
   const [viewModal, setViewModal] = useState({ isOpen: false, entry: null });
 
   useEffect(() => {
-    fetchPrograms();
+    // fetchPrograms();
   }, []);
 
   const fetchPrograms = async () => {

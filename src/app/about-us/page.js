@@ -10,8 +10,9 @@ import overviewImage from '@/app/assets/images/about_innerbanner.png';
 import aboutImage from '@/app/assets/images/about-image.jpg';
 import visionMission from '@/app/assets/images/vision-mission.jpg';
 import presidentImg from '@/app/assets/images/gauri_trivedi.jpg';
-import abhay_dharamasi from '@/app/assets/images/abhay_dharamasi.jpg';
+import aboutusBanner from '@/app/assets/images/banner/aboutus_banner.png';
 import amrita_patel from '@/app/assets/images/amrita_patel.jpg';
+import director from '@/app/assets/images/director.jpg';
 import { fetchCMSByKey } from '@/app/services/cmsService';
 
 export default function AboutUsPage() {
@@ -34,7 +35,7 @@ export default function AboutUsPage() {
       }
     };
 
-    fetchOverviewData();
+    // fetchOverviewData();
   }, []);
 
   // Resolve banner image URL
@@ -56,8 +57,9 @@ export default function AboutUsPage() {
       <Header />
 
       <Innerbanner
-        title={OverviewData?.title || "About Us"}
-        image={getBannerImage()}
+        title={OverviewData?.title || "About Us"} 
+        image={aboutusBanner}
+        // image={getBannerImage()}
       />
 
       {/* Main Content Area
@@ -181,8 +183,8 @@ export default function AboutUsPage() {
 
             </div>
             <div className="col-lg-4">
-                <Image src={amrita_patel} alt="about Innerbanner" width={1920} height={600} className="img-fluid innerbannerImage"  />
-              
+              <Image src={amrita_patel} alt="about Innerbanner" width={1920} height={600} className="img-fluid innerbannerImage" />
+
             </div>
           </div>
         </div>
@@ -190,29 +192,29 @@ export default function AboutUsPage() {
       <div className="visionMissionSec sectionPadding">
         <div className="container">
           <div className="visionSec padd100">
-              <div className="visionTitle">
-                  <h2 className="sectionheading">Our Vision</h2>
-              </div>
-              <div className="visionDes">
-                  <p>APCPH will become a self-sustaining proactive center of excellence in public health, responsive to local health needs in a collaborative manner and its work cited, referred, and utilized both by scientific and local community.</p>
-              </div>
+            <div className="visionTitle">
+              <h2 className="sectionheading">Our Vision</h2>
+            </div>
+            <div className="visionDes">
+              <p>APCPH will become a self-sustaining proactive center of excellence in public health, responsive to local health needs in a collaborative manner and its work cited, referred, and utilized both by scientific and local community.</p>
+            </div>
           </div>
           <div className="visionSec">
-              <div className="visionTitle">
-                  <h2 className="sectionheading">Our Mission</h2>
-              </div>
-              <div className="visionDes">
-                 <ul className="list">
-                    <li>To work proactively with the community for primary health care and public health emergency response.</li>
-                    <li>To offer community-based curriculum that prepares job-ready and confident public health experts for health systems and NGOs in developing countries.</li>
-                    <li>To attract international students, especially from South-East Asian and African countries.</li>
-                    <li>To offer short courses on leadership, management, and new research methods for health professionals.</li>
-                    <li>To develop courses for local youth to empower them in health matters.</li>
-                    <li>To build networking for post-course job placement support.</li>
-                    <li>To do problem-solving research on local health issues, focusing on community-based care for non-communicable diseases, nutrition, sanitation, and health management.</li>
-                  </ul>
+            <div className="visionTitle">
+              <h2 className="sectionheading">Our Mission</h2>
+            </div>
+            <div className="visionDes">
+              <ul className="list">
+                <li>To work proactively with the community for primary health care and public health emergency response.</li>
+                <li>To offer community-based curriculum that prepares job-ready and confident public health experts for health systems and NGOs in developing countries.</li>
+                <li>To attract international students, especially from South-East Asian and African countries.</li>
+                <li>To offer short courses on leadership, management, and new research methods for health professionals.</li>
+                <li>To develop courses for local youth to empower them in health matters.</li>
+                <li>To build networking for post-course job placement support.</li>
+                <li>To do problem-solving research on local health issues, focusing on community-based care for non-communicable diseases, nutrition, sanitation, and health management.</li>
+              </ul>
 
-              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -220,13 +222,22 @@ export default function AboutUsPage() {
         <div className="container">
           <div className="row">
             <div className="col-lg-3">
-                <Image src={amrita_patel} alt="amrita patel" width={450} height={450} className="img-fluid innerbannerImage"/>
+              <Image src={director} alt="director" width={450} height={450} className="img-fluid innerbannerImage" />
             </div>
             <div className="col-lg-9">
               <h2 className="sectionheading">Director Message</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat orci vitae justo volutpat blandit. Nulla vitae sem nulla. Aliquam at ultricies dui. Vivamus pulvinar nisl quis lectus viverra, et tincidunt ante sodales. Pellentesque id lacinia urna. In accumsan augue diam, at placerat ligula viverra tristique. </p>
-              <p>Nunc efficitur arcu ac nibh ultricies, id euismod elit tincidunt. Mauris lacus tortor, congue sed commodo id, ultrices eu lacus. Praesent tincidunt orci ac augue elementum facilisis. Ut facilisis pulvinar sollicitudin. Vestibulum volutpat ultrices nunc, sit amet luctus ipsum malesuada sit amet. Proin libero massa, interdum vitae molestie in, euismod nec dolor.</p>
-              <p className="directorName">Dr. ABCD Patel</p>
+              <p>We are glad to offer two structured and meticulously designed post graduate programs for better delivery of  healthcare institutionally and, at the community level. Amrita Patel Centre for Public Health (APCPH) offers Masters in Public health (MPH) program both full-time and part time for working professionals. The second course is a Master in Hospital Administration (MHA). Additionally, there is a range of short-term courses aimed at building the capacity of healthcare professionals working across different cadres. </p>
+              <p>Apart from this, the center also envisages holistic development of the students by various means. It offers a complete exposure to the field which includes a vast exposure to 150 villages across different blocks in Anand and Kheda districts of Gujarat. A 1000-Bed NABH-accredited tertiary level multi-specialty hospital attached to medical college, is one of the constituent Institutes of Bhaikaka University. The hospital with its state-of-the-art medical services and attached centers of oncology, bone marrow transplant, cardiology and critical care  offers hands on learning opportunities for students of Public Health and Hospital Administration.</p>
+              <p>Learning opportunities also comes in a way by participating in various workshops, seminar and other residential courses which APCPH and other constituent institutes of Bhaikaka University is offering/arranging  time to time apart from other external sources as well. At the level of  organizing such events in APCPH , students do learn the management part and also learns about the teamwork. </p>
+              <p>The university’s knowledge centre houses a plethora of books and literature, a perfect place to enrich knowledge, with the serene environment facilitating a harmony to acquire wisdom.
+                A state-of-the-art Gym, spiritual centre like BLISS in the University campus and also Yoga sessions, offers a chance to learn these healthy practices, imbibe them for personal integrity and contribute to a larger cause.
+                In a nutshell, the campus at Bhaikaka University is an ideal and complete environment to sustain, flourish and grow as a professional.</p>
+              <p>Learning is a way of life here!</p>
+
+              <p className="directorName">With Best wishes,<br />
+                Director,<br />
+                Dr Deepak B. Sharma,<br />
+                Amrita Patel Centre for Public Health</p>
             </div>
           </div>
         </div>

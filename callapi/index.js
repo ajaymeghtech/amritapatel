@@ -11,6 +11,28 @@ app.get('/api/test', (req, res) => {
   res.json({ status: true, message: 'API working fine' });
 });
 
+require('dotenv').config();
+console.log("SMTP USER:", process.env.SMTP_USER);
+const transporter = require("./utils/mailer");
+
+
+app.get("/test-mail", async (req, res) => {
+  try {
+    await transporter.sendMail({
+      from: process.env.SMTP_FROM_EMAIL,
+      to: "viralnode@mailinator.com",
+      subject: "TEST MAIL",
+      text: "This is a test email from Node.js",
+    });
+
+    res.send("MAIL SENT");
+  } catch (e) {
+    console.error(e);
+    res.send("MAIL FAILED: " + e.message);
+  }
+});
+
+
 const newsRouter = require('./routes/news');
 const yearRouter = require('./routes/yearRouter');
 const announcementsRoutes = require('./routes/announcements');
@@ -26,6 +48,7 @@ const studentLifePDFRoutes = require("./routes/studentLifePDFRoutes");
 const testimonialRouter = require('./routes/testimonial');
 const activitiesRouter = require("./routes/activitiesRoutes");
 const subactivitiesRouter = require("./routes/subactivitiesRoutes");
+const thirdCategoriesRouter = require("./routes/thirdCategoriesRoutes");
 const faqRouter = require("./routes/faq");
 
 const videoTestimonial = require("./routes/videoTestimonialRoutes");
@@ -51,6 +74,7 @@ app.use("/api/faq", faqRouter);
 
 app.use("/api/activities", activitiesRouter);
 app.use("/api/subactivities", subactivitiesRouter);
+app.use("/api/third-categories", thirdCategoriesRouter);
 app.use("/api/video-testimonial", videoTestimonial);
 app.use("/api/academic", academicRouter);
 app.use("/api/sub-academic", subAcademicRouter);

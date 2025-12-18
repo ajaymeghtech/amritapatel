@@ -61,9 +61,9 @@ export default function Header() {
   };
 
   useEffect(() => {
-    loadInstitutes();
-    fetchStudentLife();
-    fetchResearch();
+    // loadInstitutes();
+    // fetchStudentLife();
+    // fetchResearch();
   }, []);
 
   const loadInstitutes = async () => {

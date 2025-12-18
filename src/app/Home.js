@@ -17,7 +17,6 @@ import libraryImage from '@/app/assets/images/library_food_student_activity.png'
 import securityImage from '@/app/assets/images/security.png';
 import bankImage from '@/app/assets/images/bank_atm_book_store.png';
 import provisionImage from '@/app/assets/images/provision_store_temple.png';
-import sportsImage from '@/app/assets/images/sports.png';
 import anouncementIcon from '@/app/assets/icons/anouncement.png';
 import { fetchCMSByKey } from '@/app/services/cmsService';
 import { fetchPrograms, getProgramImageUrl } from '@/app/services/programService';
@@ -25,6 +24,83 @@ import { fetchEvents } from "./services/eventsService";
 import { fetchHomeGallery, getGalleryImageUrl } from '@/app/services/galleryService';
 import ConnectTab from "./components/ConnectTab";
 import Footer from "./components/Footer";
+import publichealth1 from '@/app/assets/icons/public_health1.png';
+import publichealth2 from '@/app/assets/icons/healthcare2.png';
+import publichealth3 from '@/app/assets/icons/public_health3.png';
+import gallery1 from '@/app/assets/images/gallery/image1.png'
+import gallery2 from '@/app/assets/images/gallery/image2.png'
+import gallery3 from '@/app/assets/images/gallery/image3.png'
+import gallery4 from '@/app/assets/images/gallery/image4.png'
+import HomePageBanner from '@/app/assets/images/banner/home_banner.png'
+
+const staticAnnouncements = [
+  {
+    _id: "1",
+    title: "Bhaikaka University Organizes “Muskaan – The Sharing...",
+    link: "https://example.com",
+  },
+  {
+    _id: "2",
+    title: "Bhaikaka University Celebrates Diwali with Great Enthusiasm",
+    link: "https://example.com",
+  },
+  {
+    _id: "3",
+    title: "Celebration of Anti-Ragging Week | 12th – 18th August 2025",
+    link: "https://example.com",
+  },
+  {
+    _id: "4",
+    title: "Bhaikaka University Celebrates 79th Independence Day",
+    link: "https://example.com",
+  },
+];
+
+const staticPrograms = [
+  {
+    _id: "69438920fe9f303c09a2f659",
+    title: "Master of Public Health (MPH)",
+    iconImage: publichealth1,
+  },
+  {
+    _id: "69438c133f2a1f71d282b39d",
+    title: "Master of Public Health - Executive (MPH)",
+    iconImage: publichealth2,
+  },
+  {
+    _id: "69438c403f2a1f71d282b3b7",
+    title: "Master of Hospital Administration (MHA)",
+    iconImage: publichealth3,
+  },
+];
+
+const staticGalleryItems = [
+  {
+    _id: "693a6e802825e205fe5e21c2",
+    title: "test4",
+    image: gallery1,
+  },
+  {
+    _id: "69146a2e536fcb95aaf1c63b",
+    title: "1",
+    image: gallery2,
+  },
+  {
+    _id: "69146a20536fcb95aaf1c639",
+    title: "unilife3",
+    image: gallery3,
+  },
+  {
+    _id: "69146a13536fcb95aaf1c637",
+    title: "unilife2",
+    image: gallery4,
+  },
+  {
+    _id: "69146639536fcb95aaf1c5fe",
+    title: "unilife1",
+    image: gallery2,
+  },
+];
 
 export default function Home() {
 
@@ -58,90 +134,90 @@ export default function Home() {
     ],
   };
 
-  useEffect(() => {
-    let isMounted = true;
-    setPageLoading(true);
-    setPageError(null);
+  // useEffect(() => {
+  //   let isMounted = true;
+  //   setPageLoading(true);
+  //   setPageError(null);
 
-    const loadAllData = async () => {
-      const results = await Promise.allSettled([
-        fetchBanners({ status: 'active', position: 'homepage' }),
-        fetchAnnouncementsTitle(),
-        fetchCMSByKey('about'),
-        fetchCMSByKey('contactus'),
-        fetchCMSByKey('empowering_students'),
-        fetchCMSByKey('life_at_lifecycle'),
-        fetchCMSByKey('best_time_of_university'),
-        fetchPrograms(),
-        (async () => {
-          const response = await fetch(`${API_BASE_URL}/api/news`);
-          if (!response.ok) throw new Error('Failed to fetch news');
-          const data = await response.json();
-          return data.data || data || [];
-        })(),
-        fetchEvents(),
-        fetchHomeGallery(),
-      ]);
+  //   const loadAllData = async () => {
+  //     const results = await Promise.allSettled([
+  //       fetchBanners({ status: 'active', position: 'homepage' }),
+  //       fetchAnnouncementsTitle(),
+  //       fetchCMSByKey('about'),
+  //       fetchCMSByKey('contactus'),
+  //       fetchCMSByKey('empowering_students'),
+  //       fetchCMSByKey('life_at_lifecycle'),
+  //       fetchCMSByKey('best_time_of_university'),
+  //       fetchPrograms(),
+  //       (async () => {
+  //         const response = await fetch(`${API_BASE_URL}/api/news`);
+  //         if (!response.ok) throw new Error('Failed to fetch news');
+  //         const data = await response.json();
+  //         return data.data || data || [];
+  //       })(),
+  //       fetchEvents(),
+  //       fetchHomeGallery(),
+  //     ]);
 
-      if (!isMounted) return;
+  //     if (!isMounted) return;
 
-      const [
-        bannersResult,
-        announcementsResult,
-        aboutResult,
-        _contactResult,
-        empoweringResult,
-        lifeAtResult,
-        bestTimeResult,
-        programsResult,
-        newsResult,
-        eventsResult,
-        galleryResult,
-      ] = results;
+  //     const [
+  //       bannersResult,
+  //       announcementsResult,
+  //       aboutResult,
+  //       _contactResult,
+  //       empoweringResult,
+  //       lifeAtResult,
+  //       bestTimeResult,
+  //       programsResult,
+  //       newsResult,
+  //       eventsResult,
+  //       galleryResult,
+  //     ] = results;
 
-      if (bannersResult.status === 'fulfilled') {
-        setBanners(bannersResult.value);
-      } else {
-        console.error('Failed to fetch banners:', bannersResult.reason);
-        setBanners([]);
-      }
+  //     if (bannersResult.status === 'fulfilled') {
+  //       setBanners(bannersResult.value);
+  //     } else {
+  //       console.error('Failed to fetch banners:', bannersResult.reason);
+  //       setBanners([]);
+  //     }
 
-      if (announcementsResult.status === 'fulfilled') {
-        setAnnouncements(
-          (announcementsResult.value || []).filter((a) => a.isPublished)
-        );
-      } else {
-        console.error('Failed to fetch announcements:', announcementsResult.reason);
-        setAnnouncements([]);
-      }
+  //     if (announcementsResult.status === 'fulfilled') {
+  //       setAnnouncements(
+  //         (announcementsResult.value || []).filter((a) => a.isPublished)
+  //       );
+  //     } else {
+  //       console.error('Failed to fetch announcements:', announcementsResult.reason);
+  //       setAnnouncements([]);
+  //     }
 
-      setAboutCmsData(aboutResult.status === 'fulfilled' ? aboutResult.value : null);
-      setEmpoweringData(empoweringResult.status === 'fulfilled' ? empoweringResult.value : null);
-      setLifeAtUniversityData(lifeAtResult.status === 'fulfilled' ? lifeAtResult.value : null);
-      setUniversityBestTimeData(bestTimeResult.status === 'fulfilled' ? bestTimeResult.value : null);
-      setPrograms(programsResult.status === 'fulfilled' ? (programsResult.value || []) : []);
+  //     setAboutCmsData(aboutResult.status === 'fulfilled' ? aboutResult.value : null);
+  //     setEmpoweringData(empoweringResult.status === 'fulfilled' ? empoweringResult.value : null);
+  //     setLifeAtUniversityData(lifeAtResult.status === 'fulfilled' ? lifeAtResult.value : null);
+  //     setUniversityBestTimeData(bestTimeResult.status === 'fulfilled' ? bestTimeResult.value : null);
+  //     setPrograms(programsResult.status === 'fulfilled' ? (programsResult.value || []) : []);
 
-      if (galleryResult.status === 'fulfilled') {
-        setGalleryItems(galleryResult.value || []);
-      } else {
-        console.error('Failed to fetch gallery:', galleryResult.reason);
-        setGalleryItems([]);
-      }
+  //     if (galleryResult.status === 'fulfilled') {
+  //       setGalleryItems(galleryResult.value || []);
+  //     } else {
+  //       console.error('Failed to fetch gallery:', galleryResult.reason);
+  //       setGalleryItems([]);
+  //     }
 
-      setPageLoading(false);
-    };
+  //     setPageLoading(false);
+  //   };
 
-    loadAllData().catch((error) => {
-      console.error('Unexpected error during data load:', error);
-      if (!isMounted) return;
-      setPageError(error);
-      setPageLoading(false);
-    });
+  //   loadAllData().catch((error) => {
+  //     console.error('Unexpected error during data load:', error);
+  //     if (!isMounted) return;
+  //     setPageError(error);
+  //     setPageLoading(false);
+  //   });
 
-    return () => {
-      isMounted = false;
-    };
-  }, [API_BASE_URL]);
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, [API_BASE_URL]);
 
 
   useEffect(() => {
@@ -154,7 +230,7 @@ export default function Home() {
         setPrograms([]);
       }
     };
-    loadPrograms();
+    // loadPrograms();
   }, []);
 
   useEffect(() => {
@@ -166,7 +242,7 @@ export default function Home() {
         console.error("Error fetching About CMS data:", error);
       }
     };
-    fetchAboutData();
+    // fetchAboutData();
   }, []);
 
 
@@ -176,11 +252,11 @@ export default function Home() {
       setAnnouncements(data.filter((a) => a.isPublished));
       setLoading(false);
     };
-    loadAnnouncements();
+    // loadAnnouncements();
   }, []);
 
   useEffect(() => {
-    fetchBannersData();
+    // fetchBannersData();
   }, []);
 
   useEffect(() => {
@@ -223,12 +299,13 @@ export default function Home() {
     }
   }, [galleryItems.length, currentIndex]);
 
+  console.log("homepagebanner", HomePageBanner)
   return (
     <div>
       {/* Hero Section with Dynamic Banners */}
       <section className={homeStyles.homeHero}>
         <div className={homeStyles.heroBackground}>
-          {bannersLoading || banners.length === 0 ? (
+          {/* {bannersLoading || banners.length === 0 ? (
             <img
               src={bannerImage.src}
               alt="Loading banner"
@@ -250,12 +327,29 @@ export default function Home() {
                 e.target.src = bannerImage.src;
               }}
             />
-          )}
+          )} */}
+
+
+          {/* <img
+            src={homebanner}
+            alt="Banner"
+            className={`${homeStyles.heroBannerImage} ${homeStyles.imageLoaded}`}
+          /> */}
+
+          <Image
+            src={HomePageBanner}
+            alt="Banner"
+            className={`${homeStyles.heroBannerImage} ${imageLoading ? homeStyles.imageLoading : homeStyles.imageLoaded
+              }`}
+            onLoad={() => setImageLoading(false)}
+          />
+
           <div className={homeStyles.heroOverlay}></div>
           <div className={homeStyles.heroContent}>
             <div className={homeStyles.heroTextWrapper}>
               <h1 className={homeStyles.heroTitle}>
-                {!bannersLoading ? banners[currentBannerIndex]?.title : "Loading..."}
+                {/* {!bannersLoading ? banners[currentBannerIndex]?.title : "Loading..."} */}
+                Centre for Public Health (APCPH)
               </h1>
             </div>
           </div>
@@ -263,7 +357,8 @@ export default function Home() {
       </section>
 
       {/* Announcement Bar */}
-      <section className={homeStyles.announcementBar}>
+      {/* dynamic section */}
+      {/* <section className={homeStyles.announcementBar}>
         <div className="container">
           <div className={homeStyles.announcementContainer}>
             <h4 className="sectionlabel announcementTitle">Announcement</h4>
@@ -304,7 +399,6 @@ export default function Home() {
                       </div>
                     ))}
                   </div>
-                  {/* Duplicate for seamless loop */}
                   <div className={homeStyles.announcementItems} aria-hidden="true">
                     {announcements.map((announcement) => (
                       <div
@@ -341,6 +435,84 @@ export default function Home() {
               ) : (
                 <span>No announcements available</span>
               )}
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+      {/* static announcement */}
+      <section className={homeStyles.announcementBar}>
+        <div className="container">
+          <div className={homeStyles.announcementContainer}>
+            <h4 className="sectionlabel announcementTitle">Announcement</h4>
+
+            <div className={homeStyles.announcementItemsWrapper}>
+              <div className={homeStyles.announcementMarquee}>
+
+                {/* First loop */}
+                <div className={homeStyles.announcementItems}>
+                  {staticAnnouncements.map((announcement) => (
+                    <div
+                      key={announcement._id}
+                      className={homeStyles.announcementItem}
+                    >
+                      <div className={homeStyles.announcementIcon}>
+                        <Image
+                          src={anouncementIcon}
+                          alt="Announcement Icon"
+                          width={25}
+                          height={20}
+                        />
+                      </div>
+
+                      {announcement.link ? (
+                        <a
+                          href={announcement.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={homeStyles.announcementLink}
+                        >
+                          {announcement.title}
+                        </a>
+                      ) : (
+                        <span>{announcement.title}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Duplicate loop for seamless marquee */}
+                <div
+                  className={homeStyles.announcementItems}
+                  aria-hidden="true"
+                >
+                  {staticAnnouncements.map((announcement) => (
+                    <div
+                      key={`duplicate-${announcement._id}`}
+                      className={homeStyles.announcementItem}
+                    >
+                      <div className={homeStyles.announcementIcon}>
+                        <Image
+                          src={anouncementIcon}
+                          alt="Announcement Icon"
+                          width={25}
+                          height={20}
+                        />
+                      </div>
+
+                      <a
+                        href={announcement.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={homeStyles.announcementLink}
+                      >
+                        {announcement.title}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
@@ -382,18 +554,15 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={homeStyles.programsGrid}>
+          {/* dynamic program */}
+          {/* <div className={homeStyles.programsGrid}>
             {programs.length > 0 ? (
               programs.slice(0, 6).map((program, index) => {
                 const navButtonClass = homeStyles.navButtonOther;
                 const cardClass = `${homeStyles.programCard} ${homeStyles.otherCard}`;
-
                 return (
                   <div key={program._id} className={cardClass}>
-                    {/* Background Image */}
                     <div className={homeStyles.cardOverlay}></div>
-
-                    {/* Content */}
                     {console.log("program.iconImage", program)}
                     <div className={homeStyles.cardContent}>
                       <div className={homeStyles.cardHeader}>
@@ -407,28 +576,8 @@ export default function Home() {
                           />
                         </div>
                       </div>
-
-                      {/* Footer */}
                       <div className={homeStyles.cardFooter}>
                         <h3 className={homeStyles.cardTitle}>{program.title}</h3>
-
-                        {/* <div className={homeStyles.coursesList}>
-                          {Array.isArray(program.courses) && program.courses.length > 0 ? (
-                            program.courses.flatMap(course =>
-                              course.split(',').map(item => item.trim()).filter(item => item.length > 0).map((item, idx) => (
-                                <span
-                                  key={course + idx}
-                                  className={`${homeStyles.courseTag} ${homeStyles.courseTagMedicine}`}
-                                >
-                                  {item.trim()}
-                                </span>
-                              ))
-                            )
-                          ) : (
-                            <span className={homeStyles.courseTag}>No courses available</span>
-                          )}
-                        </div> */}
-
                         <button className={`${homeStyles.navButton} ${navButtonClass}`}>
                           →
                         </button>
@@ -440,7 +589,49 @@ export default function Home() {
             ) : (
               <p>Loading programs...</p>
             )}
+          </div> */}
+
+          {/* static program */}
+          <div className={homeStyles.programsGrid}>
+            {staticPrograms.length > 0 ? (
+              staticPrograms.slice(0, 6).map((program) => {
+                const navButtonClass = homeStyles.navButtonOther;
+                const cardClass = `${homeStyles.programCard} ${homeStyles.otherCard}`;
+                return (
+                  <div key={program._id} className={cardClass}>
+                    <div className={homeStyles.cardOverlay}></div>
+                    <div className={homeStyles.cardContent}>
+                      <div className={homeStyles.cardHeader}>
+                        <div className={homeStyles.cardIcon}>
+                          <Image
+                            src={program.iconImage}
+                            alt={program.title}
+                            width={70}
+                            height={70}
+                            style={{ objectFit: "contain" }}
+                          />
+                        </div>
+                      </div>
+                      <div className={homeStyles.cardFooter}>
+                        <h3 className={homeStyles.cardTitle}>
+                          {program.title}
+                        </h3>
+
+                        <button
+                          className={`${homeStyles.navButton} ${navButtonClass}`}
+                        >
+                          →
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p>No programs available</p>
+            )}
           </div>
+
         </div>
       </section>
 
@@ -450,12 +641,29 @@ export default function Home() {
         <div className="container">
           <h2 className="sectionheading">Gallery</h2>
 
-          <Slider {...settings}>
+          {/* dynamic gallery */}
+          {/* <Slider {...settings}>
             {galleryItems.map((img, index) => (
               <div key={index}>
                 <Image
                   src={`${API_BASE_URL}${img?.image}`}
                   alt={`Gallery ${index}`}
+                  width={400}
+                  height={300}
+                  className="img-fluid imgRadius"
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </div>
+            ))}
+          </Slider> */}
+
+          {/* static gallery  */}
+          <Slider {...settings}>
+            {staticGalleryItems.map((img, index) => (
+              <div key={img._id || index}>
+                <Image
+                  src={img.image}
+                  alt={img.title || `Gallery ${index + 1}`}
                   width={400}
                   height={300}
                   className="img-fluid imgRadius"

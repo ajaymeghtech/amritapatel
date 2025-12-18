@@ -27,26 +27,26 @@ export const fetchInstitutes = async () => {
 export const fetchCourses = async () => {
   const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/course`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      }
-    });
+  // try {
+  //   const response = await fetch(`${API_BASE_URL}/api/course`, {
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     }
+  //   });
 
-    const result = await response.json();
-    if (result.status  == true && Array.isArray(result.data)) {
-      return result.data; // Return actual institute list
-    } else {
-      console.error("Invalid institute response:", result);
-      return [];
-    }
+  //   const result = await response.json();
+  //   if (result.status  == true && Array.isArray(result.data)) {
+  //     return result.data; // Return actual institute list
+  //   } else {
+  //     console.error("Invalid institute response:", result);
+  //     return [];
+  //   }
 
-  } catch (error) {
-    console.error("Error fetching institutes:", error);
-    return [];
-  }
+  // } catch (error) {
+  //   console.error("Error fetching institutes:", error);
+  //   return [];
+  // }
 };
 
 

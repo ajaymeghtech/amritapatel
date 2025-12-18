@@ -20,7 +20,7 @@ export default function SettingsList() {
   const [faIconPreview, setFaIconPreview] = useState("");
 
   useEffect(() => {
-    fetchSettings();
+    // fetchSettings();
   }, []);
 
   const fetchSettings = async () => {

@@ -72,69 +72,69 @@ export default function SupervisoryCouncil() {
             description:
                 "Dr. Utpala Kharod is a distinguished academic leader who served as the first Provost of Bhaikaka University and Dean of PSMC for over a decade. She has contributed significantly to public health policy including work with Gujarat Medical Council and Ministry of Health..."
         },
-          {
+        {
             name: "Dr. K Sujatha Rao",
             designation:
-              "Former Union Secretary of the Ministry of Health and Family Welfare, Government of India",
+                "Former Union Secretary of the Ministry of Health and Family Welfare, Government of India",
             image: ksujatharao,
             description:
-              "Dr. K. Sujatha Rao had a remarkable 36-year civil service career, including serving as Secretary to the Ministry of Health & Family Welfare. She strengthened national NCD programmes, national antibiotic policies, and expanded NACO's capabilities..."
-          },
-          {
+                "Dr. K. Sujatha Rao had a remarkable 36-year civil service career, including serving as Secretary to the Ministry of Health & Family Welfare. She strengthened national NCD programmes, national antibiotic policies, and expanded NACO's capabilities..."
+        },
+        {
             name: "Dr. Amarjeet Singh",
             designation:
-              "Former Principal Secretary Family Welfare & Commissioner of Health, Gujarat",
+                "Former Principal Secretary Family Welfare & Commissioner of Health, Gujarat",
             image: amarjeetsingh,
             description:
-              "Dr. Amarjeet Singh introduced the Chiranjeevi Scheme and significantly contributed to maternal mortality reduction. He held senior positions in MoHFW, HRD Ministry, and Jal Shakti Ministry. He received several awards including Asian Innovation Award..."
-          },
-          {
+                "Dr. Amarjeet Singh introduced the Chiranjeevi Scheme and significantly contributed to maternal mortality reduction. He held senior positions in MoHFW, HRD Ministry, and Jal Shakti Ministry. He received several awards including Asian Innovation Award..."
+        },
+        {
             name: "Dr. Swapnil Agarawal",
             designation: "Dean, Pramukhswami Medical College",
             image: swapnilagarawal,
             description:
-              "An alumnus of PSMC, Dr. Agarwal specialized in Forensic Medicine & Toxicology. He has served across multiple states and has been a strong advocate for Medical and Research Ethics..."
-          },
-          {
+                "An alumnus of PSMC, Dr. Agarwal specialized in Forensic Medicine & Toxicology. He has served across multiple states and has been a strong advocate for Medical and Research Ethics..."
+        },
+        {
             name: "Dr. Deepak B. Sharma",
             designation:
-              "Director, Amrita Patel Centre for Public Health, Bhaikaka University",
+                "Director, Amrita Patel Centre for Public Health, Bhaikaka University",
             image: deepakbsharma,
             description:
-              "Dr. Deepak B. Sharma is Director of APCPH and Professor of Community Medicine. He holds MD, PGCIH, ACME and Ph.D. degrees, and is known for research in occupational health psychology and mental well-being..."
-          },
-          {
+                "Dr. Deepak B. Sharma is Director of APCPH and Professor of Community Medicine. He holds MD, PGCIH, ACME and Ph.D. degrees, and is known for research in occupational health psychology and mental well-being..."
+        },
+        {
             name: "Dr. Nitin Raithatha",
             designation:
-              "Professor & Head, Department of Obstetrics & Gynaecology, PSMC",
+                "Professor & Head, Department of Obstetrics & Gynaecology, PSMC",
             image: nitinraithatha,
             description:
-              "Dr. Nitin Raithatha is a senior professor with 22+ years of teaching experience. He specializes in clinical research governance and is a certified NABH assessor for Clinical Trial Ethics Committees..."
-          },
-          {
+                "Dr. Nitin Raithatha is a senior professor with 22+ years of teaching experience. He specializes in clinical research governance and is a certified NABH assessor for Clinical Trial Ethics Committees..."
+        },
+        {
             name: "Dr. A.M. Kadri",
             designation:
-              "Executive Director, State Health Systems Resource Centre, Gandhinagar",
+                "Executive Director, State Health Systems Resource Centre, Gandhinagar",
             image: amkadri,
             description:
-              "Dr. A.M. Kadri has over two decades of service in public health and leads the World Bank–assisted STRESTHA-G project. He has served as Joint Director GSACS and National President of IAPSM..."
-          },
-          {
+                "Dr. A.M. Kadri has over two decades of service in public health and leads the World Bank–assisted STRESTHA-G project. He has served as Joint Director GSACS and National President of IAPSM..."
+        },
+        {
             name: "Dr. Dileep Mavlankar",
             designation:
-              "Honorary Professor, Indian Institute of Public Health - Gandhinagar",
+                "Honorary Professor, Indian Institute of Public Health - Gandhinagar",
             image: dileepmavlankar,
             description:
-              "Prof. Dr. Dileep Mavlankar has held senior roles at IIMA, Johns Hopkins and Columbia University. His work has improved emergency obstetric care, reproductive health and family welfare quality..."
-          },
-          {
+                "Prof. Dr. Dileep Mavlankar has held senior roles at IIMA, Johns Hopkins and Columbia University. His work has improved emergency obstetric care, reproductive health and family welfare quality..."
+        },
+        {
             name: "Dr. Nomita Chandhiok",
             designation:
-              "Former Sr. Deputy Director General/Scientist 'G', ICMR",
+                "Former Sr. Deputy Director General/Scientist 'G', ICMR",
             image: nomitachandhiok,
             description:
-              "Dr. Nomita Chandhiok is a leading researcher in RMNCH+A and HIV/AIDS, with 35+ years at ICMR. She has coordinated major national research programs and received numerous prestigious awards..."
-          }
+                "Dr. Nomita Chandhiok is a leading researcher in RMNCH+A and HIV/AIDS, with 35+ years at ICMR. She has coordinated major national research programs and received numerous prestigious awards..."
+        }
     ];
 
     return (
@@ -149,13 +149,13 @@ export default function SupervisoryCouncil() {
                             <div className="col-lg-3 col-md-4 col-sm-6 col-12" key={index}>
                                 <div className="councilBox">
                                     <div className="councilimg">
-                                    <Image
-                                        src={member.image}
-                                        alt={member.name}
-                                        width={600}
-                                        height={600}
-                                        className="img-fluid"
-                                    />
+                                        <Image
+                                            src={member.image}
+                                            alt={member.name}
+                                            width={600}
+                                            height={600}
+                                            className="img-fluid"
+                                        />
                                     </div>
 
                                     <h3>{member.name}</h3>
@@ -189,13 +189,9 @@ export default function SupervisoryCouncil() {
             >
                 <div className="modal-dialog modal-dialog-centered modal-lg">
                     <div className="modal-content">
-
-                        {/* ❌ Header removed */}
-
                         <div className="modal-body">
                             {selectedMember && (
                                 <div className="modalDetail text-center">
-                                    {/* Image */}
                                     <div className="councilerImg">
                                         <Image
                                             src={selectedMember.image}
@@ -207,30 +203,15 @@ export default function SupervisoryCouncil() {
                                     </div>
 
                                     <div className="contentDetail">
-                                        {/* ✅ Description at TOP */}
-
-
-
-
-                                        {/* Name */}
                                         <h3>{selectedMember.name}</h3>
-
-                                        {/* Designation */}
                                         <h5 className="mt-2">{selectedMember.designation}</h5>
                                         <p className="mb-3">
                                             {selectedMember.description}
                                         </p>
                                     </div>
-
                                 </div>
                             )}
                         </div>
-
-                        {/* <button
-              type="button"
-              className="btn-close position-absolute top-0 end-0 m-3"
-              data-bs-dismiss="modal"
-            ></button> */}
                         <button
                             type="button"
                             className="detailCloseIcon"
@@ -238,7 +219,6 @@ export default function SupervisoryCouncil() {
                         >
                             &times;
                         </button>
-
 
                     </div>
                 </div>

@@ -16,7 +16,7 @@ export default function StudentLifePage() {
                 </svg>
               </div>
               <div className="page-title-info">
-                <h1 className="page-title">Student Life</h1>
+                <h1 className="page-title">Committees</h1>
                 <p className="page-subtitle">Manage the visuals displayed on the landing page</p>
               </div>
             </div>

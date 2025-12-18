@@ -380,10 +380,12 @@ export default function Research() {
     {
       field: "title",
       headerName: "Title",
-      width: 260,
+      width: 300,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.row.title}>
-          <div style={{ maxWidth: 220 }} className="text-truncate">{params.row.title}</div>
+          <div style={{ maxWidth: "100%" }} className="text-truncate">{params.row.title}</div>
         </Tooltip>
       )
     },
@@ -392,12 +394,14 @@ export default function Research() {
       field: "status",
       headerName: "Status",
       width: 120,
+      minWidth: 100,
       renderCell: (params) => <span className={`badge ${params.row.status === "active" ? "bg-success" : "bg-secondary"}`}>{params.row.status}</span>
     },
     {
       field: "actions",
       headerName: "Actions",
-      width: 250,
+      width: 200,
+      minWidth: 180,
       sortable: false,
       filterable: false,
       align: "center",
