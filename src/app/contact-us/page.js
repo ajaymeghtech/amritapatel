@@ -186,7 +186,7 @@ export default function ContactUsPage() {
 
             {/* Form Section */}
             <div className={`col-lg-8 col-md-12 col-sm-12 col-12 ${contactStyles.sendMsgSection}`}>
-              <h2 className="sectionheading">Send us a message</h2>
+              <h2 className="sectionheading">Send Us a Message</h2>
 
               <form onSubmit={handleSubmit}>
 

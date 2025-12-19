@@ -89,14 +89,9 @@ export default function TestimonialsList() {
   const [formData, setFormData] = useState({
     name: "",
     designation: "",
-    institute: "",
     message: "",
-    rating: 5,
     status: "active",
-    photo: "",
   });
-  const [photoFile, setPhotoFile] = useState(null);
-  const [photoPreview, setPhotoPreview] = useState("");
   const [editId, setEditId] = useState(null);
   const [editorInstance, setEditorInstance] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -156,14 +151,6 @@ export default function TestimonialsList() {
     ]
   };
 
-  const handlePhotoChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setPhotoFile(file);
-      setPhotoPreview(URL.createObjectURL(file));
-    }
-  };
-
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -172,14 +159,8 @@ export default function TestimonialsList() {
       const payload = new FormData();
       payload.append("name", formData.name);
       payload.append("designation", formData.designation);
-      payload.append("institute", formData.institute);
       payload.append("message", latestMessage || "");
-      payload.append("rating", formData.rating.toString());
       payload.append("status", formData.status);
-      
-      if (photoFile) {
-        payload.append("photo", photoFile);
-      }
 
       let response;
       if (formMode === "edit") {
@@ -204,14 +185,10 @@ export default function TestimonialsList() {
       setFormMode(null);
       setEditId(null);
       setEditorInstance(null);
-      setPhotoFile(null);
-      setPhotoPreview("");
       setFormData({
         name: "",
         designation: "",
-        institute: "",
         message: "",
-        rating: 5,
         status: "active",
       });
       fetchTestimonials();
@@ -226,14 +203,9 @@ export default function TestimonialsList() {
     setFormData({
       name: item.name || "",
       designation: item.designation || "",
-      institute: item.institute || "",
       message: item.message || "",
-      rating: item.rating || 5,
       status: item.status || "active",
-      photo: item.photo || "",
     });
-    setPhotoPreview(item.photo ? getImageUrl(item.photo) : "");
-    setPhotoFile(null);
   };
 
   const handleDeleteClick = (id, name) => {
@@ -296,31 +268,6 @@ export default function TestimonialsList() {
   // Define table columns
   const columns = [
     {
-      field: 'photo',
-      headerName: 'Photo',
-      width: 100,
-      renderCell: (params) => (
-        <div style={{ width: '60px', height: '60px', borderRadius: '8px', overflow: 'hidden' }}>
-          {params.value ? (
-            <img
-              src={getImageUrl(params.value)}
-              alt={params.row.name}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/60';
-              }}
-            />
-          ) : (
-            <div style={{ width: '100%', height: '100%', backgroundColor: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-              </svg>
-            </div>
-          )}
-        </div>
-      ),
-    },
-    {
       field: 'name',
       headerName: 'Name',
       width: 150,
@@ -345,18 +292,6 @@ export default function TestimonialsList() {
       ),
     },
     {
-      field: 'institute',
-      headerName: 'Institute',
-      width: 200,
-      renderCell: (params) => (
-        <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '180px' }} title={params.value}>
-            {params.value || "—"}
-          </div>
-        </Tooltip>
-      ),
-    },
-    {
       field: 'message',
       headerName: 'Message',
       width: 300,
@@ -369,12 +304,6 @@ export default function TestimonialsList() {
           />
         </Tooltip>
       ),
-    },
-    {
-      field: 'rating',
-      headerName: 'Rating',
-      width: 120,
-      renderCell: (params) => renderRating(params.value || 0),
     },
     {
       field: 'status',
@@ -632,16 +561,11 @@ export default function TestimonialsList() {
           setFormMode(null);
           setEditId(null);
           setEditorInstance(null);
-          setPhotoFile(null);
-          setPhotoPreview("");
           setFormData({
             name: "",
             designation: "",
-            institute: "",
             message: "",
-            rating: 5,
             status: "active",
-            photo: "",
           });
         }}
         title={formMode === "edit" ? "Edit Testimonial" : "Create New Testimonial"}
@@ -682,20 +606,6 @@ export default function TestimonialsList() {
                     required
                   />
                 </div>
-              </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>
-                  Institute <span className={styles.required}>*</span>
-                </label>
-                <input
-                  type="text"
-                  className={styles.formInput}
-                  value={formData.institute}
-                  onChange={(e) => setFormData({ ...formData, institute: e.target.value })}
-                  placeholder="Enter institute name"
-                  required
-                />
               </div>
 
               <div className={styles.formField}>
@@ -759,82 +669,16 @@ export default function TestimonialsList() {
                 </small>
               </div>
 
-              <div className={styles.formGrid}>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>
-                    Rating <span className={styles.required}>*</span>
-                  </label>
-                  <select
-                    className={styles.formInput}
-                    value={formData.rating}
-                    onChange={(e) => setFormData({ ...formData, rating: parseInt(e.target.value) })}
-                    required
-                  >
-                    <option value={1}>1 Star</option>
-                    <option value={2}>2 Stars</option>
-                    <option value={3}>3 Stars</option>
-                    <option value={4}>4 Stars</option>
-                    <option value={5}>5 Stars</option>
-                  </select>
-                </div>
-
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Status</label>
-                  <select
-                    className={styles.formInput}
-                    value={formData.status}
-                    onChange={(e) => setFormData({ ...formData, status: e.target.value })}
-                  >
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                  </select>
-                </div>
-              </div>
-
               <div className={styles.formField}>
-                <label className={styles.formLabel}>Photo</label>
-                <div className={styles.imageUploadContainer}>
-                  <input
-                    type="file"
-                    id="photoInput"
-                    accept="image/*"
-                    className={styles.fileInput}
-                    onChange={handlePhotoChange}
-                  />
-                  <label htmlFor="photoInput" className={styles.fileInputLabel}>
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span>Click to select image</span>
-                  </label>
-                </div>
-                {(photoPreview || (formMode === "edit" && formData.photo)) && (
-                  <div className={styles.imagePreviewContainer}>
-                    <div className={styles.imagePreview}>
-                      <img
-                        src={photoPreview || getImageUrl(formData.photo)}
-                        alt="Photo preview"
-                        onError={(e) => {
-                          e.target.style.display = 'none';
-                        }}
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setPhotoPreview("");
-                        setPhotoFile(null);
-                      }}
-                      className={styles.removeImageBtn}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                      Remove Image
-                    </button>
-                  </div>
-                )}
-                <small className={styles.formHelp}>Upload a photo (JPG, PNG, GIF, WebP)</small>
+                <label className={styles.formLabel}>Status</label>
+                <select
+                  className={styles.formInput}
+                  value={formData.status}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value })}
+                >
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
               </div>
             </div>
 
@@ -846,14 +690,10 @@ export default function TestimonialsList() {
                   setFormMode(null);
                   setEditId(null);
                   setEditorInstance(null);
-                  setPhotoFile(null);
-                  setPhotoPreview("");
                   setFormData({
                     name: "",
                     designation: "",
-                    institute: "",
                     message: "",
-                    rating: 5,
                     status: "active",
                   });
                 }}

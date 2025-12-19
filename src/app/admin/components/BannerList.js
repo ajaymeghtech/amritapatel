@@ -9,6 +9,68 @@ import styles from './BannerList.module.css';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
+
+
+/* ================= IMAGE SIZE VALIDATION ================= */
+
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_IMAGE_WIDTH = 1920;
+const MAX_IMAGE_HEIGHT = 850;
+
+const setImageFileSizeValidation = (file) => {
+  return new Promise((resolve) => {
+    if (!file) {
+      resolve({ valid: false, message: "No file selected" });
+      return;
+    }
+
+   
+    // Size check
+  
+    if (file.size > MAX_IMAGE_SIZE) {
+      resolve({
+        valid: false,
+        message: "Image size must be less than 5MB",
+      });
+      return;
+    }
+
+    // Dimension check
+    const img = new Image();
+    const objectUrl = URL.createObjectURL(file);
+
+    img.onload = () => {
+      URL.revokeObjectURL(objectUrl);
+
+        if (img.width !== MAX_IMAGE_WIDTH || img.height !== MAX_IMAGE_HEIGHT) {
+        resolve({
+          valid: false,
+          message: `Image dimensions must be max ${MAX_IMAGE_WIDTH}×${MAX_IMAGE_HEIGHT}px`,
+         
+        });
+       
+      } else {
+        resolve({ valid: true, message: "" });
+       
+      }
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      resolve({
+        valid: false,
+        message: "Invalid image file",
+      });
+    };
+
+    img.src = objectUrl;
+  });
+};
+
+
+
+/* ========================================================= */
+
 const Modal = ({ isOpen, onClose, title, children }) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -73,15 +135,13 @@ export default function BannerList() {
   const [banners, setBanners] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+    const [imageError, setImageError] = useState("");
 
   const [formMode, setFormMode] = useState(null); // 'add' or 'edit'
   const [formData, setFormData] = useState({
     title: "",
     subtitle: "",
-    description: "",
     image: "",
-    link: "",
-    altText: "",
     order: 1,
     status: "active",
     position: "homepage",
@@ -112,7 +172,7 @@ export default function BannerList() {
   });
 
   useEffect(() => {
-    // fetchBanners();
+    fetchBanners();
   }, []);
 
   const fetchBanners = async () => {
@@ -132,39 +192,58 @@ export default function BannerList() {
   };
 
   // Handle image upload
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
     console.log('File selected:', file);
     
+    // Clear previous image error when user selects a new file
+    setImageError("");
+
     if (!file) {
       console.log('No file selected');
       setImageFile(null);
       setImagePreview(null);
+      setImageError("");
       return;
     }
 
     // Check if file is an image
     if (!file.type.startsWith('image/')) {
-      toast.error('Please select a valid image file');
+      const msg = 'Please select a valid image file';
+      toast.error(msg);
+      setImageError(msg);
       setImageFile(null);
       setImagePreview(null);
       e.target.value = ''; // Reset file input
       return;
     }
 
-    // Check file size (max 10MB)
-    const maxSize = 10 * 1024 * 1024; // 10MB
-    if (file.size > maxSize) {
-      const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
-      toast.error(`Image size (${fileSizeMB} MB) exceeds the maximum allowed size of 10 MB. Please choose a smaller image.`);
+    // Validate file size and dimensions using setImageFileSizeValidation (returns { valid, message })
+    try {
+      const validation = await setImageFileSizeValidation(file);
+      if (!validation.valid) {
+        const msg = validation.message || 'Invalid image file';
+        toast.error(msg);
+        setImageError(msg);
+        setImageFile(null);
+        setImagePreview(null);
+        e.target.value = ''; // Reset file input
+        return;
+      }
+    } catch (err) {
+      console.error('Image validation failed:', err);
+      const msg = 'Failed to validate image file';
+      toast.error(msg);
+      setImageError(msg);
       setImageFile(null);
       setImagePreview(null);
-      e.target.value = ''; // Reset file input
+      e.target.value = '';
       return;
     }
 
     console.log('Setting image file:', file.name, file.size, file.type);
     setImageFile(file);
+    setImageError("");
 
     // Create preview
     const reader = new FileReader();
@@ -175,7 +254,9 @@ export default function BannerList() {
     };
     reader.onerror = () => {
       console.error('Error reading file');
-      toast.error('Error reading image file');
+      const msg = 'Error reading image file';
+      toast.error(msg);
+      setImageError(msg);
     };
     reader.readAsDataURL(file);
   };
@@ -226,27 +307,13 @@ export default function BannerList() {
       // Add text fields (trim whitespace)
       submitFormData.append('title', (formData.title || '').trim());
       submitFormData.append('subtitle', (formData.subtitle || '').trim());
-      submitFormData.append('description', (formData.description || '').trim());
-      submitFormData.append('link', (formData.link || '').trim());
-      submitFormData.append('altText', (formData.altText || '').trim());
+
       submitFormData.append('order', formData.order.toString());
       submitFormData.append('status', formData.status || 'active');
       submitFormData.append('position', (formData.position || 'homepage').trim());
 
-      if (formData.startDate) {
-        // Convert datetime-local to ISO string format
-        const startDate = new Date(formData.startDate);
-        if (!isNaN(startDate.getTime())) {
-          submitFormData.append('startDate', startDate.toISOString());
-        }
-      }
-      if (formData.endDate) {
-        // Convert datetime-local to ISO string format
-        const endDate = new Date(formData.endDate);
-        if (!isNaN(endDate.getTime())) {
-          submitFormData.append('endDate', endDate.toISOString());
-        }
-      }
+  
+   
 
       // Handle image file
       if (imageFile) {
@@ -326,15 +393,10 @@ export default function BannerList() {
       setFormData({
         title: "",
         subtitle: "",
-        description: "",
         image: "",
-        link: "",
-        altText: "",
         order: 1,
         status: "active",
         position: "homepage",
-        startDate: "",
-        endDate: ""
       });
 
       toast.success(formMode === "edit" ? "Banner updated successfully!" : "Banner created successfully!");
@@ -349,6 +411,7 @@ export default function BannerList() {
     setFormMode("edit");
     setEditId(item._id);
     setImageFile(null);
+    setImageError("");
     // Set image preview with full URL if needed
     const imageUrl = item.image 
       ? (item.image.startsWith('http') ? item.image : `${API_BASE_URL}${item?.image}`)
@@ -358,15 +421,11 @@ export default function BannerList() {
     setFormData({
       title: item.title || "",
       subtitle: item.subtitle || "",
-      description: item.description || "",
       image: item.image || "",
-      link: item.link || "",
-      altText: item.altText || "",
       order: item.order || 1,
       status: item.status || "active",
       position: item.position || "homepage",
-      startDate: item.startDate ? new Date(item.startDate).toISOString().slice(0, 16) : "",
-      endDate: item.endDate ? new Date(item.endDate).toISOString().slice(0, 16) : ""
+     
     });
   };
 
@@ -394,7 +453,7 @@ export default function BannerList() {
     {
       field: 'title',
       headerName: 'Title',
-      width: 150,
+      width: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
           <div className="fw-medium text-truncate" style={{ maxWidth: '130px' }} title={params.value}>
@@ -408,7 +467,7 @@ export default function BannerList() {
     {
       field: 'subtitle',
       headerName: 'Subtitle',
-      width: 120,
+      width: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
           <div className="text-muted text-truncate" style={{ maxWidth: '100px' }} title={params.value}>
@@ -418,37 +477,15 @@ export default function BannerList() {
       ),
     },
 
-    // Description column
-    {
-      field: 'description',
-      headerName: 'Description',
-      width: 180,
-      renderCell: (params) => (
-        <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '160px' }} title={params.value}>
-            {params.value}
-          </div>
-        </Tooltip>
-      ),
-    },
 
-    // Position column
-    {
-      field: 'position',
-      headerName: 'Position',
-      width: 100,
-      renderCell: (params) => (
-        <span className="badge bg-info">
-          {params.value || "homepage"}
-        </span>
-      ),
-    },
+
+ 
 
     // Status column
     {
       field: 'status',
       headerName: 'Status',
-      width: 100,
+      width: 120,
       renderCell: (params) => <StatusBadge status={params.value} />,
     },
 
@@ -470,7 +507,7 @@ export default function BannerList() {
     {
       field: 'createdAt',
       headerName: 'Created At',
-      width: 120,
+      width: 100,
       renderCell: (params) => (
         <span className="small text-muted">
           {new Date(params.value).toLocaleDateString()}
@@ -722,6 +759,7 @@ export default function BannerList() {
           setEditId(null);
           setImageFile(null);
           setImagePreview(null);
+          setImageError("");
           setFormData({
             title: "",
             subtitle: "",
@@ -776,26 +814,12 @@ export default function BannerList() {
                 </div>
               </div>
 
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>
-                  Description <span className={styles.required}>*</span>
-                </label>
-                <textarea
-                  className={styles.formTextarea}
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Enter banner description..."
-                  required
-                />
-              </div>
+         
             </div>
 
             {/* Media Section */}
             <div className={styles.formSection}>
-              <div className={styles.formSectionHeader}>
-                <h3 className={styles.formSectionTitle}>Media & Links</h3>
-                <p className={styles.formSectionDescription}>Banner image and destination URL</p>
-              </div>
+            
 
               <div className={styles.formGrid}>
                 <div className={styles.formField}>
@@ -811,7 +835,7 @@ export default function BannerList() {
                     style={{ padding: '8px' }}
                     required={formMode !== "edit"}
                   />
-                  <small className={styles.formHelp}>Upload banner image (max 10MB, JPG, PNG, GIF, WEBP)</small>
+                  <small className={styles.formHelp}>Upload banner image (max 5MB, JPG/PNG)</small>
                   {imagePreview && (
                     <div style={{ marginTop: '10px' }}>
                       <img
@@ -840,38 +864,15 @@ export default function BannerList() {
                   )}
                 </div>
 
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Link URL</label>
-                  <input
-                    type="url"
-                    className={styles.formInput}
-                    value={formData.link}
-                    onChange={(e) => setFormData({ ...formData, link: e.target.value })}
-                    placeholder="https://example.com/destination"
-                  />
-                  <small className={styles.formHelp}>Where users go when they click the banner</small>
-                </div>
+             
               </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Alt Text</label>
-                <input
-                  type="text"
-                  className={styles.formInput}
-                  value={formData.altText}
-                  onChange={(e) => setFormData({ ...formData, altText: e.target.value })}
-                  placeholder="Alternative text for the banner image"
-                />
-                <small className={styles.formHelp}>Accessibility text for the image</small>
-              </div>
+ {imageError && <div className="error" style={{ color: "#dc2626", fontSize: "13px" }}>{imageError}</div>}
+           
             </div>
 
             {/* Settings Section */}
             <div className={styles.formSection}>
-              <div className={styles.formSectionHeader}>
-                <h3 className={styles.formSectionTitle}>Settings & Schedule</h3>
-                <p className={styles.formSectionDescription}>Status, order, position, and scheduling options</p>
-              </div>
+             
 
               <div className={styles.formGrid}>
                 <div className={styles.formField}>
@@ -883,7 +884,7 @@ export default function BannerList() {
                   >
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
-                    <option value="draft">Draft</option>
+                  
                   </select>
                 </div>
 
@@ -901,42 +902,9 @@ export default function BannerList() {
                 </div>
               </div>
 
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Position</label>
-                <select
-                  className={styles.formSelect}
-                  value={formData.position}
-                  onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                >
-                  <option value="homepage">Homepage</option>
-                  <option value="top">Top</option>
-                  <option value="middle">Middle</option>
-                  <option value="bottom">Bottom</option>
-                  <option value="sidebar">Sidebar</option>
-                </select>
-              </div>
+            
 
-              <div className={styles.formGrid}>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Start Date</label>
-                  <input
-                    type="datetime-local"
-                    className={styles.formInput}
-                    value={formData.startDate}
-                    onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
-                  />
-                </div>
-
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>End Date</label>
-                  <input
-                    type="datetime-local"
-                    className={styles.formInput}
-                    value={formData.endDate}
-                    onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
-                  />
-                </div>
-              </div>
+           
             </div>
 
             {/* Form Actions */}
@@ -948,18 +916,15 @@ export default function BannerList() {
                   setEditId(null);
                   setImageFile(null);
                   setImagePreview(null);
+                  setImageError("");
                   setFormData({
                     title: "",
                     subtitle: "",
-                    description: "",
                     image: "",
-                    link: "",
-                    altText: "",
                     order: 1,
                     status: "active",
                     position: "homepage",
-                    startDate: "",
-                    endDate: ""
+                   
                   });
                 }}
                 className={styles.formCancelBtn}
@@ -1017,35 +982,18 @@ export default function BannerList() {
                 </div>
               </div>
 
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Description</label>
-                <textarea
-                  className={styles.formTextarea}
-                  value={viewModal.banner.description || ''}
-                  readOnly
-                  rows={3}
-                />
-              </div>
+              
             </div>
 
             {/* Media Section */}
             <div className={styles.formSection}>
-              <div className={styles.formSectionHeader}>
-                <h3 className={styles.formSectionTitle}>Media & Links</h3>
-                <p className={styles.formSectionDescription}>Banner image and destination</p>
-              </div>
+             
 
               <div className={styles.formField}>
                 <label className={styles.formLabel}>Banner Image</label>
                 {viewModal.banner.image ? (
                   <>
-                    <input
-                      type="text"
-                      className={styles.formInput}
-                      value={viewModal.banner.image}
-                      readOnly
-                      style={{ marginBottom: '10px' }}
-                    />
+                  
                     <img
                       src={viewModal.banner.image.startsWith('http') ? viewModal.banner.image : `${API_BASE_URL}${viewModal?.banner?.image}`}
                       alt={viewModal.banner.altText || viewModal.banner.title}
@@ -1066,33 +1014,14 @@ export default function BannerList() {
                 )}
               </div>
 
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Link URL</label>
-                <input
-                  type="url"
-                  className={styles.formInput}
-                  value={viewModal.banner.link || ''}
-                  readOnly
-                />
-              </div>
+             
 
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Alt Text</label>
-                <input
-                  type="text"
-                  className={styles.formInput}
-                  value={viewModal.banner.altText || ''}
-                  readOnly
-                />
-              </div>
+            
             </div>
 
             {/* Settings Section */}
             <div className={styles.formSection}>
-              <div className={styles.formSectionHeader}>
-                <h3 className={styles.formSectionTitle}>Settings & Schedule</h3>
-                <p className={styles.formSectionDescription}>Status, position, and scheduling</p>
-              </div>
+             
 
               <div className={styles.formGrid}>
                 <div className={styles.formField}>
@@ -1105,15 +1034,7 @@ export default function BannerList() {
                   />
                 </div>
 
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Position</label>
-                  <input
-                    type="text"
-                    className={styles.formInput}
-                    value={viewModal.banner.position || 'homepage'}
-                    readOnly
-                  />
-                </div>
+                
               </div>
 
               <div className={styles.formGrid}>
@@ -1138,33 +1059,7 @@ export default function BannerList() {
                 </div>
               </div>
 
-              {(viewModal.banner.startDate || viewModal.banner.endDate) && (
-                <div className={styles.formGrid}>
-                  {viewModal.banner.startDate && (
-                    <div className={styles.formField}>
-                      <label className={styles.formLabel}>Start Date</label>
-                      <input
-                        type="text"
-                        className={styles.formInput}
-                        value={new Date(viewModal.banner.startDate).toLocaleString()}
-                        readOnly
-                      />
-                    </div>
-                  )}
-
-                  {viewModal.banner.endDate && (
-                    <div className={styles.formField}>
-                      <label className={styles.formLabel}>End Date</label>
-                      <input
-                        type="text"
-                        className={styles.formInput}
-                        value={new Date(viewModal.banner.endDate).toLocaleString()}
-                        readOnly
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
+             
             </div>
 
             {/* Form Actions */}

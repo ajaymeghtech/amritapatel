@@ -236,7 +236,7 @@ export default function AboutUsPage() {
 
               <p className="directorName">With Best wishes,<br />
                 Director,<br />
-                Dr Deepak B. Sharma,<br />
+                Dr. Deepak B. Sharma,<br />
                 Amrita Patel Centre for Public Health</p>
             </div>
           </div>

@@ -120,7 +120,9 @@ export default function TestimonialsPage() {
                         </ul>
 
                     </div>
-                    <h1 className="mb-4">Written Testimonials</h1>
+                    <h1 className="mb-4">
+                        {/* Written Testimonials */}
+                        </h1>
                     <div className="testimonialmainbox">
                         {testimonialsData[activeTab].written.map((item, index) => (
                             <div className="testimonialbox" key={index}>
@@ -133,7 +135,9 @@ export default function TestimonialsPage() {
                     </div>
 
 
-                    <h1 className="mb-4 mt-6">Video Testimonials</h1>
+                    <h1 className="mb-4 mt-6">
+                        {/* Video Testimonials */}
+                        </h1>
                     <div className="testimonialmainbox videotestimonialmainbox">
                         {testimonialsData[activeTab].videos.map((video, index) => (
                             <div className="testimonialbox" key={index}>

@@ -14,7 +14,7 @@ import footerLogo from '@/app/assets/images/amrita_patel_footer_logo.png';
 import megh_logo from '@/app/assets/images/megh_technologies_logo.png';
 import { fetchSettings } from '@/app/services/settingsService';
 import { usePathname } from "next/navigation";
-import skhLogo from "@/app/assets/images/SKH_logo.png";
+import skhLogo from "@/app/assets/images/charutar_logo.png";
 
 export default function Footer() {
     const [settings, setSettings] = useState(null);
@@ -81,7 +81,7 @@ export default function Footer() {
                                         height={80}
                                     />
                                  <div className={styles.skhlogoSection}>
-                                    <Image src={skhLogo} alt="Shrikrishna Hospital Logo" className={styles.hospitalLogoImage} />
+                                    <Image src={skhLogo} alt="Charutar Vidyamandal" className={styles.hospitalLogoImage} />
                                 </div>
                                 </div>
                                
@@ -92,17 +92,17 @@ export default function Footer() {
                                 <div className={styles.quickLinks}>
                                     <h2 className={styles.footerheading}>Quick Links</h2>
                                     <ul>
-                                        <li><a href="/about-us" className={isActive("/about-us") ? styles.activeQuickLink : ""}>About Us</a></li>
-                                        <li><a href="/academics/programs-short-courses" className={isActive("/academics") ? styles.activeQuickLink : ""}>Academics</a></li>
-                                        <li><a href="/sparsh-field-activities/sparsh" className={isActive("/sparsh-field-activities") ? styles.activeQuickLink : ""}>SPARSH & Field Activities</a></li>
-                                        <li><a href="/research-projects-grants/projects-grants" className={isActive("/research-projects-grants") ? styles.activeQuickLink : ""}>Research Projects & Grants</a></li>
-                                        <li><a href="/committees/advisory-board" className={isActive("/committees") ? styles.activeQuickLink : ""}>Committees</a></li>
-                                        <li><a href="/news-events" className={isActive("/news-events") ? styles.activeQuickLink : ""}>News & Events</a></li>
-                                        <li><a href="/faq" className={isActive("/faq") ? styles.activeQuickLink : ""}>FAQ</a></li>
-                                        <li><a href="/alumni-association" className={isActive("/alumni-association") ? styles.activeQuickLink : ""}>Alumni Association</a></li>
-                                        <li><a href="/testimonials" className={isActive("/testimonials") ? styles.activeQuickLink : ""}>Testimonials</a></li>
-                                        <li><a href="/gallery" className={isActive("/gallery") ? styles.activeQuickLink : ""}>Gallery</a></li>
-                                        <li><a href="/contact-us" className={isActive("/contact-us") ? styles.activeQuickLink : ""}>Contact</a></li>
+                                        <li><a href="/about-us/" className={isActive("/about-us") ? styles.activeQuickLink : ""}>About Us</a></li>
+                                        <li><a href="/academics/programs-short-courses/" className={isActive("/academics") ? styles.activeQuickLink : ""}>Academics</a></li>
+                                        <li><a href="/sparsh-field-activities/sparsh/" className={isActive("/sparsh-field-activities") ? styles.activeQuickLink : ""}>SPARSH & Field Activities</a></li>
+                                        <li><a href="/research-projects-grants/projects-grants/" className={isActive("/research-projects-grants") ? styles.activeQuickLink : ""}>Research Projects & Grants</a></li>
+                                        <li><a href="/committees/advisory-board/" className={isActive("/committees") ? styles.activeQuickLink : ""}>Committees</a></li>
+                                        <li><a href="/news-events/" className={isActive("/news-events") ? styles.activeQuickLink : ""}>News & Events</a></li>
+                                        <li><a href="/faq/" className={isActive("/faq") ? styles.activeQuickLink : ""}>FAQ</a></li>
+                                        <li><a href="/alumni-association/" className={isActive("/alumni-association") ? styles.activeQuickLink : ""}>Alumni Association</a></li>
+                                        <li><a href="/testimonials/" className={isActive("/testimonials") ? styles.activeQuickLink : ""}>Testimonials</a></li>
+                                        <li><a href="/gallery/" className={isActive("/gallery") ? styles.activeQuickLink : ""}>Gallery</a></li>
+                                        <li><a href="/contact-us/" className={isActive("/contact-us") ? styles.activeQuickLink : ""}>Contact</a></li>
                                     </ul>
                                 </div>
                             </div>

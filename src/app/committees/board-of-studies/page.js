@@ -107,7 +107,7 @@ export default function BoardOfStudies() {
             name: "Dr. Atul Trivedi",
             designation:
                 "Associate Professor, Community Medicine, B J Medical College, Ahmedabad",
-            image: shriatulpatel,
+            image: dummyimg,
             description: "Dr. Atul Trivedi is a senior public health leader with 30 years of experience and an MD in Community Medicine. He serves as Associate Professor at B.J. Medical College and Secretary of the IAPSM Gujarat Chapter. His profile is marked by high-level administrative roles, including Officer on Special Duty (OSD) for Medical Education and coordinator at the Gujarat AIDS Control Society (GSACS). He is a field-tested expert in epidemic investigation,disaster management and data analysis using modern tools like Kobo and EpiCollect. Dr. Trivedi is also the nodal person for One Health outreach activities.",
         },
         {

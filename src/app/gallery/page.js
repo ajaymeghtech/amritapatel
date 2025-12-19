@@ -58,39 +58,39 @@ export default function Gallery() {
     }, []);
 
 
- const councilMembers = [
-    { image: img1, description: "Aashirwad Scheme: Bringing affordable healthcare to every doorstep in Anand" },
-    { image: img2, description: "SPARSH Awareness Sessions: Cultivating Knowledge, Fostering Community Progress" },
-    { image: img3, description: "Building Healthier Futures: NCD camp Awareness at the grassroots" },
-    { image: img4, description: "Community Wellness: NCD Screening in Action with Government Support" },
-    { image: img5, description: "Ensuring Continuity: Patients Referred for Further Care at Shree Krishna Hospital" },
-    { image: img6, description: "Harvesting Hope: Collaborative Organic Composting for a Sustainable Tomorrow" },
+    const councilMembers = [
+        { image: img1, description: "Aashirwad Scheme: Bringing affordable healthcare to every doorstep in Anand" },
+        { image: img2, description: "SPARSH Awareness Sessions: Cultivating Knowledge, Fostering Community Progress" },
+        { image: img3, description: "Building Healthier Futures: NCD camp Awareness at the grassroots" },
+        { image: img4, description: "Community Wellness: NCD Screening in Action with Government Support" },
+        { image: img5, description: "Ensuring Continuity: Patients Referred for Further Care at Shree Krishna Hospital" },
+        { image: img6, description: "Harvesting Hope: Collaborative Organic Composting for a Sustainable Tomorrow" },
 
-    { image: img7, description: "Healthy Habits, Happy Kids: Empowering 150 Gujarat Govt Schools through Healthy lifestyle interventions" },
-    { image: img8, description: "Mapping health, saving lives: The power of a community survey" },
-    { image: img9, description: "Men for Women's Health: Taking a Stand Against Cervical Cancer" },
-    { image: img10, description: "Empowering the Unsung Heroes: NCD Screening for University Housekeeping Staff" },
+        { image: img7, description: "Healthy Habits, Happy Kids: Empowering 150 Gujarat Govt Schools through Healthy lifestyle interventions" },
+        { image: img8, description: "Mapping health, saving lives: The power of a community survey" },
+        { image: img9, description: "Men for Women's Health: Taking a Stand Against Cervical Cancer" },
+        { image: img10, description: "Empowering the Unsung Heroes: NCD Screening for University Housekeeping Staff" },
 
-    { image: img11, description: "Unnat Bharat Abhiyan in Practice: Next-Gen Doctors Engaged in Community Health & Participatory Research through APCPH staff" },
-    { image: img12, description: "Bridging Academia and Community: Internship Exposure with APCPH" },
-    { image: img13, description: "Global Collaboration, Local Impact: UMass Students Exploring Rural Healthcare in SPARSH" },
-    { image: img14, description: "Extending a Lifeline: APCPH's COVID-19 Ration Distribution in Rural Anand" },
+        { image: img11, description: "Unnat Bharat Abhiyan in Practice: Next-Gen Doctors Engaged in Community Health & Participatory Research through APCPH staff" },
+        { image: img12, description: "Bridging Academia and Community: Internship Exposure with APCPH" },
+        { image: img13, description: "Global Collaboration, Local Impact: UMass Students Exploring Rural Healthcare in SPARSH" },
+        { image: img14, description: "Extending a Lifeline: APCPH's COVID-19 Ration Distribution in Rural Anand" },
 
-    { image: img15, description: "Empowering Remotely: APCPH's Hands-on Online Training for Village Health Workers in COVID-19" },
-    { image: img16, description: "Understanding the Pandemic: Surveying COVID-19's Reach and Repercussions" },
-    { image: img17, description: "Healing at Home: Community-Based Palliative Care & Rehabilitation in Rural Anand Amidst COVID-19" },
-    { image: img18, description: "Community Care: Standing Together Against Diabetes – World Diabetes Day celebration at Ghuteli Village, Anand" },
+        { image: img15, description: "Empowering Remotely: APCPH's Hands-on Online Training for Village Health Workers in COVID-19" },
+        { image: img16, description: "Understanding the Pandemic: Surveying COVID-19's Reach and Repercussions" },
+        { image: img17, description: "Healing at Home: Community-Based Palliative Care & Rehabilitation in Rural Anand Amidst COVID-19" },
+        { image: img18, description: "Community Care: Standing Together Against Diabetes – World Diabetes Day celebration at Ghuteli Village, Anand" },
 
-    { image: img19, description: "Bridging curiosity and discovery: A one day Research Methods Workshop for UG & PG students at Amrita Patel Centre for Public Health" },
-    { image: img20, description: "Young Minds, Safe Futures: Let’s Talk HIV/AIDS – World AIDS Day celebration at a higher secondary school in Fangani, Anand" },
+        { image: img19, description: "Bridging curiosity and discovery: A one day Research Methods Workshop for UG & PG students at Amrita Patel Centre for Public Health" },
+        { image: img20, description: "Young Minds, Safe Futures: Let’s Talk HIV/AIDS – World AIDS Day celebration at a higher secondary school in Fangani, Anand" },
 
-    { image: img21, description: "Field Staff of APCPH felicitated for support in ‘Swasthya Naari Shashakt Parivaar Abhiyaan’ in Jesharva, Anand" },
-    { image: img22, description: "Collaborative Government-supported Non Communicable Disease screening camp of SPARSH at Vadeli, Anand" },
-    { image: img23, description: "Cervical Cancer screening camps organized across six villages of Petlad Taluka, Anand" },
-    // { image: img24, description: "Training session for APCPH field staff on identification of High Risk Pregnant mothers in the community" },
+        { image: img21, description: "Field Staff of APCPH felicitated for support in ‘Swasthya Naari Shashakt Parivaar Abhiyaan’ in Jesharva, Anand" },
+        { image: img22, description: "Collaborative Government-supported Non Communicable Disease screening camp of SPARSH at Vadeli, Anand" },
+        { image: img23, description: "Cervical Cancer screening camps organized across six villages of Petlad Taluka, Anand" },
+        // { image: img24, description: "Training session for APCPH field staff on identification of High Risk Pregnant mothers in the community" },
 
-    { image: img25, description: "Empowering Communities: Continuous outreach and field engagement by APCPH team" }
-];
+        { image: img25, description: "Empowering Communities: Continuous outreach and field engagement by APCPH team" }
+    ];
 
 
     const openGallery = (index) => {
@@ -109,67 +109,29 @@ export default function Gallery() {
         <>
             <Header />
             <Innerbanner title="Gallery" image={academicBanner} />
-            <div className="advisoryCouncilSec sectionPadding">
+            <div className="sectionPadding">
                 <div className="container">
-                    <div className="row">
-                        {councilMembers.map((member, index) => (
-                            <div
-                                className="col-lg-3 col-md-4 col-sm-6 col-12"
-                                key={index}
-                            >
-                                <div className="councilBox">
-                                    <Image
-                                        src={member.image}
-                                        alt="galleryimg"
-                                        height={600}
-                                        className="img-fluid"
-                                    />
-                                    <a
-                                        style={{ cursor: "pointer" }}
-                                        onClick={() => openGallery(index)}
-                                    >
-                                        <Image
-                                            src={nextIcon}
-                                            alt="open modal"
-                                            width={64}
-                                            height={64}
-                                            className="img-fluid"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-                        ))}
-
-                        {/* {gallery.map((item, index) => (
-                            <div className="col-lg-3 col-md-4 col-sm-6 col-12" key={index}>
-                                <div className="councilBox">
-                                    <img
-                                        src={getGalleryImageUrl(item.image)}
-                                        alt={item.description}
-                                        className="img-fluid"
-                                    />
-
-                                    <a
-                                        style={{ cursor: "pointer" }}
-                                        onClick={() => openGallery(index)}
-                                    >
-                                        <Image
-                                            src={nextIcon}
-                                            alt="open modal"
-                                            width={64}
-                                            height={64}
-                                            className="img-fluid"
-                                        />
-                                    </a>
-                                </div>
-                            </div>
-                        ))} */}
-
+                    <div>
+                        <h2 className="sectionheading">MPH and MHA activities photographs</h2>
+                        
+                    </div>
+                     <div
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "column",
+                            textAlign: "center",
+                            padding: "60px 20px",
+                        }}
+                    >
+                        <h1 style={{ fontSize: "36px", marginBottom: "15px" }}>
+                            Coming Soon
+                        </h1>
 
                     </div>
                 </div>
             </div>
-
             <Footer />
         </>
     );

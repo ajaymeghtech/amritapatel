@@ -349,7 +349,7 @@ export default function Home() {
             <div className={homeStyles.heroTextWrapper}>
               <h1 className={homeStyles.heroTitle}>
                 {/* {!bannersLoading ? banners[currentBannerIndex]?.title : "Loading..."} */}
-                Centre for Public Health (APCPH)
+                Amrita Patel Center for Public Health (APCPH)
               </h1>
             </div>
           </div>
