@@ -85,7 +85,7 @@
 }
 
 .heroTitle {
-  font-size: 90px;
+  font-size: 80px;
   color: #FFFFFF;
   font-weight: 600;
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3);
@@ -561,6 +561,7 @@
       -ms-flex-direction: column;
           flex-direction: column;
   height: 100%;
+  cursor: default;
 }
 .programsGrid .programCard .cardHeader {
   display: -webkit-box;
@@ -1228,7 +1229,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0;
+  gap: 50px;
   -webkit-animation: marquee 30s linear infinite;
           animation: marquee 30s linear infinite;
   width: -webkit-fit-content;

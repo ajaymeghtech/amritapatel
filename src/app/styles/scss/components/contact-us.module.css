@@ -172,6 +172,7 @@
   font-size: 30px;
   line-height: 36px;
   font-weight: 700;
+  margin-bottom: 15px;
 }
 @media (max-width: 767px) {
   .reachUsTitleText {
@@ -246,10 +247,18 @@
   -o-object-fit: contain;
      object-fit: contain;
 }
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1600px) {
   .reachUsIcon {
     width: 22px;
     height: 22px;
+    margin-top: 5px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .reachUsIcon {
+    width: 20px;
+    height: 20px;
+    margin-top: 5px;
   }
 }
 
@@ -280,8 +289,10 @@
 @media screen and (max-width: 1300px) {
   .reachUsSection .reachUsTitleText {
     font-size: 24px;
+    line-height: 25px;
   }
   .reachUsSection .reachUsText {
     font-size: 20px;
+    line-height: 30px;
   }
 }/*# sourceMappingURL=contact-us.module.css.map */

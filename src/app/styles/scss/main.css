@@ -305,7 +305,7 @@ li {
 }
 @media screen and (max-width: 1300px) {
   .sectionlabel {
-    font-size: 22px;
+    font-size: 20px;
   }
 }
 
@@ -1905,15 +1905,16 @@ li {
   border-radius: 50%;
 }
 .homeGallery .slick-arrow.slick-prev {
-  left: 90%;
+  left: auto;
+  right: 5%;
   width: 50px;
   height: 50px;
   background-color: #00417A;
   border-radius: 50%;
 }
-@media screen and (max-width: 1400px) {
+@media (max-width: 1199px) {
   .homeGallery .slick-arrow.slick-prev {
-    left: 87%;
+    right: 8%;
   }
 }
 @media (max-width: 991px) {
@@ -1921,12 +1922,12 @@ li {
     top: -40px;
   }
   .homeGallery .slick-arrow.slick-prev {
-    left: 83%;
+    right: 9%;
   }
 }
 @media (max-width: 767px) {
   .homeGallery .slick-arrow.slick-prev {
-    left: 70%;
+    right: 17%;
   }
 }
 .homeGallery .slick-prev:before {
@@ -2402,6 +2403,25 @@ li {
   position: relative;
   margin-bottom: 70px;
 }
+.advisoryCouncilSec .councilBox a {
+  background: #00417A;
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 10px;
+  margin: auto;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+}
+@media (max-width: 1600px) {
+  .advisoryCouncilSec .councilBox a {
+    width: 40px;
+    height: 40px;
+  }
+}
 .advisoryCouncilSec .councilBox .councilimg {
   min-width: 100%;
   overflow: hidden;
@@ -2433,6 +2453,11 @@ li {
     min-height: 185px;
   }
 }
+@media screen and (max-width: 1200px) {
+  .advisoryCouncilSec .councilBox .councilimg {
+    min-height: 160px;
+  }
+}
 .advisoryCouncilSec .councilBox h3 {
   color: #00417A;
   margin-top: 20px;
@@ -2448,6 +2473,20 @@ li {
     margin-bottom: 5px;
   }
 }
+@media (max-width: 991px) {
+  .advisoryCouncilSec .councilBox h3 {
+    font-size: 22px;
+    line-height: 34px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .advisoryCouncilSec .councilBox h3 {
+    font-size: 22px;
+    line-height: 34px;
+    margin-bottom: 5px;
+  }
+}
 .advisoryCouncilSec .councilBox p {
   text-align: center;
   font-size: 16px;
@@ -2459,28 +2498,84 @@ li {
 @media (max-width: 1600px) {
   .advisoryCouncilSec .councilBox p {
     font-size: 14px;
-    line-height: 24px;
+    line-height: 18px;
     padding: 0px 15px;
-    padding-bottom: 40px;
+    padding-bottom: 30px;
   }
 }
-.advisoryCouncilSec .councilBox a {
-  background: #00417A;
-  display: block;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  padding: 10px;
-  margin: auto;
-  position: absolute;
-  bottom: -20px;
-  left: 0;
-  right: 0;
+@media (max-width: 991px) {
+  .advisoryCouncilSec .councilBox p {
+    font-size: 14px;
+    line-height: 16px;
+    padding: 0px 15px;
+    padding-bottom: 30px;
+  }
+}
+@media (max-width: 767px) {
+  .advisoryCouncilSec .councilBox p {
+    font-size: 14px;
+    line-height: 14px;
+    padding: 0px 15px;
+    padding-bottom: 30px;
+  }
+}
+.advisoryCouncilSec .councilBox h3 {
+  color: #00417A;
+  margin-top: 20px;
+  text-align: center;
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 400;
 }
 @media (max-width: 1600px) {
-  .advisoryCouncilSec .councilBox a {
-    width: 40px;
-    height: 40px;
+  .advisoryCouncilSec .councilBox h3 {
+    font-size: 24px;
+    line-height: 34px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 1600px) {
+  .advisoryCouncilSec .councilBox h3 {
+    font-size: 24px;
+    line-height: 34px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 1199px) {
+  .advisoryCouncilSec .councilBox h3 {
+    font-size: 22px;
+    line-height: 25px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 991px) {
+  .advisoryCouncilSec .councilBox h3 {
+    font-size: 22px;
+    line-height: 25px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .advisoryCouncilSec .councilBox h3 {
+    font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 5px;
+  }
+}
+.advisoryCouncilSec .councilBox p {
+  text-align: center;
+  font-size: 16px;
+  line-height: 18px;
+  padding: 0px 20px;
+  padding-bottom: 60px;
+  min-height: 110px;
+}
+@media (max-width: 1600px) {
+  .advisoryCouncilSec .councilBox p {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 0px 15px;
+    padding-bottom: 40px;
   }
 }
 
@@ -2509,6 +2604,27 @@ li {
   .iqacSec .councilBox h3 {
     font-size: 24px;
     line-height: 34px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 1199px) {
+  .iqacSec .councilBox h3 {
+    font-size: 22px;
+    line-height: 25px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 991px) {
+  .iqacSec .councilBox h3 {
+    font-size: 22px;
+    line-height: 25px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .iqacSec .councilBox h3 {
+    font-size: 20px;
+    line-height: 25px;
     margin-bottom: 5px;
   }
 }
@@ -3086,4 +3202,60 @@ li {
     padding: 0 20px 20px 20px;
     font-size: 15px;
   }
+}
+.gallerypage .councilBox {
+  background: transparent !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+  border: none !important;
+  padding: 0px !important;
+  margin-bottom: 40px;
+}
+.gallerypage .councilBox h4 {
+  background: transparent !important;
+  padding: 10px 0px;
+  font-size: 18px;
+}
+.gallerypage .councilBox a {
+  background: #00417A;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  bottom: 50px;
+  right: 16px;
+  left: auto !important;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease, -webkit-transform 0.3s ease;
+  transition: background 0.3s ease, -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease, -webkit-transform 0.3s ease;
+}
+.gallerypage .councilBox a:hover {
+  background: #002f5c;
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
+}
+@media (max-width: 1600px) {
+  .gallerypage .councilBox a {
+    width: 40px;
+    height: 40px;
+  }
+}
+.gallerypage .flex-end {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }/*# sourceMappingURL=main.css.map */
