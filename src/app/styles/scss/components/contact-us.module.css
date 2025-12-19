@@ -169,7 +169,7 @@
 }
 
 .reachUsTitleText {
-  font-size: 25px;
+  font-size: 30px;
   line-height: 36px;
   font-weight: 700;
 }
@@ -265,6 +265,17 @@
 
 @media screen and (max-width: 1400px) {
   .reachUsSection .reachUsTitleText {
-    font-size: 25px;
+    font-size: 27px;
+  }
+  .reachUsSection .reachUsText {
+    font-size: 22px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .reachUsSection .reachUsTitleText {
+    font-size: 24px;
+  }
+  .reachUsSection .reachUsText {
+    font-size: 20px;
   }
 }/*# sourceMappingURL=contact-us.module.css.map */
