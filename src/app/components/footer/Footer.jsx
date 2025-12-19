@@ -3,13 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import styles from "@/app/styles/scss/components/footer.module.scss";
-import locationIcon from '@/app/assets/icons/location.png';
-import emailIcon from '@/app/assets/icons/email.png';
-import callIcon from '@/app/assets/icons/call.png';
-import socialmedia1Icon from '@/app/assets/icons/socialmedia1.png';
-import socialmedia2Icon from '@/app/assets/icons/socialmedia2.png';
-import socialmedia3Icon from '@/app/assets/icons/socialmedia3.png';
-import socialmedia4Icon from '@/app/assets/icons/socialmedia4.png';
+import locationIcon from '@/app/assets/icons/location-white.svg';
+import emailIcon from '@/app/assets/icons/email_white.svg';
+import callIcon from '@/app/assets/icons/call-white.svg';
+import socialmedia1Icon from '@/app/assets/icons/facebook-white.svg';
+import socialmedia2Icon from '@/app/assets/icons/twitter-white.svg';
+import socialmedia3Icon from '@/app/assets/icons/youtube-white.svg';
+import socialmedia4Icon from '@/app/assets/icons/instagram-white.svg';
 import footerLogo from '@/app/assets/images/amrita_patel_footer_logo.png';
 import megh_logo from '@/app/assets/images/megh_technologies_logo.png';
 import { fetchSettings } from '@/app/services/settingsService';
@@ -120,8 +120,8 @@ export default function Footer() {
                                     <li>
                                         <div className={styles.contactItem}>
                                             <Image className={styles.footericon} src={emailIcon} alt="email_icon" />
-                                            <a href={`mailto:${settings?.contactEmail}`} className={styles.emailblock}>{settings?.contactEmail}</a>
-                                            <a href={`mailto:${settings?.emailAdmission}`} className={styles.emailblock}>{settings?.emailAdmission}</a>
+                                            {/* <a href={`mailto:${settings?.contactEmail}`} className={styles.emailblock}>{settings?.contactEmail}</a>
+                                            <a href={`mailto:${settings?.emailAdmission}`} className={styles.emailblock}>{settings?.emailAdmission}</a> */}
                                             <a href={`mailto:docverification@charutarhealth.org`} className={styles.emailblock}>docverification@charutarhealth.org</a>
                                         </div>
 

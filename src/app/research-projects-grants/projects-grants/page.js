@@ -49,7 +49,7 @@ export default function OngoingProjects() {
                   <tr>
                     <td>Health Leadership Enhancement Programme - Third Party Evaluation</td>
                     <td>2025 (Oct-Nov)</td>
-                    <td>Indian Institute of Public Health (IIPH), Gandhinagar & State Health System and Resource Centre (SHSRC), Ahemdavad</td>
+                    <td>Indian Institute of Public Health (IIPH), Gandhinagar & State Health System and Resource Centre (SHSRC), Ahmedabad</td>
                     <td><strong>Completed</strong> </td>
                   </tr>
                   <tr>

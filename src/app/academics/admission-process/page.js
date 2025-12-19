@@ -33,8 +33,8 @@ export default function AdmissionProcess() {
                                 <li><b>Social & Behavioral Sciences: </b>Sociology, Psychology, Anthropology and other social sciences.</li>
                             </ul>
                         </div>
-                        <h2 className="mt-5">Note: </h2>
-                        <p>As there are 10 seats. applications followed by a review from the scrutinizing team ensuring adherence to the above mentioned criteria and other points, the final selection would be informed accordingly. </p>
+                        
+                        <p>Note: As there are 10 seats. applications followed by a review from the scrutinizing team ensuring adherence to the above mentioned criteria and other points, the final selection would be informed accordingly. </p>
 
                     </div>
                     <div className="admissioneeligibilitySec mt-5">

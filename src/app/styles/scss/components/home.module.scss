@@ -922,34 +922,33 @@
   top: 50%;
   transform: translateY(-50%);
   z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include tab { display: none; }
+  @include phone { display: none; }
 }
 
 .connectTabContent {
   background: #FFD502;
+  color: #00417A;
   padding: 24px 16px;
-  font-weight: $font-weight-semibold;
-  font-size: 16px;
+  font-weight: $font-weight-bold;
+  font-size: 18px;
   letter-spacing: 3px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
   writing-mode: vertical-rl;
   text-orientation: mixed;
-  border-radius: 8px 0 0 8px;
+   transform: rotate(180deg); 
+  border-radius: 0 16px 16px 0;
   min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-transform: uppercase;
   white-space: nowrap;
 
   &:hover {
     background: #1e7a1e;
-    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
-    transform: translateX(-4px);
+    color: white;
   }
 
   &:active {

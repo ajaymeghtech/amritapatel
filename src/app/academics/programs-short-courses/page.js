@@ -7,6 +7,7 @@ import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
 import academicBanner from '@/app/assets/images/banner/academics_innerbanner.png';
 import { fetchCourses } from "@/app/services/courseService";
+import Link from "next/link";
 
 export default function ProgramsShortCourses() {
   const [activeTab, setActiveTab] = useState(0);
@@ -100,7 +101,13 @@ export default function ProgramsShortCourses() {
                   <th>Master of Public Health - Working Professionals (MPH)</th>
                   <th>Master of Hospital Administration (MHA)</th>
                   <th>Master of Hospital Administration - Working Professionals (MHA) <span className="upcoming">UPCOMING</span></th>
-                  <th>Ph.D. in Public Health</th>
+                  <th>
+                    <Link href="https://www.bhaikakauniv.edu.in/Department/index/phd" target="_blank"
+                      style={{ cursor: "pointer" }}
+  onMouseOver={(e) => (e.target.style.textDecoration = "underline")}
+  onMouseOut={(e) => (e.target.style.textDecoration = "none")} > Ph.D. in Public Health
+                    </Link>
+                  </th>
                 </tr>
               </thead>
               <tbody>

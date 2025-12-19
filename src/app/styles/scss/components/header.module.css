@@ -342,4 +342,49 @@
   .crossLine.active .line.crossLine3 {
     bottom: 50%;
   }
+}
+.activeNav {
+  color: #00417A !important;
+  position: relative;
+}
+
+.activeNav::after {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  width: calc(100% - 10px);
+  height: 2px;
+  background-color: #00417A;
+}
+
+.activeDropdown {
+  color: #00417A !important;
+}
+
+.activeNav {
+  color: #00417A !important;
+}
+
+.topNav .mainNavLink {
+  color: #696969 !important;
+}
+
+.topNav .mainNavLink.activeNav {
+  color: #00417A !important;
+}
+
+.topNav li .activeNav + svg path {
+  fill: #00417A !important;
+}
+
+.navbarLink ul.topNav li .mainNavLink.activeNav {
+  color: #00417A !important;
+}
+
+.navbarLink ul.topNav li .mainNavLink.activeNav + svg path {
+  fill: #00417A !important;
+}
+
+.activeDropdown {
+  color: #00417A !important;
 }/*# sourceMappingURL=header.module.css.map */
