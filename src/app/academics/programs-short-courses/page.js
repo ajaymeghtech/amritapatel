@@ -198,7 +198,9 @@ export default function ProgramsShortCourses() {
                 </tr>
               </tbody>
             </table>
+            
           </div>
+          <p>*Examination, library fees, registration fees will be separately charged  and briefed separately during admissions by University office</p>
         </div>
       </div>
 

@@ -677,9 +677,7 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -1352,22 +1350,24 @@
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   z-index: 999;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+}
+@media (max-width: 991px) {
+  .connectTab {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .connectTab {
+    display: none;
+  }
 }
 
 .connectTabContent {
   background: #FFD502;
+  color: #00417A;
   padding: 24px 16px;
-  font-weight: 600;
-  font-size: 16px;
+  font-weight: 700;
+  font-size: 18px;
   letter-spacing: 3px;
   cursor: pointer;
   -webkit-transition: all 0.3s ease;
@@ -1378,7 +1378,9 @@
       -ms-writing-mode: tb-rl;
           writing-mode: vertical-rl;
   text-orientation: mixed;
-  border-radius: 8px 0 0 8px;
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  border-radius: 0 16px 16px 0;
   min-height: 200px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1389,15 +1391,11 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  text-transform: uppercase;
   white-space: nowrap;
 }
 .connectTabContent:hover {
   background: #1e7a1e;
-  -webkit-box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
-          box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
-  -webkit-transform: translateX(-4px);
-          transform: translateX(-4px);
+  color: white;
 }
 .connectTabContent:active {
   -webkit-transform: translateX(-2px);

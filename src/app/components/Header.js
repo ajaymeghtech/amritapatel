@@ -107,7 +107,8 @@ export default function Header() {
     {
       id: "student-life",
       label: "Alumni Association",
-      href: "/alumni-association",
+      href: "https://alumni.bhaikakauniv.edu.in/",
+      target: "_blank",
     },
     { id: "testimonials", label: "Testimonials", href: "/testimonials" },
     { id: "gallery", label: "Gallery", href: "/gallery" },
@@ -215,11 +216,11 @@ export default function Header() {
                         {item.label}
                       </button>
                     ) : (
-                      <Link href={item.href}
+                      <Link href={item.href}  target={item?.target}
                         //  className={styles.mainNavLink}
                         className={`${styles.mainNavLink} ${isActive(item.href) ? styles.activeNav : ""}`}
                       >
-                        {item.label}
+                        {item.label} 
                       </Link>
                     )}
                     {(item.dropdown || item.dynamic) && <ArrowDown />}

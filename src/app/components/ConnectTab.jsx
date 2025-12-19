@@ -2,13 +2,14 @@
 
 import React from 'react';
 import styles from '@/app/styles/scss/components/home.module.scss';
+import Link from "next/link";
 
 export default function ConnectTab() {
   return (
     <div className={styles.connectTab}>
-      <div className={styles.connectTabContent}>
+      <Link href="/contact-us" className={styles.connectTabContent}>
         Connect With Us
-      </div>
+      </Link>
     </div>
   );
 }

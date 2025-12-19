@@ -106,7 +106,7 @@ export default function AdmissionProcess() {
 
                                 <li>
                                     <b>Real-World Experience:</b>
-                                    The Centre runs a full-fledged community-based NCD care program across 150 villages of Gujarat.
+                                    The Centre runs a full fledged community based NCD care program across 150 villages of Gujarat.
                                     Students get real-time field experience. The program culminates in an Internship (Semester IV)
                                     and a Thesis (Semesters III & IV), enabling students to apply theoretical learning to practical
                                     challenges.

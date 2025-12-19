@@ -363,24 +363,27 @@ export default function ContactUsPage() {
                   <span className={contactStyles.reachUsIcon}><Image src={timeIcon} alt="call_icon" width={31} className={contactStyles.socialImg} /></span>
                   <div className={contactStyles.reachUsContent}>
                     <div className={contactStyles.reachUsText}>
-                      <a href={`tel:${settings?.phone}`}>Monday to Friday (9 am - 5 pm)</a>
+                      <a href={` `}>Monday to Friday (9 am - 5 pm)</a>
                     </div>
                     <div className={contactStyles.reachUsText}>
-                      <a href={`tel:${settings?.phone}`}>Saturdays (9 am - 1 pm)</a>
+                      <a href={` `}>Saturdays (9 am - 1 pm)</a>
                     </div>
                   </div>
                 </div>
-
-                <div className={contactStyles.reachUsItem} style={{ marginTop: '50px' }}>
+                  
+                  <div className='contactStyles.reachUsItem' style={{marginTop:'50px'}}>
+                  <div className={contactStyles.reachUsTitleText}>
+                      {/* {firstLine} */}
+                      Bhaikaka University
+                  </div>
+                  </div>
+                <div className={contactStyles.reachUsItem} > 
                   <span className={contactStyles.reachUsIcon}>
                     <Image src={locationIcon} alt="location_icon" width={31} className={contactStyles.socialImg} />
                   </span>
 
                   <div className={contactStyles.reachUsContent}>
-                    <div className={contactStyles.reachUsTitleText}>
-                      {/* {firstLine} */}
-                      Bhaikaka University
-                    </div>
+                    
 
                     {/* OTHER LINES (normal class) */}
                     <div className={contactStyles.reachUsText}>
@@ -421,10 +424,10 @@ export default function ContactUsPage() {
                   <span className={contactStyles.reachUsIcon}><Image src={timeIcon} alt="call_icon" width={31} className={contactStyles.socialImg} /></span>
                   <div className={contactStyles.reachUsContent}>
                     <div className={contactStyles.reachUsText}>
-                      <a href={`tel:${settings?.phone}`}>Monday to Friday (9 am - 5 pm)</a>
+                      <a href="">Monday to Friday (9 am - 5 pm)</a>
                     </div>
                     <div className={contactStyles.reachUsText}>
-                      <a href={`tel:${settings?.phone}`}>Saturdays (9 am - 1 pm)</a>
+                      <a href="">Saturdays (9 am - 1 pm)</a>
                     </div>
                   </div>
                 </div>

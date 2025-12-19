@@ -14,6 +14,7 @@ import footerLogo from '@/app/assets/images/amrita_patel_footer_logo.png';
 import megh_logo from '@/app/assets/images/megh_technologies_logo.png';
 import { fetchSettings } from '@/app/services/settingsService';
 import { usePathname } from "next/navigation";
+import skhLogo from "@/app/assets/images/SKH_logo.png";
 
 export default function Footer() {
     const [settings, setSettings] = useState(null);
@@ -79,7 +80,12 @@ export default function Footer() {
                                         width={280}
                                         height={80}
                                     />
+                                 <div className={styles.skhlogoSection}>
+                                    <Image src={skhLogo} alt="Shrikrishna Hospital Logo" className={styles.hospitalLogoImage} />
                                 </div>
+                                </div>
+                               
+                               
                             </div>
 
                             <div className="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12">
@@ -171,14 +177,14 @@ export default function Footer() {
             </div>
 
             {showScrollTop && (
-  <button
-    className={styles.scrollTopBtn}
-    onClick={scrollToTop}
-    aria-label="Scroll to top"
-  >
-    ↑
-  </button>
-)}
+                <button
+                    className={styles.scrollTopBtn}
+                    onClick={scrollToTop}
+                    aria-label="Scroll to top"
+                >
+                    ↑
+                </button>
+            )}
 
         </>
     );

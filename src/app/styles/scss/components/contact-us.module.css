@@ -142,7 +142,7 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
 }
 @media (max-width: 767px) {
   .reachUsItem {
@@ -235,8 +235,8 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
@@ -245,6 +245,12 @@
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+@media screen and (max-width: 1300px) {
+  .reachUsIcon {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 .mapSection {

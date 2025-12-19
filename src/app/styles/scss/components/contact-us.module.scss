@@ -66,7 +66,7 @@
      
      }
 
-.reachUsItem { display: flex; gap: 15px; align-items: flex-start; margin-bottom: 24px;
+.reachUsItem { display: flex; gap: 15px; align-items: flex-start; margin-bottom:5px;
       @include phone { margin-bottom: 18px; } }
 
 .reachUsIcon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
@@ -74,7 +74,7 @@
 .reachUsText { font-size: 25px; line-height: 36px; font-weight: 400;
      @include phone { font-size: 18px; } }
 
-.reachUsTitleText { font-size:30px; line-height: 36px; font-weight: 700;
+.reachUsTitleText { font-size:30px; line-height: 36px; font-weight: 700; margin-bottom: 15px;
      @include phone { font-size:18px; } }
 
 .socialIcons { display: flex; gap: 16px; margin-top: 30px; justify-content: flex-start; padding-left: 46px;
@@ -86,7 +86,16 @@
 
 .socialImg { width: 31px; object-fit: contain; display: block; }
 
-.reachUsIcon { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; flex-shrink: 0; img { width: 100%; height: 100%; object-fit: contain; } }
+.reachUsIcon { display: inline-flex; align-items: center; justify-content: center; width:25px; height:25px; flex-shrink: 0; img { width: 100%; height: 100%; object-fit: contain; }
+
+@media screen and (max-width:1600px){
+      width:22px; height:22px; margin-top:10px;
+}
+
+@media screen and (max-width:1300px){
+      width:20px; height:20px; margin-top:10px;
+}
+}
 
 .mapSection{ margin-top: 150px;}
 

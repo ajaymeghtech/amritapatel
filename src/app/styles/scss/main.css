@@ -145,6 +145,7 @@ li {
   font-size: 25px;
   color: #666;
   line-height: 36px;
+  text-align: justify;
 }
 @media (max-width: 1600px) {
   p,
@@ -296,6 +297,16 @@ li {
 }
 .sectionlabel.announcementTitle {
   color: #FFD502;
+}
+@media screen and (max-width: 1600px) {
+  .sectionlabel {
+    font-size: 28px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .sectionlabel {
+    font-size: 22px;
+  }
 }
 
 .sectiondescription {

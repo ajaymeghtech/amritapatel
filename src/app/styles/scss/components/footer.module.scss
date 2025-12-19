@@ -30,9 +30,13 @@
 
   .logoSection {
     flex: 1;text-align: center;display: flex;justify-content: flex-start;
-    align-items: flex-start;margin-bottom: 70px;
+    align-items: flex-start;margin-bottom: 70px; flex-direction: column;
     p {font-size: 16px;margin-top: 10px;font-weight: 500;}
+   
     img {margin-bottom: 10px; max-width: 80%;}
+     .skhlogoSection{
+      max-width:200px; margin-top:25px;
+    }
 
     @include tab {
       margin-bottom: 30px;
