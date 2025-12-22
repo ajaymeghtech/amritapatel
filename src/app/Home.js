@@ -518,8 +518,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Bhaikaka University Section */}
-      {console.log("aboutCmsData", aboutCmsData)}
+      {/* About University Section */}
       <section className="sectionPadding">
         <div className="container">
           <div className="row">

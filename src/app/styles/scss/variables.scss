@@ -8,11 +8,22 @@ $success-color: #10b981;
 $danger-color: #ef4444;
 $warning-color: #f59e0b;
 $info-color: #3b82f6;
+$accent-yellow: #FFD502;
+$navy-dark: #00183D;
+$brand-blue: #00417A;
+$brand-blue-strong: #0042A6;
+$dark-gray: #333333;
+$beige-light: #F5EFE7;
+$transparent: transparent;
+
 
 // Text Colors
 $text-primary: #1f2937;
 $text-secondary: #6b7280;
 $text-muted: #9ca3af;
+$text-body-color: #666;
+$text-heading-color: #232323;
+$text-white: #ffffff;
 
 // Background Colors
 $bg-primary: #ffffff;
@@ -32,6 +43,7 @@ $border-radius-sm: 0.25rem;
 $border-radius-md: 0.5rem;
 $border-radius-lg: 0.75rem;
 $border-radius-xl: 1rem;
+$border-radius-2xl: 1.25rem; //20px
 
 // Breakpoints
 $breakpoint-sm: 640px;
@@ -44,14 +56,25 @@ $breakpoint-2xl: 1536px;
 $font-family-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 $font-family-heading: $font-family-primary;
 
-$font-size-xs: 0.75rem;
-$font-size-sm: 0.875rem;
-$font-size-base: 1rem;
-$font-size-lg: 1.125rem;
-$font-size-xl: 1.25rem;
-$font-size-2xl: 1.5rem;
-$font-size-3xl: 1.875rem;
-$font-size-4xl: 2.25rem;
+// Font Sizes (px-based naming)
+$font-size-xs: 0.75rem;   // 12px
+$font-size-sm: 0.875rem; // 14px
+$font-size-base: 1rem;   // 16px
+$font-size-lg: 1.125rem; // 18px
+$font-size-xl: 1.25rem;  // 20px
+$font-size-2xl: 1.5rem;  // 24px
+$font-size-2_5xl: 1.5625rem; // 25px
+$font-size-3xl: 1.875rem; // 30px
+$font-size-4xl: 2.25rem; // 36px
+$font-size-5xl: 3rem;    // 48px 
+
+// Line Heights
+$line-height-40: 2.5rem;  // 40px
+$line-height-36: 2.25rem; // 36px
+$line-height-30: 1.875rem; // 30px
+$line-height-28: 1.75rem;  // 28px
+$line-height-25: 1.5625rem; // 25px
+
 
 $font-weight-light: 300;
 $font-weight-normal: 400;

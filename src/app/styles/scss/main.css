@@ -127,7 +127,7 @@ small {
 
 body {
   font-family: "Roboto Condensed", sans-serif;
-  background: #fff;
+  background: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -135,33 +135,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, li {
-  font-size: 25px;
+  font-size: 1.5625rem;
   color: #666;
-  line-height: 36px;
+  line-height: 2.25rem;
   text-align: justify;
 }
 @media (max-width: 1600px) {
   p, li {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 }
 @media screen and (max-width: 1300px) {
   p, li {
     font-size: 18px;
-    line-height: 25px;
+    line-height: 1.5625rem;
   }
 }
 @media (max-width: 1199px) {
   p, li {
     font-size: 18px;
-    line-height: 28px;
+    line-height: 1.75rem;
   }
 }
 @media (max-width: 767px) {
   p, li {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 }
 
@@ -172,19 +172,19 @@ p, li {
 
 .tagLine {
   font-size: 40px;
-  line-height: 40px;
+  line-height: 2.5rem;
   margin-top: 20px;
 }
 @media (max-width: 1600px) {
   .tagLine {
     font-size: 30px;
-    line-height: 30px;
+    line-height: 1.875rem;
   }
 }
 @media (max-width: 767px) {
   .tagLine {
     font-size: 30px;
-    line-height: 30px;
+    line-height: 1.875rem;
     margin-bottom: 20px !important;
   }
 }
@@ -246,26 +246,26 @@ p, li {
   .sectionheading {
     font-size: 40px;
     margin-bottom: 25px;
-    line-height: 40px;
+    line-height: 2.5rem;
   }
 }
 @media (max-width: 991px) {
   .sectionheading {
     font-size: 40px;
     margin-bottom: 20px;
-    line-height: 40px;
+    line-height: 2.5rem;
   }
 }
 @media (max-width: 767px) {
   .sectionheading {
     font-size: 35px;
     margin-bottom: 20px;
-    line-height: 40px;
+    line-height: 2.5rem;
   }
 }
 
 .whiteText {
-  color: #fff;
+  color: #ffffff;
 }
 
 @media (max-width: 767px) {
@@ -277,9 +277,9 @@ p, li {
 
 .sectionlabel {
   font-size: 30px;
-  font-weight: 400;
+  font-weight: -weight-normal;
   white-space: nowrap;
-  color: #ffffff;
+  color: -primary;
   flex-shrink: 0;
   margin-bottom: 0px;
 }
@@ -293,36 +293,36 @@ p, li {
 }
 @media screen and (max-width: 1300px) {
   .sectionlabel {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 .sectiondescription {
-  font-size: 25px;
+  font-size: 1.5625rem;
   color: #666;
-  font-weight: 400;
+  font-weight: -weight-normal;
 }
 @media (max-width: 1600px) {
   .sectiondescription {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 @media (max-width: 767px) {
   .sectiondescription {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
 
 .smallsectiondescription {
-  font-size: 20px;
-  color: #ffffff;
-  font-weight: 400;
+  font-size: 1.25rem;
+  color: -primary;
+  font-weight: -weight-normal;
 }
 
 .sectionlink {
   font-size: 18px;
-  color: #1f2937;
-  font-weight: 700;
+  color: -dark;
+  font-weight: -weight-bold;
 }
 @media (max-width: 1600px) {
   .sectionlink {
@@ -332,15 +332,15 @@ p, li {
 
 .smallsectionlink {
   font-size: 18px;
-  color: #ffffff;
-  font-weight: 700;
+  color: -primary;
+  font-weight: -weight-bold;
   text-decoration: underline;
 }
 
 .sectionviewalllink {
   font-size: 18px;
   color: #22AA78;
-  font-weight: 700;
+  font-weight: -weight-bold;
   text-align: right;
   text-decoration: underline;
   display: block;
@@ -389,7 +389,7 @@ p, li {
 .section-description {
   font-size: 17px;
   line-height: 1.7;
-  color: #333;
+  color: #333333;
   margin: 0 0 16px 0;
 }
 
@@ -429,7 +429,7 @@ p, li {
 .accreditation-logos {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
@@ -437,14 +437,13 @@ p, li {
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
 }
-
 .accreditation-logo img {
   width: 100%;
   height: 100%;
@@ -489,14 +488,12 @@ p, li {
   align-items: center;
   justify-content: center;
 }
-
 .stat-icon img {
   width: 100%;
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
 }
-
 .stat-icon svg {
   width: 100%;
   height: 100%;
@@ -505,18 +502,18 @@ p, li {
 
 .stat-number {
   font-size: 70px;
-  font-weight: 600;
+  font-weight: -weight-semibold;
   color: #0042A6;
   margin: 0 0 10px 0;
   line-height: 1;
 }
 
 .stat-description {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #333333;
   margin: 0;
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: -weight-medium;
 }
 
 .empoweringSection .imageGrid {
@@ -585,7 +582,7 @@ p, li {
 .description {
   font-size: 17px;
   line-height: 1.8;
-  color: #333;
+  color: #333333;
   max-width: 1000px;
   margin: 0 auto 60px auto;
 }
@@ -614,7 +611,7 @@ p, li {
 .exploreButton:hover {
   transform: scale(1.05);
   background: #00183D;
-  color: #fff;
+  color: #ffffff;
 }
 
 .sectionPadding {
@@ -671,7 +668,7 @@ p, li {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: #fff;
+  color: #ffffff;
   font-size: 60px;
   line-height: 50px;
   font-weight: 600;
@@ -688,7 +685,7 @@ p, li {
 @media (max-width: 767px) {
   .innerBanner .innerBannerTitle {
     font-size: 30px;
-    line-height: 40px;
+    line-height: 2.5rem;
     width: 80%;
   }
 }
@@ -778,11 +775,11 @@ p, li {
   background: #0042A6;
   padding: 50px;
   border-radius: 50px;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 40px;
 }
 .leadership .leadershipContent p {
-  color: #fff;
+  color: #ffffff;
 }
 .leadership .leadershipContent.bgBlue {
   background: #0042A6;
@@ -800,14 +797,14 @@ p, li {
 }
 .leadership .leadershipContent .leaderDesignation {
   font-size: 30px;
-  line-height: 40px;
+  line-height: 2.5rem;
   font-weight: 600;
   margin-bottom: 30px;
 }
 .leadership .leadershipContent .leaderDesignation span {
   display: block;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
   font-weight: 400;
   margin-top: 10px;
   font-style: italic;
@@ -853,7 +850,7 @@ p, li {
   display: flex;
 }
 .accreditationList li .accreditationItem {
-  background: #fff;
+  background: #ffffff;
   width: 100%;
   border-radius: 20px;
   padding: 30px;
@@ -957,18 +954,18 @@ p, li {
 }
 .tabSection li .nav-link.active {
   background-color: #00183D;
-  color: #fff;
+  color: #ffffff;
   border-radius: 50px;
 }
 .tabSection li .nav-link:hover {
   background-color: #00183D;
-  color: #fff;
+  color: #ffffff;
   border-radius: 50px;
 }
 
 .courseTable {
   margin: 50px 0px 10px 0px;
-  border-radius: 20px;
+  border-radius: border-radius-2xl;
   overflow: hidden;
   border: 2px solid #D4D3D1;
   width: 100%;
@@ -987,7 +984,7 @@ p, li {
 }
 .courseTable .boradTableHeadingRow td {
   background: #1277BD;
-  color: #fff;
+  color: #ffffff;
   font-weight: 600;
   text-align: center;
   font-size: 17px;
@@ -998,9 +995,9 @@ p, li {
 }
 .courseTable thead th {
   padding: 20px 20px;
-  color: #fff;
+  color: #ffffff;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 1.25rem;
   background: #00417A;
   line-height: 20px;
   text-align: left;
@@ -1044,7 +1041,7 @@ p, li {
   padding: 20px 20px;
   background: #F5EFE7;
   color: #666;
-  font-size: 20px;
+  font-size: 1.25rem;
   line-height: 24px;
   white-space: normal !important;
   font-weight: 400;
@@ -1075,7 +1072,7 @@ p, li {
   display: block;
 }
 .courseTable tr td span a {
-  color: rgba(0, 0, 0, 0);
+  color: transparent;
 }
 .courseTable tr td span a.smallFnt {
   height: inherit;
@@ -1189,7 +1186,7 @@ p, li {
   padding-left: 0px;
 }
 .courseTable.facultyTable tr td ul li {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 .courseTable.feesTab tr td:first-child, .courseTable.feesTab tr td:nth-child(6), .courseTable.feesTab tr td:nth-child(7), .courseTable.feesTab tr td:nth-child(4), .courseTable.feesTab tr td:last-child {
   text-align: left;
@@ -1325,7 +1322,7 @@ p, li {
   right: 50px;
 }
 #myAccordion .accordionHeader .shape {
-  background: #fff;
+  background: #ffffff;
   width: 550px;
   height: 75px;
   position: absolute;
@@ -1384,7 +1381,7 @@ p, li {
 #myAccordion .accordionContent {
   font-size: 25px;
   color: #666;
-  line-height: 36px;
+  line-height: 2.25rem;
   padding: 0px 50px 50px 50px;
   display: flex;
   gap: 100px;
@@ -1425,7 +1422,7 @@ p, li {
   }
   #myAccordion .accordionHeader .title {
     font-size: 25px;
-    line-height: 30px;
+    line-height: 1.875rem;
   }
 }
 
@@ -1633,7 +1630,7 @@ p, li {
 
 .statNumber {
   font-size: 70px;
-  font-weight: 600;
+  font-weight: -weight-semibold;
   color: #0042A6;
   margin: 0 0 10px 0;
   line-height: 1;
@@ -1660,11 +1657,11 @@ p, li {
 }
 
 .statDescription {
-  font-size: 20px;
+  font-size: 1.25rem;
   color: #333333;
   margin: 0;
   line-height: 1.5;
-  font-weight: 500;
+  font-weight: -weight-medium;
 }
 @media (max-width: 1600px) {
   .statDescription {
@@ -1756,12 +1753,11 @@ p, li {
   background-size: contain;
 }
 
-/* mitali css */
 .list {
   padding-left: 0px;
 }
 .list li {
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 20px;
   position: relative;
   padding-left: 25px;
@@ -1808,14 +1804,14 @@ p, li {
   max-width: 30%;
 }
 .visionMissionSec .visionSec .visionTitle .sectionheading {
-  color: #fff;
+  color: #ffffff;
 }
 .visionMissionSec .visionSec .visionDes {
   flex: 0 0 100%;
   max-width: 100%;
 }
 .visionMissionSec .visionSec p {
-  color: #fff;
+  color: #ffffff;
 }
 @media (max-width: 767px) {
   .visionMissionSec .visionSec {
@@ -1850,7 +1846,17 @@ p, li {
 .directorMessage .directordesignation {
   margin-bottom: 0px !important;
   text-align: center;
+  font-size: 16px;
+  line-height: 18px;
   margin-top: 10px;
+}
+.directorMessage .directordesignation.name {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  color: #666666;
+  margin-top: 25px;
 }
 @media (max-width: 767px) {
   .directorMessage .sectionheading {
@@ -1900,7 +1906,7 @@ p, li {
   flex: 0 0 30.3%;
   max-width: 30.3%;
   margin: 15px;
-  background: #fff;
+  background: #ffffff;
   padding: 30px;
   border-radius: 30px;
   list-style: none;
@@ -2158,68 +2164,7 @@ p, li {
   margin-top: 20px;
   text-align: center;
   font-size: 30px;
-  line-height: 40px;
-  font-weight: 400;
-}
-@media (max-width: 1600px) {
-  .advisoryCouncilSec .councilBox h3 {
-    font-size: 24px;
-    line-height: 34px;
-    margin-bottom: 5px;
-  }
-}
-@media (max-width: 991px) {
-  .advisoryCouncilSec .councilBox h3 {
-    font-size: 22px;
-    line-height: 34px;
-    margin-bottom: 5px;
-  }
-}
-@media (max-width: 767px) {
-  .advisoryCouncilSec .councilBox h3 {
-    font-size: 22px;
-    line-height: 34px;
-    margin-bottom: 5px;
-  }
-}
-.advisoryCouncilSec .councilBox p {
-  text-align: center;
-  font-size: 16px;
-  line-height: 18px;
-  padding: 0px 20px;
-  padding-bottom: 60px;
-  min-height: 110px;
-}
-@media (max-width: 1600px) {
-  .advisoryCouncilSec .councilBox p {
-    font-size: 14px;
-    line-height: 18px;
-    padding: 0px 15px;
-    padding-bottom: 30px;
-  }
-}
-@media (max-width: 991px) {
-  .advisoryCouncilSec .councilBox p {
-    font-size: 14px;
-    line-height: 16px;
-    padding: 0px 15px;
-    padding-bottom: 30px;
-  }
-}
-@media (max-width: 767px) {
-  .advisoryCouncilSec .councilBox p {
-    font-size: 14px;
-    line-height: 14px;
-    padding: 0px 15px;
-    padding-bottom: 30px;
-  }
-}
-.advisoryCouncilSec .councilBox h3 {
-  color: #00417A;
-  margin-top: 20px;
-  text-align: center;
-  font-size: 30px;
-  line-height: 40px;
+  line-height: 2.5rem;
   font-weight: 400;
 }
 @media (max-width: 1600px) {
@@ -2239,21 +2184,21 @@ p, li {
 @media (max-width: 1199px) {
   .advisoryCouncilSec .councilBox h3 {
     font-size: 22px;
-    line-height: 25px;
+    line-height: 1.5625rem;
     margin-bottom: 5px;
   }
 }
 @media (max-width: 991px) {
   .advisoryCouncilSec .councilBox h3 {
     font-size: 22px;
-    line-height: 25px;
+    line-height: 1.5625rem;
     margin-bottom: 5px;
   }
 }
 @media (max-width: 767px) {
   .advisoryCouncilSec .councilBox h3 {
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 1.25rem;
+    line-height: 1.5625rem;
     margin-bottom: 5px;
   }
 }
@@ -2291,7 +2236,7 @@ p, li {
   margin-top: 20px;
   text-align: center;
   font-size: 30px;
-  line-height: 40px;
+  line-height: 2.5rem;
   font-weight: 400;
 }
 @media (max-width: 1600px) {
@@ -2304,21 +2249,21 @@ p, li {
 @media (max-width: 1199px) {
   .iqacSec .councilBox h3 {
     font-size: 22px;
-    line-height: 25px;
+    line-height: 1.5625rem;
     margin-bottom: 5px;
   }
 }
 @media (max-width: 991px) {
   .iqacSec .councilBox h3 {
     font-size: 22px;
-    line-height: 25px;
+    line-height: 1.5625rem;
     margin-bottom: 5px;
   }
 }
 @media (max-width: 767px) {
   .iqacSec .councilBox h3 {
-    font-size: 20px;
-    line-height: 25px;
+    font-size: 1.25rem;
+    line-height: 1.5625rem;
     margin-bottom: 5px;
   }
 }
@@ -2391,7 +2336,7 @@ p, li {
 .admissioneeligibilityDes ul.admissionList li::before {
   content: "";
   position: absolute;
-  background: #ffd502;
+  background: #FFD502;
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -2410,7 +2355,6 @@ p, li {
   }
 }
 
-/* Reusable spacing utilities */
 .sectionBlock {
   padding: 40px 0;
 }
@@ -2481,7 +2425,7 @@ p, li {
 .modal .contentDetail h3 {
   color: #00417A;
   font-size: 30px;
-  line-height: 30px;
+  line-height: 1.875rem;
   font-weight: 400;
   margin-bottom: 0px;
 }
@@ -2506,8 +2450,8 @@ p, li {
 }
 @media screen and (max-width: 1300px) {
   .modal .contentDetail p {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 1.25rem;
+    line-height: 1.875rem;
   }
 }
 
@@ -2571,21 +2515,21 @@ p, li {
   .admissionpage h1, .admissionpage h2 {
     font-size: 40px;
     margin-bottom: 25px;
-    line-height: 40px;
+    line-height: 2.5rem;
   }
 }
 @media (max-width: 991px) {
   .admissionpage h1, .admissionpage h2 {
     font-size: 30px;
     margin-bottom: 20px;
-    line-height: 40px;
+    line-height: 2.5rem;
   }
 }
 @media (max-width: 767px) {
   .admissionpage h1, .admissionpage h2 {
     font-size: 30px;
     margin-bottom: 20px;
-    line-height: 40px;
+    line-height: 2.5rem;
   }
 }
 .admissionpage h1.mt-6, .admissionpage h2.mt-6 {
@@ -2605,7 +2549,7 @@ p, li {
   gap: 30px;
   padding: 5px 5px;
   margin-bottom: 0px;
-  background: #00417a;
+  background: #00417A;
   border-radius: 80px;
 }
 .topmenubox ul li {
@@ -2628,7 +2572,7 @@ p, li {
 .topmenubox ul li a:hover, .topmenubox ul li a.active {
   text-decoration: none;
   background: #FFD502;
-  color: #00417a;
+  color: #00417A;
 }
 @media (max-width: 767px) {
   .topmenubox {
@@ -2674,10 +2618,10 @@ p, li {
   height: 80px;
 }
 .testimonialmainbox .testimonialbox p {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-style: italic;
   color: #666666;
-  line-height: 30px;
+  line-height: 1.875rem;
 }
 .testimonialmainbox .testimonialbox h4 {
   color: #232323;
@@ -2734,7 +2678,7 @@ p, li {
 }
 
 .accordion-container {
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -2808,6 +2752,7 @@ p, li {
   }
   .faq-header p {
     font-size: 16px;
+    text-align: center;
   }
   .accordion-header {
     padding: 20px;

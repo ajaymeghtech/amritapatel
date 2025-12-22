@@ -62,8 +62,8 @@ export default function Gallery() {
         {
             id: 1,
             title: "Aashirwad Scheme",
-            year: "2024",
-            image: [img3],
+            year: "2023",
+            image: [img1],
             description: "Aashirwad Scheme: Bringing affordable healthcare to every doorstep in Anand",
         },
         { id: 2, title: "SPARSH Awareness Sessions", year: "2025", image: [img2], description: "SPARSH Awareness Sessions: Cultivating Knowledge, Fostering Community Progress" },
