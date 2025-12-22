@@ -8,15 +8,9 @@
   border-radius: 20px;
   padding: 50px;
   margin-bottom: 30px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 .careerList li .label {
   font-family: "Source Serif Pro";
@@ -34,8 +28,6 @@
   white-space: nowrap;
 }
 .careerList li .buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 100px;
 }
@@ -57,13 +49,8 @@
 }
 @media (max-width: 767px) {
   .careerList li {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
     padding: 20px;
     margin-bottom: 20px;
   }

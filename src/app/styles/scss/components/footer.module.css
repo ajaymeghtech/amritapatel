@@ -22,19 +22,13 @@
   color: #fff;
 }
 .footer .footerTop {
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   padding: 80px 0;
 }
 @media (max-width: 991px) {
   .footer .footerTop {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     gap: 30px;
   }
@@ -45,24 +39,13 @@
   }
 }
 .footer .logoSection {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  flex: 1;
   text-align: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  justify-content: flex-start;
+  align-items: flex-start;
   margin-bottom: 70px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .footer .logoSection p {
   font-size: 16px;
@@ -85,9 +68,7 @@
 @media (max-width: 767px) {
   .footer .logoSection {
     margin-bottom: 35px;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
+    justify-content: flex-start;
   }
   .footer .logoSection img {
     width: 200px;
@@ -98,9 +79,8 @@
   columns: 2;
   -webkit-columns: 2;
   -moz-columns: 2;
-  -webkit-column-gap: 40px;
-     -moz-column-gap: 40px;
-          column-gap: 40px;
+  -moz-column-gap: 40px;
+       column-gap: 40px;
   padding: 0;
   margin: 0;
 }
@@ -110,7 +90,6 @@
 .footer .quickLinks ul li a {
   text-decoration: none;
   font-size: 20px;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   font-weight: 400;
   color: #fff;
@@ -146,27 +125,17 @@
 .footer .contactSection {
   padding: 0px;
   margin: 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 0px;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 .footer .contactSection li {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 100%;
-          flex: 0 0 100%;
+  flex: 0 0 100%;
   max-width: 100%;
 }
 .footer .contactSection li:nth-child(2) {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 0 60%;
-          flex: 0 0 60%;
+  flex: 0 0 60%;
   max-width: 60%;
 }
 .footer .contactSection li h3 {
@@ -175,19 +144,12 @@
   font-weight: 600;
 }
 .footer .contactSection li .contactItem {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  align-items: flex-start;
   gap: 5px;
   position: relative;
   padding-left: 40px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   margin-bottom: 20px;
 }
 .footer .contactSection li .contactItem .emailblock {
@@ -243,21 +205,14 @@
 }
 .footer .contactSection li .socialIcons {
   margin-top: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  align-items: center;
+  justify-content: flex-start;
 }
 .footer .contactSection li .socialIcons a {
   color: #fff;
   margin-right: 18px;
   font-size: 18px;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
 }
 .footer .contactSection li .socialIcons a img {
@@ -277,15 +232,10 @@
 }
 @media (max-width: 1199px) {
   .footer .contactSection {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
   .footer .contactSection li {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
+    flex: 0 0 100%;
     max-width: 100%;
   }
   .footer .contactSection li .contactItem p, .footer .contactSection li .contactItem a {
@@ -294,29 +244,19 @@
 }
 @media (max-width: 991px) {
   .footer .contactSection {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    flex-direction: row;
   }
   .footer .contactSection li {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 50%;
-            flex: 0 0 50%;
+    flex: 0 0 50%;
     max-width: 50%;
   }
 }
 @media (max-width: 767px) {
   .footer .contactSection {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
   .footer .contactSection li {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
+    flex: 0 0 100%;
     max-width: 100%;
   }
   .footer .contactSection li .contactItem {
@@ -333,12 +273,8 @@
   color: #ffffff;
   padding: 8px 0;
   font-size: 16px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
 .footerBottom p {
   margin: 0px;
@@ -348,12 +284,8 @@
   font-weight: 400;
 }
 .footerBottom .designby {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  justify-content: flex-end;
   gap: 5px;
 }
 .footerBottom .designby a {
@@ -372,9 +304,7 @@
     text-align: center;
   }
   .footerBottom .designby {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    justify-content: center;
   }
 }
 
@@ -398,25 +328,16 @@
   border: none;
   cursor: pointer;
   z-index: 999;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-          box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
-  -webkit-transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
 }
 
 .scrollTopBtn:hover {
   background-color: #1277BD;
-  -webkit-transform: translateY(-3px);
-          transform: translateY(-3px);
+  transform: translateY(-3px);
 }
 
 @media (max-width: 767px) {

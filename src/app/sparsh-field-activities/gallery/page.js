@@ -58,40 +58,40 @@ export default function Gallery() {
     }, []);
 
 
-const councilMembers = [
-    {
-        id: 1,
-        title: "Aashirwad Scheme",
-        year: "2024",
-        image: [img3],
-        description: "Aashirwad Scheme: Bringing affordable healthcare to every doorstep in Anand",
-    },
-    { id: 2, title: "SPARSH Awareness Sessions", year: "2025", image: [img2], description: "SPARSH Awareness Sessions: Cultivating Knowledge, Fostering Community Progress" },
-    { id: 3, title: "Building Healthier Futures", year: "2024", image: [img3], description: "Building Healthier Futures: NCD camp Awareness at the grassroots" },
-    { id: 4, title: "Community Wellness", year: "2025", image: [img4], description: "Community Wellness: NCD Screening in Action with Government Support" },
-    { id: 5, title: "Ensuring Continuity", year: "2024", image: [img5,img5], description: "Ensuring Continuity: Patients Referred for Further Care at Shree Krishna Hospital" },
-    { id: 6, title: "Harvesting Hope", year: "2023", image: [img6], description: "Harvesting Hope: Collaborative Organic Composting for a Sustainable Tomorrow" },
-    { id: 7, title: "Healthy Habits, Happy Kids", year: "2023", image: [img7], description: "Healthy Habits, Happy Kids: Empowering 150 Gujarat Govt Schools through Healthy lifestyle interventions" },
-    { id: 8, title: "Mapping Health, Saving Lives", year: "2023", image: [img8], description: "Mapping health, saving lives: The power of a community survey" },
-    { id: 9, title: "Men for Women's Health", year: "2021", image: [img9], description: "Men for Women's Health: Taking a Stand Against Cervical Cancer" },
-    { id: 10, title: "Empowering the Unsung Heroes", year: "2022", image: [img10], description: "Empowering the Unsung Heroes: NCD Screening for University Housekeeping Staff" },
-    { id: 11, title: "Unnat Bharat Abhiyan in Practice", year: "2023", image: [img11], description: "Unnat Bharat Abhiyan in Practice: Next-Gen Doctors Engaged in Community Health & Participatory Research through APCPH staff" },
-    { id: 12, title: "Bridging Academia and Community", year: "2023", image: [img12], description: "Bridging Academia and Community: Internship Exposure with APCPH" },
-    { id: 13, title: "Global Collaboration, Local Impact", year: "2023", image: [img13], description: "Global Collaboration, Local Impact: UMass Students Exploring Rural Healthcare in SPARSH" },
-    { id: 14, title: "Extending a Lifeline", year: "2024", image: [img14], description: "Extending a Lifeline: APCPH's COVID-19 Ration Distribution in Rural Anand" },
-    { id: 15, title: "Empowering Remotely", year: "2020", image: [img15], description: "Empowering Remotely: APCPH's Hands-on Online Training for Village Health Workers in COVID-19" },
-    { id: 16, title: "Understanding the Pandemic", year: "2020", image: [img17,img16], description: "Understanding the Pandemic: Surveying COVID-19's Reach and Repercussions" },
-    { id: 17, title: "Healing at Home", year: "2025", image: [img4], description: "Healing at Home: Community-Based Palliative Care & Rehabilitation in Rural Anand Amidst COVID-19" },
-    { id: 18, title: "Community Care", year: "2025", image: [img18], description: "Community Care: Standing Together Against Diabetes – World Diabetes Day celebration at Ghuteli Village, Anand" },
-    { id: 19, title: "Bridging Curiosity and Discovery", year: "2025", image: [img19], description: "Bridging curiosity and discovery: A one day Research Methods Workshop for UG & PG students at Amrita Patel Centre for Public Health" },
-    { id: 20, title: "Young Minds, Safe Futures", year: "2021", image: [img20], description: "Young Minds, Safe Futures: Let’s Talk HIV/AIDS – World AIDS Day celebration at a higher secondary school in Fangani, Anand" },
-    { id: 21, title: "Field Staff Felicitation", year: "2022", image: [img21], description: "Field Staff of APCPH felicitated for support in ‘Swasthya Naari Shashakt Parivaar Abhiyaan’ in Jesharva, Anand" },
-    { id: 22, title: "Collaborative NCD Screening Camp", year: "2024", image: [img22], description: "Collaborative Government-supported Non Communicable Disease screening camp of SPARSH at Vadeli, Anand" },
-    { id: 23, title: "Cervical Cancer Screening Camps", year: "2025", image: [img23], description: "Cervical Cancer screening camps organized across six villages of Petlad Taluka, Anand" },
-    // { id: 24, image: [img24], description: "Training session for APCPH field staff on identification of High Risk Pregnant mothers in the community" },
-    { id: 25, image: [img25], title:'Empowering Communities', description: "Empowering Communities: Continuous outreach and field engagement by APCPH team" },
-];
-    
+    const councilMembers = [
+        {
+            id: 1,
+            title: "Aashirwad Scheme",
+            year: "2024",
+            image: [img3],
+            description: "Aashirwad Scheme: Bringing affordable healthcare to every doorstep in Anand",
+        },
+        { id: 2, title: "SPARSH Awareness Sessions", year: "2025", image: [img2], description: "SPARSH Awareness Sessions: Cultivating Knowledge, Fostering Community Progress" },
+        { id: 3, title: "Building Healthier Futures", year: "2024", image: [img3], description: "Building Healthier Futures: NCD camp Awareness at the grassroots" },
+        { id: 4, title: "Community Wellness", year: "2025", image: [img4], description: "Community Wellness: NCD Screening in Action with Government Support" },
+        { id: 5, title: "Ensuring Continuity", year: "2024", image: [img5, img5], description: "Ensuring Continuity: Patients Referred for Further Care at Shree Krishna Hospital" },
+        { id: 6, title: "Harvesting Hope", year: "2023", image: [img6], description: "Harvesting Hope: Collaborative Organic Composting for a Sustainable Tomorrow" },
+        { id: 7, title: "Healthy Habits, Happy Kids", year: "2023", image: [img7], description: "Healthy Habits, Happy Kids: Empowering 150 Gujarat Govt Schools through Healthy lifestyle interventions" },
+        { id: 8, title: "Mapping Health, Saving Lives", year: "2023", image: [img8], description: "Mapping health, saving lives: The power of a community survey" },
+        { id: 9, title: "Men for Women's Health", year: "2021", image: [img9], description: "Men for Women's Health: Taking a Stand Against Cervical Cancer" },
+        { id: 10, title: "Empowering the Unsung Heroes", year: "2022", image: [img10], description: "Empowering the Unsung Heroes: NCD Screening for University Housekeeping Staff" },
+        { id: 11, title: "Unnat Bharat Abhiyan in Practice", year: "2023", image: [img11], description: "Unnat Bharat Abhiyan in Practice: Next-Gen Doctors Engaged in Community Health & Participatory Research through APCPH staff" },
+        { id: 12, title: "Bridging Academia and Community", year: "2023", image: [img12], description: "Bridging Academia and Community: Internship Exposure with APCPH" },
+        { id: 13, title: "Global Collaboration, Local Impact", year: "2023", image: [img13], description: "Global Collaboration, Local Impact: UMass Students Exploring Rural Healthcare in SPARSH" },
+        { id: 14, title: "Extending a Lifeline", year: "2024", image: [img14], description: "Extending a Lifeline: APCPH's COVID-19 Ration Distribution in Rural Anand" },
+        { id: 15, title: "Empowering Remotely", year: "2020", image: [img15], description: "Empowering Remotely: APCPH's Hands-on Online Training for Village Health Workers in COVID-19" },
+        { id: 16, title: "Understanding the Pandemic", year: "2020", image: [img17, img16], description: "Understanding the Pandemic: Surveying COVID-19's Reach and Repercussions" },
+        { id: 17, title: "Healing at Home", year: "2025", image: [img4], description: "Healing at Home: Community-Based Palliative Care & Rehabilitation in Rural Anand Amidst COVID-19" },
+        { id: 18, title: "Community Care", year: "2025", image: [img18], description: "Community Care: Standing Together Against Diabetes – World Diabetes Day celebration at Ghuteli Village, Anand" },
+        { id: 19, title: "Bridging Curiosity and Discovery", year: "2025", image: [img19], description: "Bridging curiosity and discovery: A one day Research Methods Workshop for UG & PG students at Amrita Patel Centre for Public Health" },
+        { id: 20, title: "Young Minds, Safe Futures", year: "2021", image: [img20], description: "Young Minds, Safe Futures: Let’s Talk HIV/AIDS – World AIDS Day celebration at a higher secondary school in Fangani, Anand" },
+        { id: 21, title: "Field Staff Felicitation", year: "2022", image: [img21], description: "Field Staff of APCPH felicitated for support in ‘Swasthya Naari Shashakt Parivaar Abhiyaan’ in Jesharva, Anand" },
+        { id: 22, title: "Collaborative NCD Screening Camp", year: "2024", image: [img22], description: "Collaborative Government-supported Non Communicable Disease screening camp of SPARSH at Vadeli, Anand" },
+        { id: 23, title: "Cervical Cancer Screening Camps", year: "2025", image: [img23], description: "Cervical Cancer screening camps organized across six villages of Petlad Taluka, Anand" },
+        // { id: 24, image: [img24], description: "Training session for APCPH field staff on identification of High Risk Pregnant mothers in the community" },
+        { id: 25, image: [img25], title: 'Empowering Communities', description: "Empowering Communities: Continuous outreach and field engagement by APCPH team" },
+    ];
+
 
     // Year filter state
     const [selectedYear, setSelectedYear] = useState("All");
@@ -113,7 +113,7 @@ const councilMembers = [
         Fancybox.show(items, { startIndex: 0 });
     };
 
-    const MagnifierIcon = () => (
+   const MagnifierIcon = () => (
   <svg
     width="22"
     height="22"
@@ -121,6 +121,7 @@ const councilMembers = [
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
+    {/* Magnifier circle */}
     <circle
       cx="11"
       cy="11"
@@ -128,6 +129,28 @@ const councilMembers = [
       stroke="white"
       strokeWidth="2"
     />
+
+    {/* Plus sign */}
+    <line
+      x1="11"
+      y1="8"
+      x2="11"
+      y2="14"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+    <line
+      x1="8"
+      y1="11"
+      x2="14"
+      y2="11"
+      stroke="white"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
+
+    {/* Handle */}
     <line
       x1="16.65"
       y1="16.65"
@@ -139,6 +162,7 @@ const councilMembers = [
     />
   </svg>
 );
+
 
     return (
         <>
@@ -159,8 +183,8 @@ const councilMembers = [
                         </div>
                         {filteredMembers.map((member, index) => (
                             <div
-                                className="col-lg-3 col-md-4 col-sm-6 col-12" style={{cursor:"pointer"}}
-                                key={index}  onClick={() => openGallery(member)}
+                                className="col-lg-3 col-md-4 col-sm-6 col-12" style={{ cursor: "pointer" }}
+                                key={index} onClick={() => openGallery(member)}
                             >
                                 <div className="councilBox">
                                     <Image
@@ -168,8 +192,8 @@ const councilMembers = [
                                         alt={member.title || 'galleryimg'}
                                         height={600}
                                         className="img-fluid"
-                                    />   
-                                      <h4>{member?.title}</h4>                                 
+                                    />
+                                    <h4>{member?.title}</h4>
                                     <a
                                         style={{ cursor: "pointer" }}
                                         onClick={() => openGallery(member)}
@@ -184,7 +208,7 @@ const councilMembers = [
                                         <MagnifierIcon />
                                     </a>
                                 </div>
-                              
+
                             </div>
                         ))}
 

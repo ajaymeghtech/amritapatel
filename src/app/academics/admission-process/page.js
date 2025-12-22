@@ -18,7 +18,7 @@ export default function AdmissionProcess() {
                     <div className="admissioneeligibilitySec">
                         <div className="sectionheading"><h1>Master of Public Health (MPH) Admission Overview for Academic Year 2025-26</h1></div>
                         <p>As a prospective public health professional, choosing the right program is your first step toward a purposeful career. The Master of Public Health (MPH) program at *Bhaikaka University's Amrita Patel Centre for Public Health (APCPH)* is meticulously designed to create a dedicated cadre of public health experts, rooted in the principles of holistic, flexible and learner-centric education as mandated by the National Education Policy (NEP) 2020.</p>
-                        <p>Here is a clear guide to the admission process, eligibility requirements and program structure for the Academic Year 2025-26</p>
+                        <p>Here is a clear guide to the admission process, eligibility requirements and program structure for the Academic Year 2025-26.</p>
                     </div>
                     <div className="admissioneeligibilitySec">
                         <div className="sectionheading mt-5"><h2>Eligibility for ApplicationTo be considered for admission to the regular two-year MPH program, applicants must meet the following criteria</h2></div>

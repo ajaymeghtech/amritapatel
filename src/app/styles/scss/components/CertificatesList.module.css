@@ -2,8 +2,7 @@
   background: white;
   border-radius: 8px;
   padding: 20px;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
 }
 
@@ -101,12 +100,10 @@
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
 .btn:hover {
-  -webkit-transform: scale(1.1);
-          transform: scale(1.1);
+  transform: scale(1.1);
 }
 .btn.btnEdit {
   background-color: #e3f2fd;

@@ -213,7 +213,6 @@ export default function AboutUsPage() {
                 <li>To build networking for post-course job placement support.</li>
                 <li>To do problem-solving research on local health issues, focusing on community-based care for non-communicable diseases, nutrition, sanitation, and health management.</li>
               </ul>
-
             </div>
           </div>
         </div>
@@ -223,6 +222,8 @@ export default function AboutUsPage() {
           <div className="row">
             <div className="col-lg-3">
               <Image src={director} alt="director" width={450} height={450} className="img-fluid innerbannerImage" />
+              <p className="directordesignation name">Dr. Deepak B. Sharma (Director)</p>
+              <p className="directordesignation">Amrita Patel Centre for Public Health, Bhaikaka University</p>
             </div>
             <div className="col-lg-9">
               <h2 className="sectionheading">Director Message</h2>

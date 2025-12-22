@@ -11,45 +11,15 @@
 @import 'base/typography.scss';
 
 
-body {
-  font-family: "Roboto Condensed", sans-serif;
-  background: #fff;
-}
+body { font-family: "Roboto Condensed", sans-serif; background: #fff;}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Roboto Condensed", sans-serif;
-}
+h1,h2,h3,h4,h5,h6 {  font-family: "Roboto Condensed", sans-serif; }
 
-p,
-li {
-  font-size: 25px;
-  color: #666;
-  line-height: 36px;
-  text-align: justify;
-
-  @include desktop {
-    font-size: 20px;
-    line-height: 30px;
-  }
-  @media screen and (max-width:1300px) { 
-          font-size:18px;
-          line-height: 25px;
-  }
-
-  @include mini-desktop {
-    font-size: 18px;
-    line-height: 28px;
-  }
-
-  @include phone {
-    font-size: 20px;
-    line-height: 30px;
-  }
+p,li {  font-size: 25px;  color: #666;  line-height: 36px;  text-align: justify;
+  @include desktop {  font-size: 20px; line-height: 30px;  }
+  @media screen and (max-width:1300px) { font-size:18px;  line-height: 25px;  }
+  @include mini-desktop { font-size: 18px;  line-height: 28px; }
+  @include phone { font-size: 20px; line-height: 30px; }
 }
 
 .imgRadius {
@@ -2056,6 +2026,17 @@ li {
     color: #232323;
   }
 
+   .directordesignation {
+    margin-bottom: 0px !important;
+    text-align: center; font-size:16px; line-height: 18px;
+    margin-top: 10px;
+    &.name{ font-size:18px;
+      font-style: normal;
+      font-weight:600;line-height: 20px;
+      color: #666666;margin-top:25px;
+    }
+  }
+
   @include phone {
     .sectionheading{
       margin-top:25px;
@@ -2138,18 +2119,18 @@ li {
 
       h4 {
             margin: 0;
-    font-size: 30px;
-    font-weight: 400;
-    max-width: 100%;
-    color: #00417A;
-    text-align: left;
-    width: 100%;
-    margin-bottom: 20px;
+        font-size: 30px;
+        font-weight: 400;
+        max-width: 100%;
+        color: #00417A;
+        text-align: left;
+        width: 100%;
+        margin-bottom: 20px;
 
-        @media screen and (max-width:1300px) { 
-          font-size: 25px; margin-bottom: 0px;
-        }
-      }
+            @media screen and (max-width:1300px) { 
+              font-size: 25px; margin-bottom: 0px;
+            }
+          }
 
       .date-badge {
         background: #FFD502;
