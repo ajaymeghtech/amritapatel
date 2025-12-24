@@ -3,11 +3,16 @@
   list-style: none;
   padding-left: 0;
   margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .academicCalendar .calendarList li {
-  flex: 0 0 33.3%;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 33.3%;
+          flex: 0 0 33.3%;
   max-width: 33.3%;
   padding: 15px;
 }
@@ -16,17 +21,32 @@
   border-radius: 20px;
   padding: 30px;
   border: 2px solid #D4D3D1;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   min-height: 400px;
 }
 .academicCalendar .calendarList li .boxCalendar .calendarHeading {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-bottom: 15px;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 .academicCalendar .calendarList li .boxCalendar .calendarHeading h3 {
   font-size: 30px;
@@ -40,8 +60,11 @@
   margin-left: 10px;
 }
 .academicCalendar .calendarList li .boxCalendar .calendarLink {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .academicCalendar .calendarList li .boxCalendar .calendarLink a {
   font-size: 20px;
