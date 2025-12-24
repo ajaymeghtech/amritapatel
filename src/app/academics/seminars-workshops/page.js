@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
-import academicBanner from '@/app/assets/images/banner/academics_innerbanner.png';
+import seminarBanner from '@/app/assets/images/banner/seminar_banner.png';
 import img1 from "@/app/assets/images/img1.jpg";
 import img2 from "@/app/assets/images/img2.jpg";
 import img3 from "@/app/assets/images/img3.jpg";
@@ -53,10 +53,10 @@ export default function SeminarsWorkshops() {
           image: img19,
           caption: "Bridging curiosity and discovery: A one day Research Methods Workshop for UG & PG students"
         },
-        {
-          image: img12,
-          caption: "Bridging Academia and Community: Internship Exposure with APCPH"
-        },
+        // {
+        //   image: img12,
+        //   caption: "Bridging Academia and Community: Internship Exposure with APCPH"
+        // },
         {
           image: img13,
           caption: "Global Collaboration, Local Impact: UMass Students Exploring Rural Healthcare"
@@ -383,11 +383,10 @@ export default function SeminarsWorkshops() {
   };
 
 
-
   return (
     <>
       <Header />
-      <Innerbanner title="Seminars/Workshops" image={academicBanner} />
+      <Innerbanner title="Seminars/Workshops" image={seminarBanner} />
 
       <div className="sectionPadding">
         <div className="container">
@@ -427,14 +426,11 @@ export default function SeminarsWorkshops() {
                     <p className="value">{item.coFacilitator}</p>
                   </div>
 
-                
-
                   {/* <a href={item.galleryLink} className="gallery-link">
                     View Event Gallery →
                   </a> */}
 
-                 
-
+                
                 </div>
                 </div>
                  {item.images?.length > 0 && (

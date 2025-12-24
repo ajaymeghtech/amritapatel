@@ -191,10 +191,23 @@ export default function NewsCategoryList() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate year format before submission
+    if (!formData.year || !/^\d{4}$/.test(formData.year.trim())) {
+      toast.error("Please enter a valid 4-digit year (e.g., 2024)");
+      return;
+    }
+    
+    const yearNum = parseInt(formData.year.trim());
+    if (yearNum < 1900 || yearNum > 2099) {
+      toast.error("Please enter a year between 1900 and 2099");
+      return;
+    }
+    
     try {
       // Generate slug from title if not provided
       const submitData = {
-        year: formData.year,
+        year: formData.year.trim(),
         slug: formData.slug || formData.year.toString().toLowerCase().replace(/[^a-z0-9]+/g, '-'),
         status: formData.status
       };
@@ -281,50 +294,15 @@ export default function NewsCategoryList() {
     {
       field: 'year',
       headerName: 'Year',
-      width: 180,
+      flex: 1,
+      minWidth: 180,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="fw-medium text-truncate" style={{ maxWidth: '180px' }} title={params.value}>
+          <div className="fw-medium text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
       ),
-    },
-
-    // Content column
-    {
-      field: '_id',
-      headerName: 'ID',
-      width: 180,
-      renderCell: (params) => (
-        <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '180px' }} title={params.value}>
-            {params.value}
-          </div>
-        </Tooltip>
-      ),
-    },
-
-    // Created At column
-    {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 120,
-      renderCell: (params) => {
-        const date = new Date(params.value);
-
-        const day = String(date.getDate()).padStart(2, "0");
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const year = date.getFullYear();
-
-        const formattedDate = `${day}/${month}/${year}`;
-        const formattedTime = date.toLocaleTimeString(); 
-        return (
-          <span className="small text-muted">
-            {formattedDate}, {formattedTime}
-          </span>
-        );
-      },
     },
     {
       field: 'actions',
@@ -334,30 +312,9 @@ export default function NewsCategoryList() {
       filterable: false,
       align: 'center',
       headerAlign: 'center',
+      flex: 0,
       renderCell: (params) => (
         <div className="d-flex justify-content-center align-items-center gap-2">
-          {/* View Button */}
-          <button
-            onClick={() => setViewModal({ isOpen: true, article: params.row })}
-            className="btn btn-sm d-flex align-items-center justify-content-center"
-            style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: '#e0f2fe',
-              border: 'none',
-              borderRadius: '6px',
-              padding: 0
-            }}
-            title="View Details"
-            onMouseEnter={(e) => e.target.style.backgroundColor = '#bae6fd'}
-            onMouseLeave={(e) => e.target.style.backgroundColor = '#e0f2fe'}
-          >
-            <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </button>
-
           {/* Edit Button */}
           <button
             onClick={() => handleEdit(params.row)}
@@ -476,35 +433,6 @@ export default function NewsCategoryList() {
               </div>
             </div>
 
-            {/* Filters */}
-            <div className={styles.filtersContainer}>
-              <div className={styles.filterGroup}>
-                <div className={styles.filterSelectWrapper}>
-                  <select
-                    value={statusFilter}
-                    onChange={(e) => {
-                      setStatusFilter(e.target.value);
-                      setStatusDropdownOpen(false);
-                    }}
-                    onMouseDown={() => setStatusDropdownOpen(!statusDropdownOpen)}
-                    className={styles.filterSelect}
-                  >
-                    <option value="all">All Status</option>
-                    {uniqueStatuses.map((status) => (
-                      <option key={status} value={status}>
-                        {status.charAt(0).toUpperCase() + status.slice(1)}
-                      </option>
-                    ))}
-                  </select>
-                  <span className={`${styles.dropdownIcon} ${statusDropdownOpen ? styles.rotatedIcon : ''}`}>
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-            </div>
           </div>
 
           {/* Right Section - Actions */}
@@ -537,30 +465,32 @@ export default function NewsCategoryList() {
 
 
       {/* Enhanced Data Table */}
-      <CommonDataGrid
-        data={years}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No articles found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all" || authorFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first article."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all" && authorFilter === "all") ? {
-            onClick: () => setFormMode("add"),
-            text: "Create First Article"
-          } : null
-        }
-        loadingMessage="Loading articles..."
-        showSerialNumber={true}
-        serialNumberField="id"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <CommonDataGrid
+          data={years}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No articles found"
+          noDataDescription={
+            searchTerm || authorFilter !== "all"
+              ? "Try adjusting your search criteria or filters."
+              : "Get started by creating your first article."
+          }
+          noDataAction={
+            (!searchTerm && authorFilter === "all") ? {
+              onClick: () => setFormMode("add"),
+              text: "Create First Article"
+            } : null
+          }
+          loadingMessage="Loading articles..."
+          showSerialNumber={true}
+          serialNumberField="id"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
 
       {/* Modal for Add/Edit Form */}
@@ -606,10 +536,35 @@ export default function NewsCategoryList() {
                     type="text"
                     className={styles.formInput}
                     value={formData.year}
-                    onChange={(e) => setFormData({ ...formData, year: e.target.value })}
-                    placeholder="Enter a compelling title..."
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      // Only allow digits and limit to 4 characters
+                      if (value === '' || (/^\d{0,4}$/.test(value))) {
+                        setFormData({ ...formData, year: value });
+                      }
+                    }}
+                    onBlur={(e) => {
+                      const value = e.target.value.trim();
+                      // Validate year format (4 digits, typically 1900-2099)
+                      if (value && !/^\d{4}$/.test(value)) {
+                        toast.error("Please enter a valid 4-digit year (e.g., 2024)");
+                        setFormData({ ...formData, year: "" });
+                      } else if (value) {
+                        const yearNum = parseInt(value);
+                        if (yearNum < 1900 || yearNum > 2099) {
+                          toast.error("Please enter a year between 1900 and 2099");
+                          setFormData({ ...formData, year: "" });
+                        }
+                      }
+                    }}
+                    placeholder="Enter year (e.g., 2024)"
                     required
+                    maxLength={4}
+                    pattern="\d{4}"
                   />
+                  <small className={styles.formHelp}>
+                    Enter a 4-digit year (e.g., 2024)
+                  </small>
                 </div>
 
               </div>

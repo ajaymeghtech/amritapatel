@@ -453,10 +453,11 @@ export default function BannerList() {
     {
       field: 'title',
       headerName: 'Title',
-      width: 200,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="fw-medium text-truncate" style={{ maxWidth: '130px' }} title={params.value}>
+          <div className="fw-medium text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
@@ -470,7 +471,7 @@ export default function BannerList() {
       width: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '100px' }} title={params.value}>
+          <div className="text-muted text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
@@ -502,22 +503,10 @@ export default function BannerList() {
         </span>
       ),
     },
-
-    // Created At column
-    {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 100,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {new Date(params.value).toLocaleDateString()}
-        </span>
-      ),
-    },
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 250,
+      width: 180,
       sortable: false,
       filterable: false,
       align: 'center',
@@ -595,7 +584,7 @@ export default function BannerList() {
   return (
     <div style={{
       width: '100%',
-      maxWidth: 'none',
+      maxWidth: '100%',
       margin: 0,
       padding: 0,
       position: 'relative',
@@ -725,30 +714,32 @@ export default function BannerList() {
       </div>
 
       {/* Enhanced Data Table */}
-      <CommonDataGrid
-        data={filteredBanners}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No banners found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first banner."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all") ? {
-            onClick: () => setFormMode("add"),
-            text: "Create First Banner"
-          } : null
-        }
-        loadingMessage="Loading banners..."
-        showSerialNumber={true}
-        serialNumberField="id"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={filteredBanners}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No banners found"
+          noDataDescription={
+            searchTerm || statusFilter !== "all"
+              ? "Try adjusting your search criteria or filters."
+              : "Get started by creating your first banner."
+          }
+          noDataAction={
+            (!searchTerm && statusFilter === "all") ? {
+              onClick: () => setFormMode("add"),
+              text: "Create First Banner"
+            } : null
+          }
+          loadingMessage="Loading banners..."
+          showSerialNumber={true}
+          serialNumberField="id"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
       {/* Modal for Add/Edit Form */}
       <Modal

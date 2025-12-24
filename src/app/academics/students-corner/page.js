@@ -4,15 +4,59 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import "@/app/styles/scss/main.scss";
 import Innerbanner from "@/app/components/common/Innerbanner";
-import academicBanner from '@/app/assets/images/banner/academics_innerbanner.png';
+import studentBanner from '@/app/assets/images/banner/student_corner_banner.png';
+import pdf from '@/app/assets/images/pdf.png';
+import Image from "next/image";
 
 export default function StudentCorner() {
+
+    const publications = [
+        {
+            name: "APCPH Student Handbook",
+            file: "/pdfs/studentcorner/APCPH_Student_Handbook.pdf",
+        },
+        {
+            name: "Contents to display for curriculum, module",
+            file: "/pdfs/studentcorner/curriculum_module.pdf",
+        },
+    ];
+
+
     return (
         <>
             <Header />
-            <Innerbanner title="Students Corner" image={academicBanner} />
+            <Innerbanner title="Students Corner" image={studentBanner} />
 
-            <div className="sectionPadding">
+            <div className="publicationSec sectionPadding">
+                <div className="container">
+                    <div className="row">
+                        {publications.map((item, index) => (
+                            <div
+                                key={index}
+                                className="col-lg-3 col-md-4 col-sm-6 col-xs-6 col-12 p-3"
+                            >
+                                <a
+                                    href={item.file}
+                                    className="pdfBox"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Image
+                                        src={pdf}
+                                        alt="pdf"
+                                        width={60}
+                                        height={60}
+                                        className="img-fluid mb-2"
+                                    />
+                                    <p>{item.name}</p>
+                                </a>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+
+            {/* <div className="sectionPadding">
                 <div className="container">
                     <div className="table-responsive">
                         <table className="courseTable table-bordered facultyTable">
@@ -65,7 +109,7 @@ export default function StudentCorner() {
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             <Footer />
         </>

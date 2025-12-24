@@ -354,10 +354,11 @@ export default function CMSList() {
     {
       field: 'title',
       headerName: 'Title',
-      width: 180,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="fw-medium text-truncate" style={{ maxWidth: '160px' }} title={params.value}>
+          <div className="fw-medium text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
@@ -368,10 +369,10 @@ export default function CMSList() {
     {
       field: 'slug',
       headerName: 'Slug',
-      width: 180,
+      width: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '160px' }} title={params.value}>
+          <div className="text-muted text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
@@ -392,22 +393,10 @@ export default function CMSList() {
         );
       },
     },
-
-    // Created At column
-    {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 120,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {params.value ? new Date(params.value).toLocaleDateString() : 'N/A'}
-        </span>
-      ),
-    },
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 250,
+      width: 180,
       sortable: false,
       filterable: false,
       align: 'center',
@@ -485,7 +474,7 @@ export default function CMSList() {
   return (
     <div style={{
       width: '100%',
-      maxWidth: 'none',
+      maxWidth: '100%',
       margin: 0,
       padding: 0,
       position: 'relative',
@@ -527,32 +516,7 @@ export default function CMSList() {
         <div className={styles.actionBarContent}>
           {/* Left Section - Search and Filters */}
           <div className={styles.actionBarLeft}>
-            {/* Search Bar */}
-            <div className={styles.searchContainer}>
-              <div className={styles.searchInputWrapper}>
-                <svg className={styles.searchIcon} width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Search CMS pages..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className={styles.searchInput}
-                />
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm("")}
-                    className={styles.searchClear}
-                    title="Clear search"
-                  >
-                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-            </div>
+            {/* Search Bar - Hidden */}
 
             {/* Filters */}
             <div className={styles.filtersContainer}>
@@ -612,30 +576,32 @@ export default function CMSList() {
       </div>
 
       {/* Enhanced Data Table */}
-      <CommonDataGrid
-        data={filteredPages}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No CMS pages found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first CMS page."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all") ? {
-            onClick: () => setFormMode("add"),
-            text: "Create First Page"
-          } : null
-        }
-        loadingMessage="Loading CMS pages..."
-        showSerialNumber={true}
-        serialNumberField="id"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={filteredPages}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No CMS pages found"
+          noDataDescription={
+            searchTerm || statusFilter !== "all"
+              ? "Try adjusting your search criteria or filters."
+              : "Get started by creating your first CMS page."
+          }
+          noDataAction={
+            (!searchTerm && statusFilter === "all") ? {
+              onClick: () => setFormMode("add"),
+              text: "Create First Page"
+            } : null
+          }
+          loadingMessage="Loading CMS pages..."
+          showSerialNumber={true}
+          serialNumberField="id"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
       {/* Modal for Add/Edit Form */}
       <Modal

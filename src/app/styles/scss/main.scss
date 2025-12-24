@@ -17,7 +17,7 @@ h1,h2,h3,h4,h5,h6 { font-family: "Roboto Condensed", sans-serif; }
 
 p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $line-height-36; text-align: justify;
   @include desktop { font-size:$font-size-xl; line-height: $line-height-30; }
-  @media screen and (max-width:1300px) { font-size:18px; line-height: $line-height-25; }
+  // @media screen and (max-width:1300px) { font-size:18px; line-height: $line-height-25; }
   @include mini-desktop { font-size: 18px; line-height: $line-height-28; }
   @include phone { font-size:$font-size-xl; line-height: $line-height-30; }
 }
@@ -66,9 +66,9 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 }
 
 .sectionlabel { font-size: 30px; font-weight: -weight-normal; white-space: nowrap; color: -primary; flex-shrink: 0; margin-bottom: 0px;
-  &.announcementTitle { color: $accent-yellow; }
-  @media screen and (max-width:1600px) { font-size: 28px; }
-  @media screen and (max-width:1300px) { font-size:$font-size-xl; }
+  &.announcementTitle { color: $accent-yellow; } 
+  @include desktop  { font-size: 28px; }
+  @include mini-desktop {  font-size:$font-size-xl; }
 }
 
 .sectiondescription { font-size: $font-size-2_5xl; color: $text-body-color; font-weight: -weight-normal; 
@@ -90,6 +90,11 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 }
 
 .getMoreInfoButton { background: $accent-yellow; display: flex; align-items: center; justify-content: center; cursor: pointer;
+   transition: all .3s ease; font-size: 18px; font-weight: 700; color: $navy-dark; text-align: center;
+  a { color: inherit; text-decoration: none; }
+}
+
+.moreInfoButton { background: $accent-yellow; display: flex; align-items: center; justify-content: center; cursor: pointer;
    transition: all .3s ease; font-size: 18px; font-weight: 700; color: $navy-dark; text-align: center;
   a { color: inherit; text-decoration: none; }
 }
@@ -488,7 +493,16 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
   }
 }
 
-.getMoreInfoButton { background: $accent-yellow; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; font-size: 18px; font-weight: 600; color: $brand-blue; text-align: center; padding: 16px 32px; border-radius: 10px;
+.getMoreInfoButton { background: $accent-yellow; display: flex; align-items: center; justify-content: center;
+   cursor: pointer; transition: all 0.3s ease; font-size: 18px; font-weight: 600; color: $brand-blue; text-align: center;
+    padding: 16px 32px; border-radius: 10px; 
+  &:hover { transform: scale(1.05); opacity: 0.9; }
+  a { color: $brand-blue; text-decoration: none; }
+}
+
+.moreInfoButton { background: $accent-yellow; display: flex; align-items: center; justify-content: center; 
+  cursor: pointer; transition: all 0.3s ease; font-size: 18px; font-weight: 600; color: $brand-blue; text-align: center; 
+  padding: 16px 32px; border-radius: 10px; 
   &:hover { transform: scale(1.05); opacity: 0.9; }
   a { color: $brand-blue; text-decoration: none; }
 }
@@ -546,8 +560,10 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 }
 
 .homeGallery {
-  .slick-list { margin: 0 -12px; }
-  .slick-slide>div { padding: 15px; }
+
+  .slick-slider{ max-height: 280px; min-height: 280px; }
+  .slick-list { margin: 0 -12px;  }
+  .slick-slide>div { padding: 15px;     } 
   .slick-arrow { top: -60px;
     &.slick-next { right: 0%; width: 50px; height: 50px; background-color: $brand-blue; border-radius: 50%; }
     &.slick-prev { left: auto; right: 5%; width: 50px; height: 50px; background-color: $brand-blue; border-radius: 50%; }
@@ -561,6 +577,32 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
   }
   .slick-prev:before { content: ""; width: 30px; height: 30px; display: block; opacity: 1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: url('/images/prev.png') no-repeat center center; background-size: contain; }
   .slick-next:before { content: ""; width: 30px; height: 30px; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 1; background: url('/images/next.png') no-repeat center center; background-size: contain; }
+  .galleryInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 0 0 16px 16px;
+  margin-top: -4px;
+
+  h4 {
+    font-weight: 600;
+    margin: 0;
+    color: #1f2937;
+  }
+
+  .galleryYear {
+    // font-size: 14px;
+    font-weight: 500;
+    color: #6b7280;
+    white-space: nowrap;
+  background: #DEDEDE;
+  border-radius: 5px;
+  padding: 0 5px;
+
+  }
+}
+
 }
 
 .list { padding-left: 0px;
@@ -602,7 +644,7 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
     &.name{ font-size:18px;
       font-style: normal;
       font-weight:600;line-height: 20px;
-      color: #666666;margin-top:25px;
+      color: $gray-medium;margin-top:25px;
     }
   }
   @include phone {
@@ -611,7 +653,7 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 }
 
 .publicationSec {
-  .pdfBox { box-shadow: 0px 4px 50px 20px #0000001A; padding: 50px 30px; border-radius: 30px; display: block;
+  .pdfBox { box-shadow: 0px 4px 50px 20px #0000001A; padding: 50px 30px; border-radius: 30px; display: block;height: 100%; min-height: 120px;
     @include desktop { padding: 30px 20px; }
     @include phone { max-width: 250px; margin: 0 auto; }
     img { height: 70px; object-fit: contain; }
@@ -636,11 +678,11 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
       }
     }
     .durationline { display: flex; justify-content: space-between; align-items: center;
-      p { font-size: 16px; margin-bottom: 0px; background-color: #DEDEDE;border-radius:50px;padding: 0 14px ; color: #666666; }
+      p { font-size: 16px; margin-bottom: 0px; background-color: #DEDEDE;border-radius:50px;padding: 0 14px ; color: $gray-medium; }
     }
     .event-body { margin-top: 18px; display: flex; gap: 8px; display: flex; flex-wrap: wrap;
       .eventBox { flex: 0 0 48%; max-width: 48%; margin-bottom: 10px; margin-top: 10px; }
-      .label { font-size: 18px; font-weight: 500; line-height: 20px; color: #666666; margin: 0; }
+      .label { font-size: 18px; font-weight: 500; line-height: 20px; color: $gray-medium; margin: 0; }
       .value { font-size: 22px; color: $text-heading-color; font-weight: 500; margin: 0 0 10px 0; }
     }
   }
@@ -684,10 +726,10 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 
 .gallery-link:hover { text-decoration: underline; }
 
-
 .advisoryCouncilSec {
   .councilBox { box-shadow: 0px 4px 50px 20px #0000001A; border-radius: 30px; position: relative; margin-bottom: 70px;
-    a { background: $brand-blue; display: block; width: 50px; height: 50px; border-radius: 50%; padding: 10px; margin: auto; position: absolute; bottom: -20px; left: 0; right: 0;
+    a { background: $brand-blue; display: block; width: 50px; height: 50px; border-radius: 50%; padding: 10px; margin: auto; 
+      position: absolute; bottom: -20px; left: 0; right: 0;
       @include desktop { width: 40px; height: 40px; }
     }
     .councilimg { min-width: 100%; overflow: hidden; border-top-left-radius: 30px; border-top-right-radius: 30px; display: flex; flex-direction: row; justify-content: center; align-items: center; min-height: 200px;
@@ -696,7 +738,6 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
       @media screen and (max-width:1200px) { min-height: 160px; }
     }
     h3 { color: $brand-blue; margin-top: 20px; text-align: center; font-size: 30px; line-height: $line-height-40; font-weight: 400;
-      @include desktop { font-size: 24px; line-height: 34px; margin-bottom: 5px; }
       @include desktop { font-size: 24px; line-height: 34px; margin-bottom: 5px; }
       @include mini-desktop { font-size: 22px; line-height: $line-height-25; margin-bottom: 5px; }
       @include tab { font-size: 22px; line-height: $line-height-25; margin-bottom: 5px; }
@@ -707,7 +748,6 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
     }
   }
 }
-
 
 .iqacSec {
   .councilBox { box-shadow: 0px 4px 50px 20px #0000001A; border-radius: 30px; position: relative; margin-bottom: 70px; height: 475px;
@@ -721,13 +761,12 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
     p { text-align: center; font-size: 16px; line-height: 26px; padding: 0px 20px; padding-bottom: 60px;
       @include desktop { font-size: 14px; line-height: 24px; padding: 0px 15px; padding-bottom: 40px; }
     }
-    a { background: $brand-blue; display: block; width: 50px; height: 50px; border-radius: 50%; padding: 10px; margin: auto; position: absolute; bottom: -20px; left: 0; right: 0;
+    a { background: $brand-blue; display: block; width: 50px; height: 50px; border-radius: 50%; padding: 10px; margin: auto;
+       position: absolute; bottom: -20px; left: 0; right: 0;
       @include desktop { width: 40px; height: 40px; }
     }
   }
 }
-
-
 
 
 .admissioneeligibilitySec {
@@ -767,31 +806,24 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
   @include desktop { padding: 25px 0; margin: 25px 0; }
 }
 
-.modal { background: #00274ACC; padding-right: 0px !important; }
-
-.modal .modal-dialog { max-width: 1700px; }
-
-.modal .modalDetail { display: flex; }
-
-.modal .councilerImg { flex: 0 0 26%; max-width: 26%; }
-
-.modal .councilerImg img { border-radius: 30px; object-fit: cover; }
-
-.modal .contentDetail { text-align: left; padding-left: 30px; }
-
-.modal .contentDetail h3 { color: $brand-blue; font-size: 30px; line-height: $line-height-30; font-weight: 400; margin-bottom: 0px; }
-
-.modal .contentDetail h5 { font-size: 18px; line-height: 24px; font-weight: 400; color: $text-body-color; margin-bottom: 40px;
-  @media screen and (max-width:1300px) { margin-bottom: 30px; }
+.modal { background: #00274ACC; padding-right: 0px !important; 
+  .modal-dialog { max-width: 1700px; }
+  .modalDetail { display: flex; }
+  .modal-body { padding: 100px 50px; }
+  .btn-close { background:none!important; background-repeat: no-repeat !important; }
+  .councilerImg { flex: 0 0 26%; max-width: 26%;
+     img { border-radius: 30px; object-fit: cover; }
+  }
+  .contentDetail { text-align: left; padding-left: 30px;
+    h3 { color: $brand-blue; font-size: 30px; line-height: $line-height-30; font-weight: 400; margin-bottom: 0px; }
+    h5 { font-size: 18px; line-height: 24px; font-weight: 400; color: $text-body-color; margin-bottom: 40px;
+    @media screen and (max-width:1300px) { margin-bottom: 30px; }
+    }
+    .contentDetail p { font-size: $font-size-2_5xl; line-height: 35px; color: $text-body-color;
+    @media screen and (max-width:1300px) { font-size:$font-size-xl; line-height: $line-height-30; }
+    }
+  }
 }
-
-.modal .contentDetail p { font-size: 25px; line-height: 35px; color: $text-body-color;
-  @media screen and (max-width:1300px) { font-size:$font-size-xl; line-height: $line-height-30; }
-}
-
-.modal .modal-body { padding: 100px 50px; }
-
-.modal .btn-close { background:none!important; background-repeat: no-repeat !important; }
 
 .detailCloseIcon { position: absolute; top: 15px; right: 15px; width: 32px; height: 32px; border-radius: 50%; color:$text-white; background: $brand-blue; border: none; font-size: 22px; line-height: 32px; text-align: center; cursor: pointer; box-shadow: 0 0 8px rgba(0, 0, 0, .15); transition: .2s ease-in-out; z-index: 10; }
 
@@ -826,6 +858,7 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
       }
     }
   }
+  
   @include phone { margin-bottom: 30px;
     ul { flex-wrap: wrap; gap: 15px;
       li {
@@ -838,9 +871,9 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 .testimonialmainbox { display: flex; flex-direction: row; align-items: center; justify-content: center; gap:30px; flex-wrap: wrap; align-items: stretch;
   .testimonialbox { background: #D5ECFF; border-radius: 20px; padding:30px; position: relative; width: 48%; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;
     &:after { content: ""; position: absolute; bottom: 20px; right: 20px; background:url('/images/img_testimonials.png') no-repeat right bottom; background-size: contain; width:80px; height: 80px; }
-    p { font-size:$font-size-xl; font-style: italic; color: #666666; line-height: $line-height-30; }
+    p { font-size:$font-size-xl; font-style: italic; color: $gray-medium; line-height: $line-height-30; }
     h4 { color:$text-heading-color;
-      span { margin-top: 0px; width:100%; display: block; font-size: 16px; font-weight: 600; color: #666666; }
+      span { margin-top: 0px; width:100%; display: block; font-size: 16px; font-weight: 600; color: $gray-medium; }
     }
     @include tab { width: 100%; }
   }
@@ -854,11 +887,10 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 
 .faq-section { max-width: 900px; margin: 0 auto; }
 
-.faq-header { text-align: center; margin-bottom: 50px; }
-
-.faq-header h1 { font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 15px; }
-
-.faq-header p { font-size: 18px; color: $text-body-color; }
+.faq-header { text-align: center; margin-bottom: 50px;
+   h1 { font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 15px; }
+   p { font-size: 18px; color: $text-body-color; }
+}
 
 .accordion-container { background: $text-white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); overflow: hidden; }
 
@@ -891,12 +923,49 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 }
 
 .gallerypage {
-  .councilBox { background: transparent!important; box-shadow: none!important; border:none!important; padding:0px!important; margin-bottom: 40px;
+  .councilBox { background: transparent!important; box-shadow: none!important; border:none!important; padding:0px!important;
+     margin-bottom: 40px;
     h4 { background: transparent!important; padding:10px 0px; font-size: 18px; }
-    a { background: $brand-blue; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; position: absolute; bottom:50px; right: 16px; left:auto!important; cursor: pointer; transition: transform 0.3s ease, background 0.3s ease;
+    a { background: $brand-blue; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; 
+      justify-content: center; position: absolute; bottom:70px; right: 16px; left:auto!important; cursor: pointer; 
+      transition: transform 0.3s ease, background 0.3s ease;
       &:hover { background: #002f5c; transform: scale(1.05); }
       @include desktop { width: 40px; height: 40px; }
     }
   }
   .flex-end { display: flex; justify-content: flex-end; }
+    .galleryInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 0 0 16px 16px;
+  margin-top: -4px;
+
+  h4 {
+    font-weight: 600;
+    margin: 0;
+    color: #1f2937;
+  }
+
+  .galleryYear {
+    font-weight: 500;
+    color: #6b7280;
+    white-space: nowrap;
+  background: #DEDEDE;
+  border-radius: 5px;
+  padding: 0 5px;
+
+  }
+}
+}
+
+
+.fancybox__caption {
+  font-size: 28px;
+  line-height: 1.6;
+
+  @media (max-width: 768px) {
+    font-size: 26px;
+  }
 }

@@ -67,7 +67,6 @@ const initialFormState = {
   location: "",
   image: "",
   announcement_year_id: "",
-  isPublished: true,
 };
 
 const initialImageFormState = {
@@ -92,7 +91,6 @@ export default function AnnouncementList() {
   const [imagePreview, setImagePreview] = useState("");
   const [editId, setEditId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [confirmModal, setConfirmModal] = useState({ isOpen: false, id: null, title: "" });
   const [viewModal, setViewModal] = useState({ isOpen: false, entry: null });
@@ -281,7 +279,6 @@ export default function AnnouncementList() {
       location: entry.location || "",
       image: entry.image || "",
       announcement_year_id: announcementYearId,
-      isPublished: entry.isPublished ?? true,
     });
     setImageFile(null);
     setImagePreview(getImageUrl(entry.image));
@@ -298,7 +295,7 @@ export default function AnnouncementList() {
   const buildPayload = () => {
     const payload = new FormData();
     Object.entries(formData).forEach(([key, value]) => {
-      if (key === "image") return;
+      if (key === "image" || key === "isPublished") return;
       payload.append(key, value ?? "");
     });
     if (imageFile) {
@@ -311,14 +308,6 @@ export default function AnnouncementList() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (formMode === "add" && !imageFile) {
-      toast.error("Announcement image is required");
-      return;
-    }
-    if (!formData.announcement_year_id) {
-      toast.error("Announcement year is required");
-      return;
-    }
     try {
       const payload = buildPayload();
       const url =
@@ -382,14 +371,10 @@ export default function AnnouncementList() {
       const matchesSearch =
         item.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.shortTitle?.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesStatus =
-        statusFilter === "all" ||
-        (statusFilter === "published" && item.isPublished) ||
-        (statusFilter === "draft" && !item.isPublished);
       const matchesCategory = categoryFilter === "all" || item.category === categoryFilter;
-      return matchesSearch && matchesStatus && matchesCategory;
+      return matchesSearch && matchesCategory;
     });
-  }, [announcements, searchTerm, statusFilter, categoryFilter]);
+  }, [announcements, searchTerm, categoryFilter]);
 
   const categoryOptions = useMemo(() => {
     return Array.from(new Set(announcements.map((item) => item.category).filter(Boolean)));
@@ -405,98 +390,20 @@ export default function AnnouncementList() {
     {
       field: "title",
       headerName: "Title",
-      width: 220,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.row.title}>
-          <div className=" text-truncate" style={{ maxWidth: "200px" }}>
+          <div className=" text-truncate" style={{ maxWidth: "100%" }}>
             {params.row.title || "—"}
           </div>
         </Tooltip>
       ),
     },
-
-    {
-      field: "category",
-      headerName: "Category",
-      width: 140,
-      renderCell: (params) => (
-        <span className="badge bg-light text-dark text-capitalize">
-          {params.row.category || "general"}
-        </span>
-      ),
-    },
-    {
-      field: "announcement_year_label",
-      headerName: "Year",
-      width: 100,
-      renderCell: (params) => (
-        <span className="badge bg-light text-dark">
-          {params.row.announcement_year_label || "—"}
-        </span>
-      ),
-    },
-    {
-      field: "manageImages",
-      headerName: "Images",
-      width: 140,
-      sortable: false,
-      filterable: false,
-      renderCell: (params) => (
-        <button
-          onClick={() => openImageManager(params.row)}
-          className="btn btn-sm d-flex align-items-center justify-content-center"
-          style={{
-            width: "32px",
-            height: "32px",
-            backgroundColor: "#e0f2fe",
-            border: "none",
-            borderRadius: "6px",
-            padding: 0,
-          }}
-          title="Manage announcement images"
-          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#bae6fd")}
-          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e0f2fe")}
-        >
-          <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m0 0l3-3m-3 3v4H4a2 2 0 01-2-2V6a2 2 0 012-2h12"
-            />
-          </svg>
-        </button>
-      ),
-    },
-    {
-      field: "Date",
-      headerName: "date",
-      width: 140,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {params.row.date ? new Date(params.row.date).toLocaleDateString() : "—"}
-        </span>
-      ),
-    },
-    {
-      field: "isPublished",
-      headerName: "Status",
-      width: 140,
-      renderCell: (params) => (
-        <button
-          className={`badge ${params.row.isPublished ? "bg-success" : "bg-secondary"}`}
-          style={{ border: "none", cursor: "pointer" }}
-          onClick={() => handleStatusToggle(params.row)}
-        >
-          {params.row.isPublished ? "Published" : "Draft"}
-        </button>
-      ),
-    },
-
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 250,
+      width: 180,
       sortable: false,
       filterable: false,
       align: 'center',
@@ -697,7 +604,7 @@ export default function AnnouncementList() {
 
   console.log('announcements', announcements);
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: '100%', maxWidth: '100%', margin: 0, padding: 0 }}>
       <ToastContainer position="top-right" autoClose={4000} />
 
       <ConfirmationModal
@@ -1208,146 +1115,6 @@ export default function AnnouncementList() {
                     required
                   />
                 </div>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Location</label>
-                  <input
-                    type="text"
-                    className={styles.formInput}
-                    value={formData.location}
-                    onChange={(e) => setFormData({ ...formData, location: e.target.value })}
-                  />
-                </div>
-              </div>
-
-              <div className={styles.formGrid}>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Date</label>
-                  <input
-                    type="date"
-                    className={styles.formInput}
-                    value={formData.date}
-                    onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                  />
-                </div>
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Announcement Year *</label>
-                  <select
-                    className="form-control"
-                    value={formData.announcement_year_id}
-                    onChange={(e) =>
-                      setFormData({ ...formData, announcement_year_id: e.target.value })
-                    }
-                  >
-                    <option value="">Select Year</option>
-                    {yearOptions.map((y) => (
-                      <option key={y.id} value={y.id}>{y.year}</option>
-                    ))}
-                  </select>
-                </div>
-
-              </div>
-              <div className={styles.formGrid}>
-        
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Link</label>
-                <input
-                  type="url"
-                  className={styles.formInput}
-                  value={formData.link}
-                  onChange={(e) => setFormData({ ...formData, link: e.target.value })}
-                  placeholder="https://example.com"
-                />
-              </div>
-
-             </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Content</label>
-                <div style={{ minHeight: "300px" }}>
-                  <CKEditorWrapper
-                    data={formData.content || ""}
-                    config={editorConfiguration}
-                    onChange={(event, editor) => {
-                      const data = editor?.getData ? editor.getData() : event.target.value;
-                      setFormData({ ...formData, content: data });
-                    }}
-                  />
-                </div>
-                <small className={styles.formHelp}>
-                  Use the toolbar above to format the announcement content. (Optional)
-                </small>
-              </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>
-                  Announcement Image {formMode === "add" && <span className={styles.required}>*</span>}
-                </label>
-                <div
-                  style={{
-                    border: "1px dashed #cbd5f5",
-                    padding: "1rem",
-                    borderRadius: "8px",
-                    background: "#f8fafc",
-                    textAlign: "center",
-                  }}
-                >
-                  <input
-                    type="file"
-                    id="announcement-image-input"
-                    accept="image/*"
-                    style={{ display: "none" }}
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        setImageFile(file);
-                        setImagePreview(URL.createObjectURL(file));
-                      }
-                    }}
-                  />
-                  <label
-                    htmlFor="announcement-image-input"
-                    style={{
-                      display: "inline-flex",
-                      gap: "0.5rem",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
-                      color: "#2563eb",
-                      fontWeight: 600,
-                    }}
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    <span>Select image</span>
-                  </label>
-                </div>
-                {(imagePreview || formData.image) && (
-                  <div style={{ marginTop: "1rem" }}>
-                    <div
-                      style={{
-                        border: "1px solid #e5e7eb",
-                        borderRadius: "8px",
-                        overflow: "hidden",
-                        maxHeight: "220px",
-                      }}
-                    >
-                      <img src={imagePreview || getImageUrl(formData.image)} alt="Announcement preview" />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => {
-                        setImageFile(null);
-                        setFormData({ ...formData, image: "" });
-                        setImagePreview("");
-                      }}
-                      className={styles.formCancelBtn}
-                      style={{ marginTop: "0.75rem", display: "inline-flex", alignItems: "center", gap: "0.35rem" }}
-                    >
-                      Remove Image
-                    </button>
-                  </div>
-                )}
               </div>
             </div>
 
@@ -1387,33 +1154,6 @@ export default function AnnouncementList() {
                 )}
               </div>
             </div>
-            <div className={styles.filtersContainer}>
-              <div className={styles.filterGroup}>
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className={styles.filterSelect}
-                >
-                  <option value="all">All Status</option>
-                  <option value="published">Published</option>
-                  <option value="draft">Draft</option>
-                </select>
-              </div>
-              <div className={styles.filterGroup}>
-                <select
-                  value={categoryFilter}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
-                  className={styles.filterSelect}
-                >
-                  <option value="all">All Categories</option>
-                  {categoryOptions.map((category) => (
-                    <option key={category} value={category}>
-                      {category}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
           </div>
           <div className={styles.actionBarRight}>
             <button onClick={openAddForm} className={styles.addButton}>
@@ -1427,29 +1167,31 @@ export default function AnnouncementList() {
         </div>
       </div>
 
-      <CommonDataGrid
-        data={gridData}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20]}
-        initialPageSize={10}
-        noDataMessage="No announcements found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all" || categoryFilter !== "all"
-            ? "Try changing your filters or search term."
-            : "Create your first announcement entry."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all" && categoryFilter === "all")
-            ? { onClick: openAddForm, text: "Create Announcement" }
-            : null
-        }
-        loadingMessage="Loading announcements..."
-        showSerialNumber
-        serialNumberField="srNo"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={80}
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={gridData}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20]}
+          initialPageSize={10}
+          noDataMessage="No announcements found"
+          noDataDescription={
+            searchTerm || categoryFilter !== "all"
+              ? "Try changing your filters or search term."
+              : "Create your first announcement entry."
+          }
+          noDataAction={
+            (!searchTerm && categoryFilter === "all")
+              ? { onClick: openAddForm, text: "Create Announcement" }
+              : null
+          }
+          loadingMessage="Loading announcements..."
+          showSerialNumber
+          serialNumberField="srNo"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={80}
+        />
+      </div>
     </div>
   );
 }

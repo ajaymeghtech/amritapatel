@@ -323,23 +323,12 @@ export default function SubActivitiesList() {
     {
       field: 'title',
       headerName: 'Title',
-      width: 200,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="fw-medium text-truncate" style={{ maxWidth: '180px' }} title={params.value}>
+          <div className="fw-medium text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
-          </div>
-        </Tooltip>
-      ),
-    },
-    {
-      field: 'short_description',
-      headerName: 'Short Description',
-      width: 250,
-      renderCell: (params) => (
-        <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '230px' }} title={params.value}>
-            {params.value || "—"}
           </div>
         </Tooltip>
       ),
@@ -352,6 +341,7 @@ export default function SubActivitiesList() {
       filterable: false,
       align: 'center',
       headerAlign: 'center',
+      flex: 0,
       renderCell: (params) => (
         <div className="d-flex justify-content-center align-items-center gap-2">
           <button
@@ -385,6 +375,9 @@ export default function SubActivitiesList() {
       maxWidth: 'none',
       margin: 0,
       padding: 0,
+      position: 'relative',
+      left: 0,
+      right: 0
     }}>
       <ToastContainer
         position="top-right"
@@ -498,30 +491,32 @@ export default function SubActivitiesList() {
       </div>
 
       {/* Data Table */}
-      <CommonDataGrid
-        data={filteredSubActivities.map((item, index) => ({ ...item, id: item._id, srNo: index + 1 }))}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No sub-activities found"
-        noDataDescription={
-          searchTerm || activityFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first sub-activity."
-        }
-        noDataAction={
-          (!searchTerm && activityFilter === "all") ? {
-            onClick: () => setFormMode("add"),
-            text: "Create First Sub-Activity"
-          } : null
-        }
-        loadingMessage="Loading sub-activities..."
-        showSerialNumber={true}
-        serialNumberField="srNo"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <CommonDataGrid
+          data={filteredSubActivities.map((item, index) => ({ ...item, id: item._id, srNo: index + 1 }))}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No sub-activities found"
+          noDataDescription={
+            searchTerm || activityFilter !== "all"
+              ? "Try adjusting your search criteria or filters."
+              : "Get started by creating your first sub-activity."
+          }
+          noDataAction={
+            (!searchTerm && activityFilter === "all") ? {
+              onClick: () => setFormMode("add"),
+              text: "Create First Sub-Activity"
+            } : null
+          }
+          loadingMessage="Loading sub-activities..."
+          showSerialNumber={true}
+          serialNumberField="srNo"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
       {/* Form Modal */}
       <Modal

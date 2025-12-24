@@ -122,8 +122,8 @@ export default function Footer() {
                                         </div>
                                         <div className={styles.contactItem}>
                                             <Image className={styles.footericon} src={callIcon} alt="call_icon" />
-                                            <a href={`tel:+91 2692 228748`}>
-                                                +91 2692 228748
+                                            <a href={`tel:9512388324`}>
+                                             9512388324
                                             </a>
                                         </div>
                                     </li>
@@ -133,7 +133,7 @@ export default function Footer() {
                                             <Image className={styles.footericon} src={emailIcon} alt="email_icon" />
                                             {/* <a href={`mailto:${settings?.contactEmail}`} className={styles.emailblock}>{settings?.contactEmail}</a>
                                             <a href={`mailto:${settings?.emailAdmission}`} className={styles.emailblock}>{settings?.emailAdmission}</a> */}
-                                            <a href={`mailto:docverification@charutarhealth.org`} className={styles.emailblock}>docverification@charutarhealth.org</a>
+                                            <a href={`mailto:director.apcph@charutarhealth.org`} className={styles.emailblock}>director.apcph@charutarhealth.org</a>
                                         </div>
 
                                         <div className={styles.socialIcons}>

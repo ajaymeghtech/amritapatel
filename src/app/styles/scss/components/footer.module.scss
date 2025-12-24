@@ -27,7 +27,6 @@
     }
   }
 
-
   .logoSection {
     flex: 1;text-align: center;display: flex;justify-content: flex-start;
     align-items: flex-start;margin-bottom: 70px; flex-direction: column;
@@ -48,7 +47,6 @@
       img {width: 200px;}
     }
   }
-
 
     .quickLinks ul {
       list-style: none;
@@ -128,8 +126,6 @@
             }
         }
     }
-    
-
 
     @include desktop {
       li .contactItem {
@@ -163,8 +159,7 @@
                 gap: 0;
                 p, a { font-size: 16px; margin-bottom: 0px; }
             }
-        }
-      
+        }      
     }
   }
 }
@@ -184,13 +179,11 @@
     } 
 }
 
-
 .activeQuickLink {
   color: #FFD200  !important; 
   font-weight: 600 !important;
   text-decoration: underline;
 }
-
 
 .scrollTopBtn {
   position: fixed;

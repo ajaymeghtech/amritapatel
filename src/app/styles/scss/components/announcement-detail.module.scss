@@ -1,18 +1,17 @@
 @import '../variables.scss';
 @import '../mixins.scss';
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700&display=swap');
-
-
+@import 'variables.scss';
 
 .detailContainer{
       .titleSection {
         padding-bottom: 40px;
-        h3 {font-size: 40px; line-height: 40px; color: #232323;  
+        h3 {font-size: 40px; line-height: 40px; color: $text-heading-color;  
           font-family: 'Source Serif Pro'; font-weight:400; margin-bottom: 25px;}
       }
       .meta { display: flex; align-items: center; gap: 1.5rem; font-size: 25px; line-height: 25px; color: #6C6458; flex-wrap: wrap;
           span {display: flex; align-items: center;  gap: 0.5rem;
-            strong { color: #333;  font-weight: 600; }
+            strong { color: $dark-gray;  font-weight: 600; }
           }
       }
     .announcementDetail {width: 100%;

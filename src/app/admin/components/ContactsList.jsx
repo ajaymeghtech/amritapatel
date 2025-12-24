@@ -323,22 +323,6 @@ export default function ContactsList() {
                 )}
               </div>
             </div>
-            <div className={styles.filtersContainer}>
-              <div className={styles.filterGroup}>
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className={styles.filterSelect}
-                >
-                  <option value="all">All Status</option>
-                  {STATUS_OPTIONS.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -351,7 +335,7 @@ export default function ContactsList() {
         initialPageSize={10}
         noDataMessage="No contact requests found"
         noDataDescription={
-          searchTerm || statusFilter !== "all"
+          searchTerm
             ? "Try adjusting your filters or search query."
             : "New contact submissions will appear here."
         }

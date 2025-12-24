@@ -1,12 +1,7 @@
 // Typography SCSS File
 // Typography styles and utilities
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
   font-family: $font-family-heading;
   font-weight: $font-weight-bold;
   line-height: 1.2;
@@ -51,13 +46,11 @@ p {
   color: $text-secondary;
 }
 
-strong,
-b {
+strong,b {
   font-weight: $font-weight-semibold;
 }
 
-em,
-i {
+em,i {
   font-style: italic;
 }
 

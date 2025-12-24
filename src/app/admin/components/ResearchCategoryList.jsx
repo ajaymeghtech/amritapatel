@@ -461,26 +461,7 @@ export default function Research() {
             <svg width="14" height="14" fill="none" stroke="#84cc16" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
           </button> */}
 
-          {/* Delete */}
-          <button
-            title="Delete"
-            onClick={() => confirmDelete(params.row._id, "research", params.row.title)}
-            className="btn btn-sm d-flex align-items-center justify-content-center"
-            style={{
-              width: "32px",
-              height: "32px",
-              backgroundColor: "#fee2e2",
-              border: "none",
-              borderRadius: "6px",
-              padding: 0,
-            }}
-            onMouseEnter={(e) => (e.target.style.backgroundColor = "#fecaca")}
-            onMouseLeave={(e) => (e.target.style.backgroundColor = "#fee2e2")}
-          >
-            <svg width="16" height="16" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-            </svg>
-          </button>
+          {/* Delete button hidden */}
         </div>
       )
     }
@@ -692,13 +673,7 @@ export default function Research() {
       <div className={styles.actionBar} style={{ marginBottom: 12 }}>
         <div className={styles.actionBarContent}>
           <div className={styles.actionBarLeft}>
-            <div className={styles.searchContainer}>
-              <div className={styles.searchInputWrapper}>
-                <input type="text" placeholder="Search research..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className={styles.searchInput} />
-                {searchTerm && <button onClick={() => setSearchTerm("")} className={styles.searchClear}>✕</button>}
-              </div>
-            </div>
-
+            {/* Search box hidden */}
             <div style={{ marginLeft: 12 }}>
               <select value={statusFilter} onChange={(e) => setStatusFilter(e.target.value)} className={styles.filterSelect}>
                 <option value="all">All Status</option>
@@ -709,13 +684,7 @@ export default function Research() {
           </div>
 
           <div className={styles.actionBarRight}>
-            <button onClick={openAddForm} className={styles.addButton}>
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v12m6-6H6" />
-              </svg>
-              <span className={styles.buttonTextFull}>Add Research</span>
-              <span className={styles.buttonTextShort}>Add</span>
-            </button>
+            {/* Add button hidden */}
           </div>
         </div>
       </div>

@@ -43,13 +43,13 @@ export default function OngoingProjects() {
                   <tr>
                     <td>SPARSH 3.0</td>
                     <td>2025 - 2028</td>
-                    <td>GMM Pfaudler Limited, Karamsad</td>
+                    <td>GMM Pfaudler Foundation, Karamsad</td>
                     <td><strong>Ongoing</strong></td>
                   </tr>
                   <tr>
                     <td>Health Leadership Enhancement Programme - Third Party Evaluation</td>
                     <td>2025 (Oct-Nov)</td>
-                    <td>Indian Institute of Public Health (IIPH), Gandhinagar & State Health System and Resource Centre (SHSRC), Ahmedabad</td>
+                    <td>Indian Institute of Public Health (IIPH), Gandhinagar & State Health System and Resource Centre (SHSRC), Gujarat </td>
                     <td><strong>Completed</strong> </td>
                   </tr>
                   <tr>

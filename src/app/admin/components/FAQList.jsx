@@ -258,16 +258,6 @@ export default function FAQList() {
       ),
     },
     {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 150,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {params.value ? new Date(params.value).toLocaleDateString() : 'N/A'}
-        </span>
-      ),
-    },
-    {
       field: 'actions',
       headerName: 'Actions',
       width: 250,

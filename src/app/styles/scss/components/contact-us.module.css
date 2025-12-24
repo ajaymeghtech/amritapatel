@@ -135,67 +135,6 @@
   font-size: 24px;
   flex-shrink: 0;
   margin-top: 2px;
-}
-
-.reachUsText {
-  font-size: 25px;
-  line-height: 36px;
-  font-weight: 400;
-}
-@media (max-width: 767px) {
-  .reachUsText {
-    font-size: 18px;
-  }
-}
-
-.reachUsTitleText {
-  font-size: 30px;
-  line-height: 36px;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-@media (max-width: 767px) {
-  .reachUsTitleText {
-    font-size: 18px;
-  }
-}
-
-.socialIcons {
-  display: flex;
-  gap: 16px;
-  margin-top: 30px;
-  justify-content: flex-start;
-  padding-left: 46px;
-}
-.socialIcons a {
-  width: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  text-decoration: none;
-  font-size: 20px;
-  transition: all 0.3s ease;
-}
-@media (max-width: 767px) {
-  .socialIcons {
-    gap: 12px;
-  }
-  .socialIcons a {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
-}
-
-.socialImg {
-  width: 31px;
-  -o-object-fit: contain;
-     object-fit: contain;
-  display: block;
-}
-
-.reachUsIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -208,6 +147,60 @@
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
+}
+.reachUsIcon .reachUsText {
+  font-size: 25px;
+  line-height: 36px;
+  font-weight: 400;
+}
+@media (max-width: 767px) {
+  .reachUsIcon .reachUsText {
+    font-size: 18px;
+  }
+}
+.reachUsIcon .reachUsTitleText {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+@media (max-width: 767px) {
+  .reachUsIcon .reachUsTitleText {
+    font-size: 18px;
+  }
+}
+.reachUsIcon .socialIcons {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
+  justify-content: flex-start;
+  padding-left: 46px;
+}
+.reachUsIcon .socialIcons a {
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+@media (max-width: 767px) {
+  .reachUsIcon .socialIcons {
+    gap: 12px;
+  }
+  .reachUsIcon .socialIcons a {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+  }
+}
+.reachUsIcon .socialImg {
+  width: 31px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
 }
 @media screen and (max-width: 1600px) {
   .reachUsIcon {

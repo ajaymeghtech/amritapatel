@@ -32,6 +32,33 @@ import gallery2 from '@/app/assets/images/gallery/image2.png'
 import gallery3 from '@/app/assets/images/gallery/image3.png'
 import gallery4 from '@/app/assets/images/gallery/image4.png'
 import HomePageBanner from '@/app/assets/images/banner/home_banner.png'
+import img1 from "@/app/assets/images/img1.jpg";
+import img2 from "@/app/assets/images/img2.jpg";
+import img3 from "@/app/assets/images/img3.jpg";
+import img4 from "@/app/assets/images/img4.jpg";
+import img5 from "@/app/assets/images/img5.jpg";
+import img6 from "@/app/assets/images/img6.jpg";
+import img7 from "@/app/assets/images/img7.jpg";
+import img8 from "@/app/assets/images/img8.jpg";
+import img9 from "@/app/assets/images/img9.jpg";
+import img10 from "@/app/assets/images/img10.jpg";
+import img11 from "@/app/assets/images/img11.jpg";
+import img12 from "@/app/assets/images/img12.jpg";
+import img13 from "@/app/assets/images/img13.jpg";
+import img14 from "@/app/assets/images/img14.jpg";
+import img15 from "@/app/assets/images/img15.jpg";
+import img16 from "@/app/assets/images/img16.jpg";
+import img17 from "@/app/assets/images/img17.jpg";
+import img18 from "@/app/assets/images/img18.jpg";
+import img19 from "@/app/assets/images/img19.jpg";
+import img20 from "@/app/assets/images/img20.jpg";
+import img21 from "@/app/assets/images/img21.jpg";
+import img22 from "@/app/assets/images/img22.jpg";
+import img23 from "@/app/assets/images/img23.jpg";
+// import img24 from "@/app/assets/images/img24.jpg";
+import img25 from "@/app/assets/images/img25.jpg";
+import { Fancybox } from "@fancyapps/ui";
+import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 const staticAnnouncements = [
   {
@@ -74,32 +101,66 @@ const staticPrograms = [
   },
 ];
 
+// const staticGalleryItems = [
+//   {
+//     _id: "693a6e802825e205fe5e21c2",
+//     title: "test4",
+//     image: gallery1,
+//   },
+//   {
+//     _id: "69146a2e536fcb95aaf1c63b",
+//     title: "1",
+//     image: gallery2,
+//   },
+//   {
+//     _id: "69146a20536fcb95aaf1c639",
+//     title: "unilife3",
+//     image: gallery3,
+//   },
+//   {
+//     _id: "69146a13536fcb95aaf1c637",
+//     title: "unilife2",
+//     image: gallery4,
+//   },
+//   {
+//     _id: "69146639536fcb95aaf1c5fe",
+//     title: "unilife1",
+//     image: gallery2,
+//   },
+// ];
+
 const staticGalleryItems = [
   {
-    _id: "693a6e802825e205fe5e21c2",
-    title: "test4",
-    image: gallery1,
+    id: 1,
+    title: "Aashirwad Scheme",
+    year: "2023",
+    image: img1,
+    description: "Aashirwad Scheme: Bringing affordable healthcare to every doorstep in Anand",
   },
-  {
-    _id: "69146a2e536fcb95aaf1c63b",
-    title: "1",
-    image: gallery2,
-  },
-  {
-    _id: "69146a20536fcb95aaf1c639",
-    title: "unilife3",
-    image: gallery3,
-  },
-  {
-    _id: "69146a13536fcb95aaf1c637",
-    title: "unilife2",
-    image: gallery4,
-  },
-  {
-    _id: "69146639536fcb95aaf1c5fe",
-    title: "unilife1",
-    image: gallery2,
-  },
+  { id: 2, title: "SPARSH Awareness Sessions", year: "2025", image: img2, description: "SPARSH Awareness Sessions: Cultivating Knowledge, Fostering Community Progress" },
+  { id: 3, title: "Building Healthier Futures", year: "2024", image: img3, description: "Building Healthier Futures: NCD camp Awareness at the grassroots" },
+  { id: 4, title: "Community Wellness", year: "2025", image: img4, description: "Community Wellness: NCD Screening in Action with Government Support" },
+  { id: 5, title: "Ensuring Continuity", year: "2024", image: img5, description: "Ensuring Continuity: Patients Referred for Further Care at Shree Krishna Hospital" },
+  { id: 6, title: "Harvesting Hope", year: "2023", image: img6, description: "Harvesting Hope: Collaborative Organic Composting for a Sustainable Tomorrow" },
+  { id: 7, title: "Healthy Habits, Happy Kids", year: "2023", image: img7, description: "Healthy Habits, Happy Kids: Empowering 150 Gujarat Govt Schools through Healthy lifestyle interventions" },
+  { id: 8, title: "Mapping Health, Saving Lives", year: "2023", image: img8, description: "Mapping health, saving lives: The power of a community survey" },
+  { id: 9, title: "Men for Women's Health", year: "2021", image: img9, description: "Men for Women's Health: Taking a Stand Against Cervical Cancer" },
+  { id: 10, title: "Empowering the Unsung Heroes", year: "2022", image: img10, description: "Empowering the Unsung Heroes: NCD Screening for University Housekeeping Staff" },
+  // { id: 11, title: "Unnat Bharat Abhiyan in Practice", year: "2023", image: [img11], description: "Unnat Bharat Abhiyan in Practice: Next-Gen Doctors Engaged in Community Health & Participatory Research through APCPH staff" },
+  // { id: 12, title: "Bridging Academia and Community", year: "2023", image: [img12], description: "Bridging Academia and Community: Internship Exposure with APCPH" },
+  // { id: 13, title: "Global Collaboration, Local Impact", year: "2023", image: [img13], description: "Global Collaboration, Local Impact: UMass Students Exploring Rural Healthcare in SPARSH" },
+  // { id: 14, title: "Extending a Lifeline", year: "2024", image: [img14], description: "Extending a Lifeline: APCPH's COVID-19 Ration Distribution in Rural Anand" },
+  // { id: 15, title: "Empowering Remotely", year: "2020", image: [img15], description: "Empowering Remotely: APCPH's Hands-on Online Training for Village Health Workers in COVID-19" },
+  // { id: 16, title: "Understanding the Pandemic", year: "2020", image: [img17, img16], description: "Understanding the Pandemic: Surveying COVID-19's Reach and Repercussions" },
+  // { id: 17, title: "Healing at Home", year: "2025", image: [img4], description: "Healing at Home: Community-Based Palliative Care & Rehabilitation in Rural Anand Amidst COVID-19" },
+  // { id: 18, title: "Community Care", year: "2025", image: [img18], description: "Community Care: Standing Together Against Diabetes – World Diabetes Day celebration at Ghuteli Village, Anand" },
+  // { id: 19, title: "Bridging Curiosity and Discovery", year: "2025", image: [img19], description: "Bridging curiosity and discovery: A one day Research Methods Workshop for UG & PG students at Amrita Patel Centre for Public Health" },
+  // { id: 20, title: "Young Minds, Safe Futures", year: "2021", image: [img20], description: "Young Minds, Safe Futures: Let’s Talk HIV/AIDS – World AIDS Day celebration at a higher secondary school in Fangani, Anand" },
+  // { id: 21, title: "Field Staff Felicitation", year: "2022", image: [img21], description: "Field Staff of APCPH felicitated for support in ‘Swasthya Naari Shashakt Parivaar Abhiyaan’ in Jesharva, Anand" },
+  // { id: 22, title: "Collaborative NCD Screening Camp", year: "2024", image: [img22], description: "Collaborative Government-supported Non Communicable Disease screening camp of SPARSH at Vadeli, Anand" },
+  // { id: 23, title: "Cervical Cancer Screening Camps", year: "2025", image: [img23], description: "Cervical Cancer screening camps organized across six villages of Petlad Taluka, Anand" },
+  // // { id: 24, image: [img24], description: "Training session for APCPH field staff on identification of High Risk Pregnant mothers in the community" },
+  // { id: 25, image: [img25], title: 'Empowering Communities', description: "Empowering Communities: Continuous outreach and field engagement by APCPH team" },
 ];
 
 export default function Home() {
@@ -298,6 +359,25 @@ export default function Home() {
       setCurrentIndex(0);
     }
   }, [galleryItems.length, currentIndex]);
+
+  const openGallery = (item, startIndex = 0) => {
+    if (!item) return;
+
+    const imgs = Array.isArray(item.image)
+      ? item.image
+      : [item.image];
+
+    const items = imgs.map((img) => ({
+      src: img.src ?? img,
+      thumb: img.src ?? img,
+      caption: item.description || item.title,
+      title: item.title,
+      year: item.year || "2025",
+    }));
+
+    Fancybox.show(items, { startIndex });
+  };
+
 
   console.log("homepagebanner", HomePageBanner)
   return (
@@ -660,21 +740,34 @@ export default function Home() {
           <Slider {...settings}>
             {staticGalleryItems.map((img, index) => (
               <div key={img._id || index}>
-                <Image
-                  src={img.image}
-                  alt={img.title || `Gallery ${index + 1}`}
-                  width={400}
-                  height={300}
-                  className="img-fluid imgRadius"
-                  style={{ width: "100%", height: "auto" }}
-                />
+                <div
+                  style={{ cursor: "pointer" }}
+                  onClick={() => openGallery(img)}
+                >
+                  <Image
+                    src={img.image}
+                    alt={img.title || `Gallery ${index + 1}`}
+                    width={400}
+                    height={300}
+                    className="img-fluid imgRadius"
+                    // style={{ width: "100%", height: "auto" }}
+                  />
+                </div>
+                <div className="galleryInfo">
+                  <h4>{img?.title}</h4>
+                  <span className="galleryYear">2025</span>
+                </div>
               </div>
             ))}
           </Slider>
 
+          <div className={homeStyles.exploreMoreWrapper}>
+            <button className={homeStyles.moreInfoButton}>
+              <a href="/sparsh-field-activities/gallery/" className="moreInfoButton">View all</a>
+            </button>
+          </div>
         </div>
       </section>
-
       <Footer />
       <ConnectTab />
     </div>

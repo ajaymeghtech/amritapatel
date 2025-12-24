@@ -21,14 +21,15 @@ const editorConfiguration = { height: 250 };
 
 const initialFormState = {
   title: "",
-  short_description: "",
-  description: "",
+  
+ 
 };
 
 const initialImageFormState = {
   title: "",
   short_description: "",
   description: "",
+  sortOrder: "",
   file: null,
   preview: "",
 };
@@ -38,6 +39,7 @@ const getImageUrl = (path = "") => {
   return path.startsWith("http") ? path : `${API_BASE_URL}${path}`;
 };
 
+const IMAGE_UPLOAD_URL = `${API_BASE_URL}/api/student-life/upload-image`;
 const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
 
@@ -94,6 +96,7 @@ export default function StudentLifeList() {
   const [imageUploading, setImageUploading] = useState(false);
   const [imageDeleteModal, setImageDeleteModal] = useState({ isOpen: false, id: null, title: "" });
   const [showImageUploadForm, setShowImageUploadForm] = useState(false);
+    const [ImageEditId, setImageEditId] = useState(null);
 
   useEffect(() => { fetchItems(); }, []);
 
@@ -136,8 +139,8 @@ export default function StudentLifeList() {
     setEditId(entry._id);
     setFormData({
       title: entry.title,
-      short_description: entry.short_description,
-      description: entry.description,
+    
+     
     });
   };
 
@@ -150,10 +153,15 @@ export default function StudentLifeList() {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
+    // Validate: Only title is required
+    if (!formData.title || formData.title.trim() === "") {
+      toast.error("Title is required");
+      return;
+    }
+
     const payload = {
-      title: formData.title,
-      short_description: formData.short_description,
-      description: formData.description,
+      title: formData.title.trim(),
+     
     };
 
     try {
@@ -264,35 +272,55 @@ export default function StudentLifeList() {
       toast.error("Committee entry not selected");
       return;
     }
-    if (!imageForm.file) {
+
+    // For edit mode, file is optional (only update if new file is selected)
+    // For add mode, file is required
+    if (showImageUploadForm !== "edit" && !imageForm.file) {
       toast.error("Please select an image to upload");
+      return;
+    }
+
+    if (!imageForm.title || !imageForm.title.trim()) {
+      toast.error("Member Name is required");
       return;
     }
 
     try {
       setImageUploading(true);
-      const latestDescription = imageEditorInstance?.getData ? imageEditorInstance.getData() : imageForm.description;
+   
       const payload = new FormData();
       payload.append("student_life_id", imageManager.entry._id);
       payload.append("title", imageForm.title);
       payload.append("short_description", imageForm.short_description || "");
-      payload.append("description", latestDescription || "");
-      payload.append("image", imageForm.file);
+      payload.append("description", imageForm.description || "");
+      payload.append("sortOrder", imageForm.sortOrder || "");
+      
+      // Only append image if a new file is selected
+      if (imageForm.file) {
+        payload.append("image", imageForm.file);
+      }
 
-      const response = await fetch(STUDENT_LIFE_IMAGE_ENDPOINT, {
-        method: "POST",
+      const url = showImageUploadForm === "edit" && ImageEditId
+        ? `${STUDENT_LIFE_IMAGE_ENDPOINT}/${ImageEditId}`
+        : STUDENT_LIFE_IMAGE_ENDPOINT;
+      
+      const method = showImageUploadForm === "edit" && ImageEditId ? "PUT" : "POST";
+
+      const response = await fetch(url, {
+        method,
         body: payload,
       });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || "Failed to upload image");
+        throw new Error(errorData.message || `Failed to ${showImageUploadForm === "edit" ? "update" : "upload"} image`);
       }
 
-      toast.success("Image uploaded successfully");
+      toast.success(`Image ${showImageUploadForm === "edit" ? "updated" : "uploaded"} successfully`);
       setImageForm(initialImageFormState);
       setImageEditorInstance(null);
       setShowImageUploadForm(false);
+      setImageEditId(null);
       fetchStudentLifeImages(imageManager.entry._id);
       fetchItems(); // Refresh list to update image counts
     } catch (error) {
@@ -308,6 +336,37 @@ export default function StudentLifeList() {
       id: image?._id || null,
       title: image?.title || "Selected image",
     });
+  };
+
+  
+  //           const handleImageEdit = (entry) => {
+  //             alert("Edit functionality for committee members is not implemented yet.");
+
+
+  //              setImageForm(initialImageFormState);
+  //   setImageEditorInstance(null);
+  //   setShowImageUploadForm(false);
+  //   fetchStudentLifeImages(entry._id);
+  //   setImageForm("edit");
+  //   setEditId(entry._id);
+  //   setFormData({
+  //     title: entry.title,
+    
+     
+  //   });
+  // };
+
+  const handleImageEdit = (item) => {
+    setImageEditId(item._id);
+    setImageForm({
+      title: item.title || "",
+      short_description: item.short_description || "",
+      description: item.description || "",
+      sortOrder: item.sortOrder || "",
+      file: null,
+      preview: item.image ? getImageUrl(item.image) : "",
+    });
+    setShowImageUploadForm("edit");
   };
 
   const handleImageDeleteConfirm = async () => {
@@ -345,27 +404,16 @@ export default function StudentLifeList() {
     {
       field: "title",
       headerName: "Title",
-      width: 250,
+      width: 450,
       renderCell: (params) => (
         <Tooltip content={params.row.title}>
-          <div className="text-truncate" style={{ maxWidth: "220px" }}>
+          <div className="text-truncate" style={{ maxWidth: "250px" }}>
             {params.row.title}
           </div>
         </Tooltip>
       ),
     },
-    {
-      field: "short_description",
-      headerName: "Short Description",
-      width: 300,
-      renderCell: (params) => (
-        <Tooltip content={params.row.short_description}>
-          <div className="text-truncate" style={{ maxWidth: "270px" }}>
-            {params.row.short_description}
-          </div>
-        </Tooltip>
-      ),
-    },
+
     {
       field: "createdAt",
       headerName: "Created On",
@@ -375,35 +423,25 @@ export default function StudentLifeList() {
       ),
     },
     {
-      field: "manageImages",
-      headerName: "Images",
-      width: 140,
+      field: "Manage Members",
+      headerName: "Manage Members",
+      width: 180,
       sortable: false,
       filterable: false,
       renderCell: (params) => (
         <div className="d-flex align-items-center gap-2">
           <span className="badge bg-info" style={{ fontSize: '12px', padding: '4px 8px' }}>
-            {params.row.imageCount || 0}
+          
           </span>
           <button
             onClick={() => openImageManager(params.row)}
             className="btn btn-sm d-flex align-items-center justify-content-center"
-            style={{
-              width: "32px",
-              height: "32px",
-              backgroundColor: "#e0f2fe",
-              border: "none",
-              borderRadius: "6px",
-              padding: 0
-            }}
-            title="Manage images"
+           
+            title="Manage Members"
             onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#bae6fd")}
             onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e0f2fe")}
-          >
-            <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m3-3l-3 3v4H4a2 2 0 01-2-2V6a2 2 0 012-2h12" />
-            </svg>
+          > <span className="badge bg-info" style={{ fontSize: '12px', padding: '4px 8px' }}>
+            Manage Members ({params.row.imageCount || 0})</span>
           </button>
         </div>
       ),
@@ -607,24 +645,23 @@ export default function StudentLifeList() {
               {/* SHORT DESCRIPTION */}
               <div className={styles.formField}>
                 <label className={styles.formLabel}>
-                  Short Description <span className={styles.required}>*</span>
+                  Short Description
                 </label>
                 <textarea
                   className={styles.formTextarea}
-                  required
                   rows={3}
                   value={formData.short_description}
                   onChange={(e) =>
                     setFormData({ ...formData, short_description: e.target.value })
                   }
-                  placeholder="Enter short description..."
+                  placeholder="Enter short description (optional)..."
                 ></textarea>
               </div>
 
               {/* FULL DESCRIPTION */}
               <div className={styles.formField}>
                 <label className={styles.formLabel}>
-                  Detailed Description <span className={styles.required}>*</span>
+                  Detailed Description
                 </label>
                 <div className={styles.richTextContainer}>
                   <CKEditorWrapper
@@ -634,7 +671,7 @@ export default function StudentLifeList() {
                       const value = editor?.getData
                         ? editor.getData()
                         : event?.target?.value || "";
-                      setFormData({ ...formData, description: value });
+                      setFormData((prevFormData) => ({ ...prevFormData, description: value }));
                     }}
                   />
                 </div>
@@ -662,7 +699,7 @@ export default function StudentLifeList() {
                 type="submit"
                 className={styles.formSubmitBtn}
               >
-                {formMode === "edit" ? "Update Entry" : "Create Entry"}
+                {formMode === "edit" ? "Update " : "Create "}
               </button>
             </div>
           </form>
@@ -672,92 +709,81 @@ export default function StudentLifeList() {
       <Modal
         isOpen={imageManager.isOpen}
         onClose={closeImageManager}
-        title={`Manage Images${imageManager.entry ? ` - ${imageManager.entry.title}` : ""}`}
+        title={`Manage Members${imageManager.entry ? ` - ${imageManager.entry.title}` : ""}`}
       >
         <div className={styles.modalFormContent}>
           {showImageUploadForm && (
             <form onSubmit={handleImageUploadSubmit} className={styles.formContainer} style={{ marginBottom: "2rem" }}>
               <div className={styles.formSection}>
-                <div className={styles.formSectionHeader}>
-                  <h3 className={styles.formSectionTitle}>Upload Image</h3>
-                  <p className={styles.formSectionDescription}>Add gallery images for this entry</p>
-                </div>
+                
 
                 <div className={styles.formField}>
-                  <label className={styles.formLabel}>Title</label>
+                  <label className={styles.formLabel}>Member Name</label>
                   <input
                     type="text"
                     className={styles.formInput}
                     value={imageForm.title}
                     onChange={(e) => handleImageFieldChange("title", e.target.value)}
-                    placeholder="Title (optional)"
+                    placeholder="Member Name" required={true}
                   />
                 </div>
+                      <div className={styles.formField}>
+                        <label className={styles.formLabel}>Short Description</label>
+                        <textarea
+                          className={styles.formInput}
+                          rows={3}
+                          value={imageForm.short_description || ""}
+                          onChange={(e) => handleImageFieldChange("short_description", e.target.value)}
+                          placeholder="Enter short description..."
+                        />
+                      </div>
 
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Short Description</label>
-                  <input
-                    type="text"
-                    className={styles.formInput}
-                    value={imageForm.short_description}
-                    onChange={(e) => handleImageFieldChange("short_description", e.target.value)}
-                    placeholder="Short description (optional)"
-                  />
-                </div>
+             
+              {/* Description 1 CKEditor */}
+                           <div className={styles.formField}>
+                             <label className={styles.formLabel}>Description </label>
+                             <div style={{ minHeight: '200px' }}>
+                               <CKEditorWrapper
+                                 data={imageForm.description || ''}
+                                 config={editorConfiguration}
+                                 onReady={(editor) => {
+                                   if (!editor) return;
+                                   editor.config.filebrowserUploadUrl = IMAGE_UPLOAD_URL;
+                                   editor.config.filebrowserImageUploadUrl = IMAGE_UPLOAD_URL;
+                                 }}
+                                 onChange={(event, editor) => {
+                                   const data = editor?.getData ? editor.getData() : event.target.value;
+                                   handleImageFieldChange("description", data);
+                                 }}
+                               />
+                             </div>
+                           </div>
 
-                <div className={styles.formField}>
-                  <label className={styles.formLabel}>Description</label>
-                  <div style={{ minHeight: '200px' }}>
-                    <CKEditorWrapper
-                      data={imageForm.description || ''}
-                      config={editorConfiguration}
-                      onReady={(editor) => {
-                        setImageEditorInstance(editor);
-                        if (!editor) return;
-                        const IMAGE_UPLOAD_URL = `${API_BASE_URL}/api/cms/upload-image`;
-                        editor.config.filebrowserUploadUrl = IMAGE_UPLOAD_URL;
-                        editor.config.filebrowserImageUploadUrl = IMAGE_UPLOAD_URL;
-                        editor.on('fileUploadRequest', (evt) => {
-                          const fileLoader = evt.data.fileLoader;
-                          const xhr = fileLoader.xhr;
-                          const formData = new FormData();
-                          xhr.open('POST', IMAGE_UPLOAD_URL, true);
-                          formData.append('image', fileLoader.file, fileLoader.fileName);
-                          fileLoader.xhr.send(formData);
-                          evt.stop();
-                        });
-                        editor.on('fileUploadResponse', (evt) => {
-                          evt.stop();
-                          try {
-                            const response = JSON.parse(evt.data.xhr.responseText || '{}');
-                            if (!response?.success || !response?.url) {
-                              evt.cancel();
-                              toast.error(response?.message || 'Image upload failed.');
-                              return;
-                            }
-                            const fullUrl = response.url.startsWith('http') ? response.url : `${API_BASE_URL}${response.url}`;
-                            evt.data.url = fullUrl;
-                            toast.success('Image uploaded!', { autoClose: 2000 });
-                          } catch (parseError) {
-                            evt.cancel();
-                            toast.error('Upload failed.');
-                          }
-                        });
-                      }}
-                      onChange={(event, editor) => {
-                        const data = editor?.getData ? editor.getData() : event.target.value;
-                        handleImageFieldChange("description", data);
-                      }}
+              {/* Short Order */}
+                  <div className={styles.formField}>
+                    <label className={styles.formLabel}>
+                      Sort Order <span className={styles.required}>*</span>
+                    </label>
+                    <input
+                      type="number"
+                      className={styles.formInput}
+                      value={imageForm.sortOrder || ""}
+                      onChange={(e) =>
+                        handleImageFieldChange(
+                          "sortOrder",
+                          e.target.value.replace(/[^0-9]/g, "")
+                        )
+                      }
+                      placeholder="Enter order (e.g. 1, 2, 3)"
+                      min="1"
+                      required
                     />
                   </div>
-                  <small className={styles.formHelp}>
-                    Format your description using the toolbar. You can add images, links, and formatted text.
-                  </small>
-                </div>
+             
 
                 <div className={styles.formField}>
                   <label className={styles.formLabel}>
-                    Image <span className={styles.required}>*</span>
+                    Image {showImageUploadForm !== "edit" && <span className={styles.required}>*</span>}
                   </label>
                   <div
                     style={{
@@ -794,7 +820,7 @@ export default function StudentLifeList() {
                       <span>Select image</span>
                     </label>
                   </div>
-                  {imageForm.preview && (
+                  {(imageForm.preview || (showImageUploadForm === "edit" && imageManager.images.find(img => img._id === ImageEditId)?.image)) && (
                     <div style={{ marginTop: "1rem" }}>
                       <div
                         style={{
@@ -804,8 +830,17 @@ export default function StudentLifeList() {
                           maxHeight: "220px",
                         }}
                       >
-                        <img src={imageForm.preview} alt="Preview" />
+                        <img 
+                          src={imageForm.preview || getImageUrl(imageManager.images.find(img => img._id === ImageEditId)?.image)} 
+                          alt="Preview" 
+                          style={{ width: "100%", height: "auto", display: "block" }}
+                        />
                       </div>
+                      {showImageUploadForm === "edit" && (
+                        <p style={{ marginTop: "0.5rem", fontSize: "0.875rem", color: "#6b7280" }}>
+                          Current image. Select a new file to replace it.
+                        </p>
+                      )}
                     </div>
                   )}
                 </div>
@@ -818,12 +853,15 @@ export default function StudentLifeList() {
                       setImageForm(initialImageFormState);
                       setImageEditorInstance(null);
                       setShowImageUploadForm(false);
+                      setImageEditId(null);
                     }}
                   >
                     Cancel
                   </button>
                   <button type="submit" className={styles.formSubmitBtn} disabled={imageUploading}>
-                    {imageUploading ? "Uploading..." : "Upload Image"}
+                    {imageUploading 
+                      ? (showImageUploadForm === "edit" ? "Updating..." : "Uploading...") 
+                      : (showImageUploadForm === "edit" ? "Update Member" : "Upload Image")}
                   </button>
                 </div>
               </div>
@@ -834,13 +872,17 @@ export default function StudentLifeList() {
             <div className={styles.formSectionHeader}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", width: "100%" }}>
                 <div>
-                  <h3 className={styles.formSectionTitle}>Committee Images</h3>
+                  <h3 className={styles.formSectionTitle}>Committee Members</h3>
                   <p className={styles.formSectionDescription}>
                     Manage uploaded images for this committee entry
                   </p>
                 </div>
                 <button
-                  onClick={() => setShowImageUploadForm(true)}
+                  onClick={() => {
+                    setImageForm(initialImageFormState);
+                    setImageEditId(null);
+                    setShowImageUploadForm(true);
+                  }}
                   className={styles.addButton}
                   style={{
                     display: "flex",
@@ -916,32 +958,7 @@ export default function StudentLifeList() {
                       </Tooltip>
                     ),
                   },
-                  {
-                    field: "short_description",
-                    headerName: "Short Description",
-                    width: 200,
-                    renderCell: (params) => (
-                      <Tooltip content={params.row.short_description || "—"}>
-                        <div className="text-truncate text-muted" style={{ maxWidth: "180px" }}>
-                          {params.row.short_description || "—"}
-                        </div>
-                      </Tooltip>
-                    ),
-                  },
-                  {
-                    field: "description",
-                    headerName: "Description",
-                    width: 350,
-                    renderCell: (params) => (
-                      <Tooltip content={params.row.description?.replace(/<[^>]*>/g, '') || "—"}>
-                        <div 
-                          className="text-truncate text-muted" 
-                          style={{ maxWidth: "330px" }}
-                          dangerouslySetInnerHTML={{ __html: params.row.description?.substring(0, 100) + '...' || "—" }}
-                        />
-                      </Tooltip>
-                    ),
-                  },
+                 
                   {
                     field: "createdAt",
                     headerName: "Created At",
@@ -964,6 +981,30 @@ export default function StudentLifeList() {
                     headerAlign: "center",
                     renderCell: (params) => (
                       <div className="d-flex justify-content-center align-items-center gap-2">
+
+                        {/* EDIT */}
+                      <button
+                          onClick={() => handleImageEdit(params.row)}
+                          className="btn btn-sm d-flex align-items-center justify-content-center"
+                          style={{
+                            width: "32px",
+                            height: "32px",
+                            backgroundColor: "#e0f2fe",
+                            border: "none",
+                            borderRadius: "6px",
+                            padding: 0
+                          }}
+                          title="Edit Entry"
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#bae6fd")}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e0f2fe")}
+                        >
+                          <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 
+                              2h11a2 2 0 002-2v-5m-1.414-9.414a2 
+                              2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                        </button>
                         <button
                           onClick={() => handleImageDeleteClick(params.row)}
                           className="btn btn-sm d-flex align-items-center justify-content-center"
@@ -1015,7 +1056,7 @@ export default function StudentLifeList() {
         cancelText="Cancel"
         type="danger"
       />
-
+ 
       <ConfirmationModal
         isOpen={imageDeleteModal.isOpen}
         onClose={() => setImageDeleteModal({ isOpen: false, id: null, title: "" })}
@@ -1047,19 +1088,10 @@ export default function StudentLifeList() {
                   <div className={styles.viewValue}>{viewModal.entry.title}</div>
                 </div>
 
-                <div className={styles.viewField}>
-                  <label className={styles.viewLabel}>Short Description</label>
-                  <div className={styles.viewValue}>{viewModal.entry.short_description}</div>
-                </div>
+              
               </div>
 
-              <div className={styles.viewField}>
-                <label className={styles.viewLabel}>Full Description</label>
-                <div
-                  className={styles.viewValue}
-                  dangerouslySetInnerHTML={{ __html: viewModal.entry.description }}
-                />
-              </div>
+              
             </div>
 
             {/* BOTTOM CLOSE BUTTON */}

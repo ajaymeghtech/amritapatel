@@ -35,7 +35,7 @@ export default function Faculty() {
                 </tr>
                 <tr>
                   <td>Dr. Kallol Roy</td>
-                  <td> Ph.D.,PG DIp (Environmental & Occupational Health), FAGE </td>
+                  <td> Ph.D., PG Diploma(Environmental & Occupational Health), FAGE </td>
                   <td><a href="/pdfs/CV_KR_2025_JUN.pdf" target="_blank">View Detail </a></td>
                   <td> Assistant Professor & Academic Coordinator </td>
                   <td>Full-Time</td>

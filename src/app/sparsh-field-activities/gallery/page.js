@@ -113,55 +113,55 @@ export default function Gallery() {
         Fancybox.show(items, { startIndex: 0 });
     };
 
-   const MagnifierIcon = () => (
-  <svg
-    width="22"
-    height="22"
-    viewBox="0 0 24 24"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Magnifier circle */}
-    <circle
-      cx="11"
-      cy="11"
-      r="7"
-      stroke="white"
-      strokeWidth="2"
-    />
+    const MagnifierIcon = () => (
+        <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            {/* Magnifier circle */}
+            <circle
+                cx="11"
+                cy="11"
+                r="7"
+                stroke="white"
+                strokeWidth="2"
+            />
 
-    {/* Plus sign */}
-    <line
-      x1="11"
-      y1="8"
-      x2="11"
-      y2="14"
-      stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-    <line
-      x1="8"
-      y1="11"
-      x2="14"
-      y2="11"
-      stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
+            {/* Plus sign */}
+            <line
+                x1="11"
+                y1="8"
+                x2="11"
+                y2="14"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+            />
+            <line
+                x1="8"
+                y1="11"
+                x2="14"
+                y2="11"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+            />
 
-    {/* Handle */}
-    <line
-      x1="16.65"
-      y1="16.65"
-      x2="21"
-      y2="21"
-      stroke="white"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+            {/* Handle */}
+            <line
+                x1="16.65"
+                y1="16.65"
+                x2="21"
+                y2="21"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+            />
+        </svg>
+    );
 
 
     return (
@@ -193,7 +193,11 @@ export default function Gallery() {
                                         height={600}
                                         className="img-fluid"
                                     />
-                                    <h4>{member?.title}</h4>
+                                    {/* <h4>{member?.title} - {member?.year}</h4> */}
+                                    <div className="galleryInfo">
+                                        <h4>{member?.title} </h4>
+                                        <span className="galleryYear">{member?.year}</span>
+                                    </div>
                                     <a
                                         style={{ cursor: "pointer" }}
                                         onClick={() => openGallery(member)}

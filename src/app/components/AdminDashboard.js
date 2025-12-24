@@ -1,34 +1,94 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function AdminDashboard() {
+  const [stats, setStats] = useState({
+    contacts: 0,
+    faqs: 0,
+    banners: 0,
+    announcements: 0,
+    cmsPages: 0,
+    programs: 0,
+    courses: 0,
+    testimonials: 0,
+    projects: 0,
+    institutes: 0,
+    homeGallery: 0,
+    loading: true
+  });
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      const responses = await Promise.all([
+        fetch(`${API_BASE_URL}/api/contact`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/faq`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/banners`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/announcements`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/cms`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/programs`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/course`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/testimonials`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/projects`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/institute`).catch(() => null),
+        fetch(`${API_BASE_URL}/api/home-gallery`).catch(() => null)
+      ]);
+
+      const getCount = async (res) => {
+        if (!res?.ok) return 0;
+        try {
+          const data = await res.json();
+          return Array.isArray(data.data) ? data.data.length : (Array.isArray(data) ? data.length : 0);
+        } catch {
+          return 0;
+        }
+      };
+
+      const [
+        contacts, faqs, banners, announcements, cmsPages,
+        programs, courses, testimonials, projects, institutes, homeGallery
+      ] = await Promise.all([
+        getCount(responses[0]),
+        getCount(responses[1]),
+        getCount(responses[2]),
+        getCount(responses[3]),
+        getCount(responses[4]),
+        getCount(responses[5]),
+        getCount(responses[6]),
+        getCount(responses[7]),
+        getCount(responses[8]),
+        getCount(responses[9]),
+        getCount(responses[10])
+      ]);
+
+      setStats({
+        contacts,
+        faqs,
+        banners,
+        announcements,
+        cmsPages,
+        programs,
+        courses,
+        testimonials,
+        projects,
+        institutes,
+        homeGallery,
+        loading: false
+      });
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+      setStats(prev => ({ ...prev, loading: false }));
+    }
+  };
+
   return (
     <div className="dashboard-container">
-      {/* Main Header */}
-      {/* <div className="main-header">
-        <div className="header-left">
-          <button className="back-button">
-            <svg className="back-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <div className="header-title">
-            <h1 className="page-title">Dashboard</h1>
-            <p className="page-subtitle">Admin Panel</p>
-          </div>
-        </div>
-        <div className="header-right">
-          <div className="user-info">
-            <div className="user-avatar">A</div>
-            <div className="user-details">
-              <div className="user-name">Admin User1</div>
-              <div className="user-email">admin@cms.com</div>
-            </div>
-          </div>
-        </div>
-      </div> */}
-
       {/* Overview Section */}
       <div className="overview-section">
         <h2 className="overview-title">Overview</h2>
@@ -36,15 +96,51 @@ export default function AdminDashboard() {
         
         {/* Stats Cards */}
         <div className="stats-grid">
-          <div className="stat-card stat-card-purple">
+          <div className="stat-card stat-card-blue">
             <div className="stat-icon">
               <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
             <div className="stat-content">
-              <div className="stat-number">3</div>
-              <div className="stat-label">Total Users</div>
+              <div className="stat-number">{stats.loading ? '...' : stats.contacts}</div>
+              <div className="stat-label">Total Contacts</div>
+            </div>
+          </div>
+
+          <div className="stat-card stat-card-blue">
+            <div className="stat-icon">
+              <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="stat-content">
+              <div className="stat-number">{stats.loading ? '...' : stats.faqs}</div>
+              <div className="stat-label">Total FAQs</div>
+            </div>
+          </div>
+
+          <div className="stat-card stat-card-blue">
+            <div className="stat-icon">
+              <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div className="stat-content">
+              <div className="stat-number">{stats.loading ? '...' : stats.banners}</div>
+              <div className="stat-label">Total Banners</div>
+            </div>
+          </div>
+
+          <div className="stat-card stat-card-blue">
+            <div className="stat-icon">
+              <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <div className="stat-content">
+              <div className="stat-number">{stats.loading ? '...' : stats.announcements}</div>
+              <div className="stat-label">Total Announcements</div>
             </div>
           </div>
 
@@ -55,120 +151,85 @@ export default function AdminDashboard() {
               </svg>
             </div>
             <div className="stat-content">
-              <div className="stat-number">4</div>
-              <div className="stat-label">Total News</div>
+              <div className="stat-number">{stats.loading ? '...' : stats.cmsPages}</div>
+              <div className="stat-label">Total CMS Pages</div>
             </div>
           </div>
 
-          <div className="stat-card stat-card-green">
+          <div className="stat-card stat-card-blue">
             <div className="stat-icon">
               <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
             <div className="stat-content">
-              <div className="stat-number">2</div>
-              <div className="stat-label">Total Events</div>
+              <div className="stat-number">{stats.loading ? '...' : stats.programs}</div>
+              <div className="stat-label">Total Programs</div>
             </div>
           </div>
 
-          <div className="stat-card stat-card-yellow">
+          <div className="stat-card stat-card-blue">
             <div className="stat-icon">
               <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
             </div>
             <div className="stat-content">
-              <div className="stat-number">0</div>
-              <div className="stat-label">Upcoming Events</div>
+              <div className="stat-number">{stats.loading ? '...' : stats.courses}</div>
+              <div className="stat-label">Total Courses</div>
+            </div>
+          </div>
+
+          <div className="stat-card stat-card-blue">
+            <div className="stat-icon">
+              <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h10m-7 4h7M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div className="stat-content">
+              <div className="stat-number">{stats.loading ? '...' : stats.testimonials}</div>
+              <div className="stat-label">Total Testimonials</div>
+            </div>
+          </div>
+
+          <div className="stat-card stat-card-blue">
+            <div className="stat-icon">
+              <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+            <div className="stat-content">
+              <div className="stat-number">{stats.loading ? '...' : stats.projects}</div>
+              <div className="stat-label">Total Projects</div>
+            </div>
+          </div>
+
+          <div className="stat-card stat-card-blue">
+            <div className="stat-icon">
+              <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </div>
+            <div className="stat-content">
+              <div className="stat-number">{stats.loading ? '...' : stats.institutes}</div>
+              <div className="stat-label">Total Institutes</div>
+            </div>
+          </div>
+
+          <div className="stat-card stat-card-blue">
+            <div className="stat-icon">
+              <svg className="stat-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div className="stat-content">
+              <div className="stat-number">{stats.loading ? '...' : stats.homeGallery}</div>
+              <div className="stat-label">Home Gallery Items</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Recent Activity Section */}
-      <div className="recent-activity">
-        {/* Recent Events */}
-        <div className="activity-card">
-          <div className="activity-header">
-            <div className="activity-title-section">
-              <h3 className="activity-title">Recent Events</h3>
-              <p className="activity-subtitle">Latest 5 events</p>
-            </div>
-            <a href="#" className="view-all-link">View All</a>
-          </div>
-          <div className="activity-list">
-            <div className="activity-item">
-              <div className="activity-icon activity-icon-green">
-                <svg className="activity-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div className="activity-content">
-                <div className="activity-main">7567657</div>
-                <div className="activity-secondary">6/5/7657</div>
-              </div>
-            </div>
-            <div className="activity-item">
-              <div className="activity-icon activity-icon-green">
-                <svg className="activity-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div className="activity-content">
-                <div className="activity-main">7567657</div>
-                <div className="activity-secondary">6/5/7657</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Recent News */}
-        <div className="activity-card">
-          <div className="activity-header">
-            <div className="activity-title-section">
-              <h3 className="activity-title">Recent News</h3>
-              <p className="activity-subtitle">Latest 5 articles</p>
-            </div>
-            <a href="#" className="view-all-link">View All</a>
-          </div>
-          <div className="activity-list">
-            <div className="activity-item">
-              <div className="activity-icon activity-icon-blue">
-                <svg className="activity-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="activity-content">
-                <div className="activity-main">564567</div>
-                <div className="activity-secondary">by 6456456</div>
-              </div>
-            </div>
-            <div className="activity-item">
-              <div className="activity-icon activity-icon-blue">
-                <svg className="activity-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="activity-content">
-                <div className="activity-main">Test News Article</div>
-                <div className="activity-secondary">by Test Author</div>
-              </div>
-            </div>
-            <div className="activity-item">
-              <div className="activity-icon activity-icon-blue">
-                <svg className="activity-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-              </div>
-              <div className="activity-content">
-                <div className="activity-main">Mongo DB Tutorial</div>
-                <div className="activity-secondary">by shraddha</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Custom CSS */}
       <style jsx>{`
@@ -323,6 +384,14 @@ export default function AdminDashboard() {
           background: linear-gradient(135deg, #fef3c7, #fde68a);
         }
 
+        .stat-card-orange {
+          background: linear-gradient(135deg, #fed7aa, #fdba74);
+        }
+
+        .stat-card-pink {
+          background: linear-gradient(135deg, #fce7f3, #fbcfe8);
+        }
+
         .stat-icon {
           width: 48px;
           height: 48px;
@@ -351,6 +420,16 @@ export default function AdminDashboard() {
         .stat-card-yellow .stat-icon {
           background: rgba(245, 158, 11, 0.1);
           color: #f59e0b;
+        }
+
+        .stat-card-orange .stat-icon {
+          background: rgba(249, 115, 22, 0.1);
+          color: #f97316;
+        }
+
+        .stat-card-pink .stat-icon {
+          background: rgba(236, 72, 153, 0.1);
+          color: #ec4899;
         }
 
         .stat-svg {

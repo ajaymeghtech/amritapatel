@@ -690,72 +690,16 @@ export default function ActivitiesList() {
   // Define table columns
   const columns = [
     {
-      field: 'image',
-      headerName: 'Image',
-      width: 100,
-      renderCell: (params) => (
-        <div style={{ width: '60px', height: '60px', borderRadius: '8px', overflow: 'hidden' }}>
-          {params.value ? (
-            <img
-              src={getImageUrl(params.value)}
-              alt={params.row.title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              onError={(e) => {
-                e.target.src = 'https://via.placeholder.com/60';
-              }}
-            />
-          ) : (
-            <div style={{ width: '100%', height: '100%', backgroundColor: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-          )}
-        </div>
-      ),
-    },
-    {
       field: 'title',
       headerName: 'Title',
-      width: 200,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="fw-medium text-truncate" style={{ maxWidth: '180px' }} title={params.value}>
+          <div className="fw-medium text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
-      ),
-    },
-    {
-      field: 'subtitle',
-      headerName: 'Subtitle',
-      width: 200,
-      renderCell: (params) => (
-        <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '180px' }} title={params.value}>
-            {params.value || "—"}
-          </div>
-        </Tooltip>
-      ),
-    },
-    {
-      field: 'subcategories',
-      headerName: 'Sub-Activities',
-      width: 120,
-      renderCell: (params) => (
-        <span className="badge bg-info">
-          {params.value?.length || 0}
-        </span>
-      ),
-    },
-    {
-      field: 'testimonial_video',
-      headerName: 'Videos',
-      width: 100,
-      renderCell: (params) => (
-        <span className="badge bg-primary">
-          {params.value?.length || 0}
-        </span>
       ),
     },
     {
@@ -779,6 +723,7 @@ export default function ActivitiesList() {
       filterable: false,
       align: 'center',
       headerAlign: 'center',
+      flex: 0,
       renderCell: (params) => (
         <div className="d-flex justify-content-center align-items-center gap-2 flex-wrap">
           <button
@@ -800,38 +745,6 @@ export default function ActivitiesList() {
           >
             <svg width="14" height="14" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-            </svg>
-          </button>
-          <button
-            onClick={() => openSubActivityManager(params.row)}
-            className="btn btn-sm"
-            style={{ backgroundColor: '#fef3c7', border: 'none', borderRadius: '6px', padding: '4px 8px' }}
-            title="Manage Sub-Activities"
-          >
-            <svg width="14" height="14" fill="none" stroke="#f59e0b" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-            </svg>
-            <span className="ms-1" style={{ fontSize: '12px' }}>Sub ({params.row.subcategories?.length || 0})</span>
-          </button>
-          <button
-            onClick={() => openVideoManager(params.row)}
-            className="btn btn-sm"
-            style={{ backgroundColor: '#dbeafe', border: 'none', borderRadius: '6px', padding: '4px 8px' }}
-            title="Manage Videos"
-          >
-            <svg width="14" height="14" fill="none" stroke="#3b82f6" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-            </svg>
-            <span className="ms-1" style={{ fontSize: '12px' }}>Videos ({params.row.testimonial_video?.length || 0})</span>
-          </button>
-          <button
-            onClick={() => handleActivityDelete(params.row._id, params.row.title)}
-            className="btn btn-sm"
-            style={{ backgroundColor: '#fee2e2', border: 'none', borderRadius: '6px', padding: '4px 8px' }}
-            title="Delete Activity"
-          >
-            <svg width="14" height="14" fill="none" stroke="#ef4444" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
           </button>
         </div>
@@ -881,33 +794,6 @@ export default function ActivitiesList() {
       <div className={styles.actionBar}>
         <div className={styles.actionBarContent}>
           <div className={styles.actionBarLeft}>
-            {/* Search Bar */}
-            <div className={styles.searchContainer}>
-              <div className={styles.searchInputWrapper}>
-                <svg className={styles.searchIcon} width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input
-                  type="text"
-                  placeholder="Search activities..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className={styles.searchInput}
-                />
-                {searchTerm && (
-                  <button
-                    onClick={() => setSearchTerm("")}
-                    className={styles.searchClear}
-                    title="Clear search"
-                  >
-                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-            </div>
-
             {/* Filters */}
             <div className={styles.filtersContainer}>
               <div className={styles.filterGroup}>
@@ -962,30 +848,32 @@ export default function ActivitiesList() {
       </div>
 
       {/* Data Table */}
-      <CommonDataGrid
-        data={filteredActivities}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No activities found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first activity."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all") ? {
-            onClick: () => setActivityFormMode("add"),
-            text: "Create First Activity"
-          } : null
-        }
-        loadingMessage="Loading activities..."
-        showSerialNumber={true}
-        serialNumberField="id"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <CommonDataGrid
+          data={filteredActivities}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No activities found"
+          noDataDescription={
+            searchTerm || statusFilter !== "all"
+              ? "Try adjusting your search criteria or filters."
+              : "Get started by creating your first activity."
+          }
+          noDataAction={
+            (!searchTerm && statusFilter === "all") ? {
+              onClick: () => setActivityFormMode("add"),
+              text: "Create First Activity"
+            } : null
+          }
+          loadingMessage="Loading activities..."
+          showSerialNumber={true}
+          serialNumberField="id"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
       {/* Activity Form Modal */}
       <Modal

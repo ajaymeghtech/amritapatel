@@ -58,12 +58,7 @@ table {
   border-spacing: 0;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-weight: 700;
   line-height: 1.2;
@@ -110,13 +105,11 @@ p {
   color: #6b7280;
 }
 
-strong,
-b {
+strong, b {
   font-weight: 600;
 }
 
-em,
-i {
+em, i {
   font-style: italic;
 }
 
@@ -144,12 +137,6 @@ p, li {
   p, li {
     font-size: 1.25rem;
     line-height: 1.875rem;
-  }
-}
-@media screen and (max-width: 1300px) {
-  p, li {
-    font-size: 18px;
-    line-height: 1.5625rem;
   }
 }
 @media (max-width: 1199px) {
@@ -286,12 +273,12 @@ p, li {
 .sectionlabel.announcementTitle {
   color: #FFD502;
 }
-@media screen and (max-width: 1600px) {
+@media (max-width: 1600px) {
   .sectionlabel {
     font-size: 28px;
   }
 }
-@media screen and (max-width: 1300px) {
+@media (max-width: 1199px) {
   .sectionlabel {
     font-size: 1.25rem;
   }
@@ -369,6 +356,23 @@ p, li {
   text-align: center;
 }
 .getMoreInfoButton a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.moreInfoButton {
+  background: #FFD502;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  font-weight: 700;
+  color: #00183D;
+  text-align: center;
+}
+.moreInfoButton a {
   color: inherit;
   text-decoration: none;
 }
@@ -1495,6 +1499,29 @@ p, li {
   text-decoration: none;
 }
 
+.moreInfoButton {
+  background: #FFD502;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  font-weight: 600;
+  color: #00417A;
+  text-align: center;
+  padding: 16px 32px;
+  border-radius: 10px;
+}
+.moreInfoButton:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+.moreInfoButton a {
+  color: #00417A;
+  text-decoration: none;
+}
+
 .accreditationLogo {
   width: 110px;
   height: 110px;
@@ -1684,6 +1711,10 @@ p, li {
   }
 }
 
+.homeGallery .slick-slider {
+  max-height: 280px;
+  min-height: 280px;
+}
 .homeGallery .slick-list {
   margin: 0 -12px;
 }
@@ -1751,6 +1782,27 @@ p, li {
   opacity: 1;
   background: url("/images/next.png") no-repeat center center;
   background-size: contain;
+}
+.homeGallery .galleryInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 0 0 16px 16px;
+  margin-top: -4px;
+}
+.homeGallery .galleryInfo h4 {
+  font-weight: 600;
+  margin: 0;
+  color: #1f2937;
+}
+.homeGallery .galleryInfo .galleryYear {
+  font-weight: 500;
+  color: #6b7280;
+  white-space: nowrap;
+  background: #DEDEDE;
+  border-radius: 5px;
+  padding: 0 5px;
 }
 
 .list {
@@ -1869,6 +1921,8 @@ p, li {
   padding: 50px 30px;
   border-radius: 30px;
   display: block;
+  height: 100%;
+  min-height: 120px;
 }
 @media (max-width: 1600px) {
   .publicationSec .pdfBox {
@@ -2174,13 +2228,6 @@ p, li {
     margin-bottom: 5px;
   }
 }
-@media (max-width: 1600px) {
-  .advisoryCouncilSec .councilBox h3 {
-    font-size: 24px;
-    line-height: 34px;
-    margin-bottom: 5px;
-  }
-}
 @media (max-width: 1199px) {
   .advisoryCouncilSec .councilBox h3 {
     font-size: 22px;
@@ -2397,31 +2444,32 @@ p, li {
   background: rgba(0, 39, 74, 0.8);
   padding-right: 0px !important;
 }
-
 .modal .modal-dialog {
   max-width: 1700px;
 }
-
 .modal .modalDetail {
   display: flex;
 }
-
+.modal .modal-body {
+  padding: 100px 50px;
+}
+.modal .btn-close {
+  background: none !important;
+  background-repeat: no-repeat !important;
+}
 .modal .councilerImg {
   flex: 0 0 26%;
   max-width: 26%;
 }
-
 .modal .councilerImg img {
   border-radius: 30px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-
 .modal .contentDetail {
   text-align: left;
   padding-left: 30px;
 }
-
 .modal .contentDetail h3 {
   color: #00417A;
   font-size: 30px;
@@ -2429,7 +2477,6 @@ p, li {
   font-weight: 400;
   margin-bottom: 0px;
 }
-
 .modal .contentDetail h5 {
   font-size: 18px;
   line-height: 24px;
@@ -2442,26 +2489,16 @@ p, li {
     margin-bottom: 30px;
   }
 }
-
-.modal .contentDetail p {
-  font-size: 25px;
+.modal .contentDetail .contentDetail p {
+  font-size: 1.5625rem;
   line-height: 35px;
   color: #666;
 }
 @media screen and (max-width: 1300px) {
-  .modal .contentDetail p {
+  .modal .contentDetail .contentDetail p {
     font-size: 1.25rem;
     line-height: 1.875rem;
   }
-}
-
-.modal .modal-body {
-  padding: 100px 50px;
-}
-
-.modal .btn-close {
-  background: none !important;
-  background-repeat: no-repeat !important;
 }
 
 .detailCloseIcon {
@@ -2664,14 +2701,12 @@ p, li {
   text-align: center;
   margin-bottom: 50px;
 }
-
 .faq-header h1 {
   font-size: 36px;
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 15px;
 }
-
 .faq-header p {
   font-size: 18px;
   color: #666;
@@ -2786,7 +2821,7 @@ p, li {
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: 50px;
+  bottom: 70px;
   right: 16px;
   left: auto !important;
   cursor: pointer;
@@ -2805,4 +2840,35 @@ p, li {
 .gallerypage .flex-end {
   display: flex;
   justify-content: flex-end;
+}
+.gallerypage .galleryInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 0 0 16px 16px;
+  margin-top: -4px;
+}
+.gallerypage .galleryInfo h4 {
+  font-weight: 600;
+  margin: 0;
+  color: #1f2937;
+}
+.gallerypage .galleryInfo .galleryYear {
+  font-weight: 500;
+  color: #6b7280;
+  white-space: nowrap;
+  background: #DEDEDE;
+  border-radius: 5px;
+  padding: 0 5px;
+}
+
+.fancybox__caption {
+  font-size: 28px;
+  line-height: 1.6;
+}
+@media (max-width: 768px) {
+  .fancybox__caption {
+    font-size: 26px;
+  }
 }/*# sourceMappingURL=main.css.map */

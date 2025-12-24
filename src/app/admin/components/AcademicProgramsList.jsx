@@ -14,8 +14,6 @@ const initialFormState = {
   title: '',
   link: '',
   courses: '', // stored as comma-separated string in UI; backend expects array
-  order: 0,
-  isActive: true,
   iconImage: '', // existing icon path
 };
 
@@ -72,7 +70,7 @@ export default function ProgramsList() {
   const [viewModal, setViewModal] = useState({ isOpen: false, entry: null });
 
   useEffect(() => {
-    // fetchPrograms();
+    fetchPrograms();
   }, []);
 
   const fetchPrograms = async () => {
@@ -104,8 +102,6 @@ export default function ProgramsList() {
       title: entry.title || '',
       link: entry.link || '',
       courses: Array.isArray(entry.courses) ? entry.courses.join(', ') : (entry.courses || ''),
-      order: typeof entry.order === 'number' ? entry.order : (entry.order ? Number(entry.order) : 0),
-      isActive: typeof entry.isActive === 'boolean' ? entry.isActive : !!entry.isActive,
       iconImage: entry.iconImage || '',
     });
     setIconFile(null);
@@ -140,9 +136,6 @@ export default function ProgramsList() {
       .map((s) => s.trim())
       .filter(Boolean);
     coursesArr.forEach((c) => payload.append('courses', c));
-
-    payload.append('order', String(formData.order ?? 0));
-    payload.append('isActive', formData.isActive ? 'true' : 'false');
 
     if (iconFile) {
       payload.append('iconImage', iconFile);
@@ -222,10 +215,10 @@ export default function ProgramsList() {
       field: 'title',
       headerName: 'Title',
       flex: 1,
-      minWidth: 160,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.row.title || '—'}>
-          <div className="text-truncate" style={{ maxWidth: 220 }}>
+          <div className="text-truncate" style={{ maxWidth: '100%' }}>
             {params.row.title || '—'}
           </div>
         </Tooltip>
@@ -234,8 +227,7 @@ export default function ProgramsList() {
     {
       field: 'iconImage',
       headerName: 'Icon',
-      flex: 0.5,
-      minWidth: 80,
+      width: 100,
       renderCell: (params) => {
         const url = getImageUrl(params.row.iconImage);
         return url ? (
@@ -251,61 +243,17 @@ export default function ProgramsList() {
         );
       },
     },
-    {
-      field: 'courses',
-      headerName: 'Courses',
-      flex: 1.5,
-      minWidth: 220,
-      renderCell: (params) => {
-        const coursesArr = Array.isArray(params.row.courses) ? params.row.courses : (params.row.courses ? [params.row.courses] : []);
-        return (
-          <Tooltip content={coursesArr.join(', ')}>
-            <div className="text-truncate" style={{ maxWidth: 280 }}>
-              {coursesArr.length ? coursesArr.join(', ') : '—'}
-            </div>
-          </Tooltip>
-        );
-      },
-    },
-    {
-      field: 'link',
-      headerName: 'Link',
-      flex: 1,
-      minWidth: 160,
-      renderCell: (params) =>
-        params.row.link ? (
-          <a href={params.row.link} target="_blank" rel="noreferrer" className="text-truncate" style={{ maxWidth: 140, display: 'block' }}>
-            {params.row.link}
-          </a>
-        ) : (
-          <span className="text-muted">—</span>
-        ),
-    },
 
     {
       field: 'actions',
       headerName: 'Actions',
-      flex: 1,
-      minWidth: 200,
+      width: 180,
       sortable: false,
       filterable: false,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: (params) => (
         <div className="d-flex gap-2">
-          {/* View */}
-          <button
-            onClick={() => setViewModal({ isOpen: true, entry: params.row })}
-            className="btn btn-sm d-flex align-items-center justify-content-center"
-            style={{ width: 32, height: 32, backgroundColor: '#e0f2fe', border: 'none', borderRadius: 6, padding: 0 }}
-            title="View"
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#bae6fd')}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#e0f2fe')}
-          >
-            <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </button>
-
           {/* Edit */}
           <button
             onClick={() => handleEdit(params.row)}
@@ -340,7 +288,7 @@ export default function ProgramsList() {
   ];
 
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '100%', maxWidth: '100%', margin: 0, padding: 0 }}>
       <ToastContainer position="top-right" autoClose={4000} />
 
       <ConfirmationModal
@@ -380,18 +328,6 @@ export default function ProgramsList() {
                   <div className={styles.viewValue}>
                     {viewModal.entry.link ? <a href={viewModal.entry.link} target="_blank" rel="noreferrer">{viewModal.entry.link}</a> : '—'}
                   </div>
-                </div>
-              </div>
-              <div className={styles.viewGrid}>
-
-                <div className={styles.viewField}>
-                  <label className={styles.viewLabel}>Order</label>
-                  <div className={styles.viewValue}>{viewModal.entry.order ?? 0}</div>
-                </div>
-
-                <div className={styles.viewField}>
-                  <label className={styles.viewLabel}>Active</label>
-                  <div className={styles.viewValue}>{viewModal.entry.isActive ? 'Yes' : 'No'}</div>
                 </div>
               </div>
 
@@ -437,51 +373,6 @@ export default function ProgramsList() {
                 />
               </div>
 
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Link</label>
-                <input
-                  type="text"
-                  className={styles.formInput}
-                  value={formData.link}
-                  onChange={(e) => setFormData({ ...formData, link: e.target.value })}
-                  placeholder="/courses/medicine"
-                />
-              </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Courses (comma separated)</label>
-                <input
-                  type="text"
-                  className={styles.formInput}
-                  value={formData.courses}
-                  onChange={(e) => setFormData({ ...formData, courses: e.target.value })}
-                  placeholder="MBBS, MD / MS, DNB"
-                />
-              </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Order</label>
-                <input
-                  type="number"
-                  className={styles.formInput}
-                  value={String(formData.order ?? 0)}
-                  onChange={(e) => setFormData({ ...formData, order: Number(e.target.value || 0) })}
-                />
-              </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Active</label>
-                <div>
-                  <label style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-                    <input
-                      type="checkbox"
-                      checked={!!formData.isActive}
-                      onChange={(e) => setFormData({ ...formData, isActive: !!e.target.checked })}
-                    />
-                    <span>{formData.isActive ? 'Yes' : 'No'}</span>
-                  </label>
-                </div>
-              </div>
 
               <div className={styles.formField}>
                 <label className={styles.formLabel}>Icon Image</label>
@@ -546,21 +437,23 @@ export default function ProgramsList() {
         </div>
       </div>
 
-      <CommonDataGrid
-        data={gridData}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20]}
-        initialPageSize={10}
-        noDataMessage="No programs found"
-        noDataDescription={searchTerm ? 'Try adjusting your search.' : 'Create your first program.'}
-        noDataAction={!searchTerm ? { onClick: openAddForm, text: 'Create Program' } : null}
-        loadingMessage="Loading programs..."
-        showSerialNumber
-        serialNumberField="srNo"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={80}
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={gridData}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20]}
+          initialPageSize={10}
+          noDataMessage="No programs found"
+          noDataDescription={searchTerm ? 'Try adjusting your search.' : 'Create your first program.'}
+          noDataAction={!searchTerm ? { onClick: openAddForm, text: 'Create Program' } : null}
+          loadingMessage="Loading programs..."
+          showSerialNumber
+          serialNumberField="srNo"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={80}
+        />
+      </div>
     </div>
   );
 }

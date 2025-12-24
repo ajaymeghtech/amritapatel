@@ -10,7 +10,7 @@
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;
-  table-layout: auto; // responsive auto-fit
+  table-layout: auto; 
 
   thead {
     background-color: #f5f5f5;
@@ -23,7 +23,7 @@
     font-weight: 500;
     color: #333;
     vertical-align: middle;
-    white-space: normal;  // allow wrapping
+    white-space: normal; 
   }
 
   tbody tr:hover {

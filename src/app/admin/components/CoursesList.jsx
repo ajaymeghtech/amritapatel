@@ -117,8 +117,8 @@ export default function CoursesList() {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.description.trim()) {
-      toast.error("Name and description are required");
+    if (!formData.name.trim()) {
+      toast.error("Name is required");
       return;
     }
     try {
@@ -163,10 +163,7 @@ export default function CoursesList() {
   const filteredCourses = useMemo(() => {
     return courses.filter((course) => {
       const search = searchTerm.toLowerCase();
-      return (
-        course.name?.toLowerCase().includes(search) ||
-        course.description?.toLowerCase().includes(search)
-      );
+      return course.name?.toLowerCase().includes(search);
     });
   }, [courses, searchTerm]);
 
@@ -180,73 +177,26 @@ export default function CoursesList() {
     {
       field: "name",
       headerName: "Course Name",
-      width: 240,
+      flex: 1,
+      minWidth: 300,
       renderCell: (params) => (
         <Tooltip content={params.row.name}>
-          <div className="text-truncate" style={{ maxWidth: "220px" }}>
+          <div className="text-truncate" style={{ maxWidth: "100%" }}>
             {params.row.name}
           </div>
         </Tooltip>
       ),
     },
     {
-      field: "description",
-      headerName: "Description",
-      width: 280,
-      renderCell: (params) => (
-        <Tooltip content={params.row.description}>
-          <div className="text-muted text-truncate" style={{ maxWidth: "260px" }}>
-            {params.row.description || "—"}
-          </div>
-        </Tooltip>
-      ),
-    },
-    {
-      field: "sortOrder",
-      headerName: "Order",
-      width: 100,
-      align: "center",
-      headerAlign: "center",
-    },
-    {
-      field: "createdAt",
-      headerName: "Created",
-      width: 160,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {params.row.createdAt ? new Date(params.row.createdAt).toLocaleDateString() : "—"}
-        </span>
-      ),
-    },
-    {
       field: "actions",
       headerName: "Actions",
-      width: 200,
+      width: 180,
       sortable: false,
       filterable: false,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: (params) => (
         <div className="d-flex gap-2">
-          <button
-            onClick={() => setViewModal({ isOpen: true, entry: params.row })}
-            className="btn btn-light btn-sm"
-            style={{
-              width: '32px',
-              height: '32px',
-              backgroundColor: '#e0f2fe',
-              border: 'none',
-              borderRadius: '6px',
-              padding: 0
-            }}
-            title="View Details"
-            onMouseEnter={(e) => e.target.style.backgroundColor = '#bae6fd'}
-            onMouseLeave={(e) => e.target.style.backgroundColor = '#e0f2fe'}
-
-          >
-            <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </button>
           <button onClick={() => handleEdit(params.row)} className="btn btn-sm d-flex align-items-center justify-content-center"
             style={{
               width: '32px',
@@ -290,7 +240,7 @@ export default function CoursesList() {
   ];
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: '100%', maxWidth: '100%', margin: 0, padding: 0 }}>
       <ToastContainer position="top-right" autoClose={4000} />
 
       <ConfirmationModal
@@ -365,36 +315,6 @@ export default function CoursesList() {
                   required
                 />
               </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>
-                  Description <span className={styles.required}>*</span>
-                </label>
-                <div style={{ minHeight: "220px" }}>
-                  <CKEditorWrapper
-                    data={formData.description || ""}
-                    config={editorConfiguration}
-                    onChange={(event, editor) => {
-                      const data = editor?.getData ? editor.getData() : event.target.value;
-                      setFormData({ ...formData, description: data });
-                    }}
-                  />
-                </div>
-                <small className={styles.formHelp}>
-                  Use the toolbar to format the course description.
-                </small>
-              </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Sort Order</label>
-                <input
-                  type="number"
-                  className={styles.formInput}
-                  value={formData.sortOrder}
-                  onChange={(e) => setFormData({ ...formData, sortOrder: Number(e.target.value) })}
-                  min="0"
-                />
-              </div>
             </div>
 
             <div className={styles.formActions}>
@@ -446,25 +366,27 @@ export default function CoursesList() {
         </div>
       </div>
 
-      <CommonDataGrid
-        data={gridData}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20]}
-        initialPageSize={10}
-        noDataMessage="No courses found"
-        noDataDescription={
-          searchTerm
-            ? "Try changing your search term."
-            : "Start by creating your first course entry."
-        }
-        noDataAction={!searchTerm ? { onClick: openAddForm, text: "Create Course" } : null}
-        loadingMessage="Loading courses..."
-        showSerialNumber
-        serialNumberField="srNo"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={80}
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={gridData}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20]}
+          initialPageSize={10}
+          noDataMessage="No courses found"
+          noDataDescription={
+            searchTerm
+              ? "Try changing your search term."
+              : "Start by creating your first course entry."
+          }
+          noDataAction={!searchTerm ? { onClick: openAddForm, text: "Create Course" } : null}
+          loadingMessage="Loading courses..."
+          showSerialNumber
+          serialNumberField="srNo"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={80}
+        />
+      </div>
     </div>
   );
 }

@@ -294,12 +294,13 @@ export default function TestimonialsList() {
     {
       field: 'message',
       headerName: 'Message',
-      width: 300,
+      flex: 1,
+      minWidth: 300,
       renderCell: (params) => (
         <Tooltip content={params.value?.replace(/<[^>]*>/g, '')}>
           <div
             className="text-muted text-truncate"
-            style={{ maxWidth: '280px' }}
+            style={{ maxWidth: '100%' }}
             dangerouslySetInnerHTML={{ __html: params.value?.substring(0, 100) + '...' || "—" }}
           />
         </Tooltip>
@@ -319,16 +320,6 @@ export default function TestimonialsList() {
       },
     },
     {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 150,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {params.value ? new Date(params.value).toLocaleDateString() : 'N/A'}
-        </span>
-      ),
-    },
-    {
       field: 'actions',
       headerName: 'Actions',
       width: 250,
@@ -336,6 +327,7 @@ export default function TestimonialsList() {
       filterable: false,
       align: 'center',
       headerAlign: 'center',
+      flex: 0,
       renderCell: (params) => (
         <div className="d-flex justify-content-center align-items-center gap-2">
           {/* View Button */}
@@ -529,30 +521,32 @@ export default function TestimonialsList() {
       </div>
 
       {/* Data Table */}
-      <CommonDataGrid
-        data={filteredTestimonials}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No testimonials found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first testimonial."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all") ? {
-            onClick: () => setFormMode("add"),
-            text: "Create First Testimonial"
-          } : null
-        }
-        loadingMessage="Loading testimonials..."
-        showSerialNumber={true}
-        serialNumberField="id"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <CommonDataGrid
+          data={filteredTestimonials}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No testimonials found"
+          noDataDescription={
+            searchTerm || statusFilter !== "all"
+              ? "Try adjusting your search criteria or filters."
+              : "Get started by creating your first testimonial."
+          }
+          noDataAction={
+            (!searchTerm && statusFilter === "all") ? {
+              onClick: () => setFormMode("add"),
+              text: "Create First Testimonial"
+            } : null
+          }
+          loadingMessage="Loading testimonials..."
+          showSerialNumber={true}
+          serialNumberField="id"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
       {/* Modal for Add/Edit Form */}
       <Modal

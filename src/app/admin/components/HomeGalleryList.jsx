@@ -25,7 +25,6 @@ const initialFormState = {
   description: "",
   link: "",
   image: "",
-  isActive: true,
 };
 
 const getImageUrl = (path = "") => {
@@ -73,7 +72,6 @@ export default function HomeGalleryList() {
   const [imagePreview, setImagePreview] = useState("");
   const [editId, setEditId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("all");
   const [confirmModal, setConfirmModal] = useState({ isOpen: false, id: null, title: "" });
   const [viewModal, setViewModal] = useState({ isOpen: false, entry: null });
 
@@ -110,7 +108,6 @@ export default function HomeGalleryList() {
       description: entry.description || "",
       link: entry.link || "",
       image: entry.image || "",
-      isActive: entry.isActive ?? true,
     });
     setImageFile(null);
     setImagePreview(getImageUrl(entry.image));
@@ -129,7 +126,6 @@ export default function HomeGalleryList() {
     payload.append("title", formData.title);
     payload.append("description", formData.description || "");
     payload.append("link", formData.link || "");
-    payload.append("isActive", formData.isActive ? "true" : "false");
     if (imageFile) {
       payload.append("image", imageFile);
     } else if (formData.image) {
@@ -181,35 +177,12 @@ export default function HomeGalleryList() {
     }
   };
 
-  const handleStatusToggle = async (entry) => {
-    try {
-      const payload = new FormData();
-      payload.append("title", entry.title || "");
-      payload.append("description", entry.description || "");
-      payload.append("link", entry.link || "");
-      payload.append("isActive", entry.isActive ? "false" : "true");
-      const response = await fetch(`${HOME_GALLERY_ENDPOINT}/${entry._id}`, {
-        method: "PUT",
-        body: payload,
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Failed to update status");
-      }
-      toast.success("Gallery status updated");
-      fetchGalleryItems();
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
-
   const filteredItems = useMemo(() => {
     return galleryItems.filter((item) => {
       const matchesSearch = item.title?.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesStatus = statusFilter === "all" || item.isActive === (statusFilter === "active");
-      return matchesSearch && matchesStatus;
+      return matchesSearch;
     });
-  }, [galleryItems, searchTerm, statusFilter]);
+  }, [galleryItems, searchTerm]);
 
   const gridData = filteredItems.map((item, index) => ({
     ...item,
@@ -221,10 +194,11 @@ export default function HomeGalleryList() {
     {
       field: "title",
       headerName: "Title",
-      width: 220,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.row.title}>
-          <div className="text-truncate" style={{ maxWidth: "200px" }}>
+          <div className="text-truncate" style={{ maxWidth: "100%" }}>
             {params.row.title}
           </div>
         </Tooltip>
@@ -246,50 +220,14 @@ export default function HomeGalleryList() {
         )
       ),
     },
-    {
-      field: "link",
-      headerName: "Link",
-      width: 200,
-      renderCell: (params) => (
-        params.row.link ? (
-          <a href={params.row.link} target="_blank" rel="noreferrer" className="text-truncate" style={{ maxWidth: "180px" }}>
-            {params.row.link}
-          </a>
-        ) : (
-          <span className="text-muted">—</span>
-        )
-      ),
-    },
-    {
-      field: "isActive",
-      headerName: "Status",
-      width: 140,
-      renderCell: (params) => (
-        <button
-          className={`badge ${params.row.isActive ? "bg-success" : "bg-secondary"}`}
-          style={{ border: "none", cursor: "pointer" }}
-          onClick={() => handleStatusToggle(params.row)}
-        >
-          {params.row.isActive ? "Active" : "Hidden"}
-        </button>
-      ),
-    },
-    {
-      field: "createdAt",
-      headerName: "Created",
-      width: 150,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {params.row.createdAt ? new Date(params.row.createdAt).toLocaleDateString() : "—"}
-        </span>
-      ),
-    },
    {
     field: "actions",
     headerName: "Actions",
-    width: 200,
+    width: 180,
     sortable: false,
     filterable: false,
+    align: 'center',
+    headerAlign: 'center',
     renderCell: (params) => (
       <div className="d-flex gap-2 align-items-center">
 
@@ -375,7 +313,7 @@ export default function HomeGalleryList() {
   ];
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: '100%', maxWidth: '100%', margin: 0, padding: 0 }}>
       <ToastContainer position="top-right" autoClose={4000} />
 
       <ConfirmationModal
@@ -430,12 +368,6 @@ export default function HomeGalleryList() {
                   className={styles.viewValue}
                   dangerouslySetInnerHTML={{ __html: viewModal.entry.description || "—" }}
                 />
-              </div>
-              <div className={styles.viewField}>
-                <label className={styles.viewLabel}>Status</label>
-                <div className={styles.viewValue}>
-                  {viewModal.entry.isActive ? "Active" : "Hidden"}
-                </div>
               </div>
               <div className={styles.viewField}>
                 <label className={styles.viewLabel}>Created At</label>
@@ -497,18 +429,6 @@ export default function HomeGalleryList() {
                   onChange={(e) => setFormData({ ...formData, link: e.target.value })}
                   placeholder="https://example.com"
                 />
-              </div>
-
-              <div className={styles.formField}>
-                <label className={styles.formLabel}>Visibility</label>
-                <select
-                  className={styles.formSelect}
-                  value={formData.isActive ? "active" : "hidden"}
-                  onChange={(e) => setFormData({ ...formData, isActive: e.target.value === "active" })}
-                >
-                  <option value="active">Active</option>
-                  <option value="hidden">Hidden</option>
-                </select>
               </div>
 
               <div className={styles.formField}>
@@ -620,19 +540,6 @@ export default function HomeGalleryList() {
                 )}
               </div>
             </div>
-            <div className={styles.filtersContainer}>
-              <div className={styles.filterGroup}>
-                <select
-                  value={statusFilter}
-                  onChange={(e) => setStatusFilter(e.target.value)}
-                  className={styles.filterSelect}
-                >
-                  <option value="all">All Status</option>
-                  <option value="active">Active</option>
-                  <option value="hidden">Hidden</option>
-                </select>
-              </div>
-            </div>
           </div>
           <div className={styles.actionBarRight}>
             <button onClick={openAddForm} className={styles.addButton}>
@@ -646,29 +553,31 @@ export default function HomeGalleryList() {
         </div>
       </div>
 
-      <CommonDataGrid
-        data={gridData}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20]}
-        initialPageSize={10}
-        noDataMessage="No gallery items found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all"
-            ? "Try adjusting your filters or search query."
-            : "Create your first gallery item to showcase on the home page."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all")
-            ? { onClick: openAddForm, text: "Create Gallery Item" }
-            : null
-        }
-        loadingMessage="Loading gallery items..."
-        showSerialNumber
-        serialNumberField="srNo"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={80}
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={gridData}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20]}
+          initialPageSize={10}
+          noDataMessage="No gallery items found"
+          noDataDescription={
+            searchTerm
+              ? "Try adjusting your search query."
+              : "Create your first gallery item to showcase on the home page."
+          }
+          noDataAction={
+            (!searchTerm)
+              ? { onClick: openAddForm, text: "Create Gallery Item" }
+              : null
+          }
+          loadingMessage="Loading gallery items..."
+          showSerialNumber
+          serialNumberField="srNo"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={80}
+        />
+      </div>
     </div>
   );
 }

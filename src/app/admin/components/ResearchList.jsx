@@ -293,10 +293,11 @@ export default function ResearchList() {
     {
       field: "name",
       headerName: "Name",
-      width: 280,
+      flex: 1,
+      minWidth: 280,
       renderCell: (params) => (
         <Tooltip content={params.row.name}>
-          <div style={{ maxWidth: 260 }} className="text-truncate">{params.row.name}</div>
+          <div style={{ maxWidth: "100%" }} className="text-truncate">{params.row.name}</div>
         </Tooltip>
       )
     },
@@ -312,21 +313,6 @@ export default function ResearchList() {
       }
     },
     {
-      field: "link",
-      headerName: "Link",
-      width: 180,
-      renderCell: (params) => {
-        const l = params.row.link || params.row.link_url || "";
-        if (!l) return <span>—</span>;
-        const isExternal = /^https?:\/\//i.test(l);
-        return (
-          <a href={isExternal ? l : (String(l).startsWith("http") ? l : l)} target="_blank" rel="noreferrer" className="text-truncate" style={{ display: "inline-block", maxWidth: 160 }}>
-            {l}
-          </a>
-        );
-      }
-    },
-    {
       field: "image",
       headerName: "Image",
       width: 120,
@@ -338,12 +324,6 @@ export default function ResearchList() {
       }
     },
     {
-      field: "createdAt",
-      headerName: "Created At",
-      width: 170,
-      renderCell: (params) => <div>{formatDate(params.row.createdAt)}</div>
-    },
-    {
       field: "actions",
       headerName: "Actions",
       width: 220,
@@ -351,6 +331,7 @@ export default function ResearchList() {
       filterable: false,
       align: "center",
       headerAlign: "center",
+      flex: 0,
       renderCell: (params) => {
         const item = params.row;
         return (
@@ -391,7 +372,7 @@ export default function ResearchList() {
   // RENDER
   // ----------------------
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", maxWidth: "none", margin: 0, padding: 0, position: "relative", left: 0, right: 0 }}>
       <ToastContainer position="top-right" autoClose={4000} />
 
       {/* Delete confirmation */}
@@ -545,20 +526,6 @@ export default function ResearchList() {
           </select>
         </div>
 
-        {/* Link URL */}
-        <div className={styles.formField}>
-          <label className={styles.formLabel}>Link</label>
-          <input
-            className={styles.formInput}
-            value={subModal.data.link}
-            onChange={(e) =>
-              setSubModal({
-                ...subModal,
-                data: { ...subModal.data, link: e.target.value },
-              })
-            }
-          />
-        </div>
 
         {/* Image Upload */}
         <div className={styles.formField}>
@@ -656,18 +623,20 @@ export default function ResearchList() {
       </div>
 
       {/* Grid */}
-      <CommonDataGrid
-        data={gridData}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15]}
-        initialPageSize={10}
-        noDataMessage="No subcategories found"
-        loadingMessage="Loading subcategories..."
-        showSerialNumber
-        serialNumberField="srNo"
-        serialNumberHeader="Sr.no."
-      />
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <CommonDataGrid
+          data={gridData}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15]}
+          initialPageSize={10}
+          noDataMessage="No subcategories found"
+          loadingMessage="Loading subcategories..."
+          showSerialNumber
+          serialNumberField="srNo"
+          serialNumberHeader="Sr.no."
+        />
+      </div>
     </div>
   );
 }

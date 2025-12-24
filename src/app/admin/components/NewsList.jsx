@@ -114,8 +114,6 @@ export default function NewsList() {
   }, [formData.description, editor]);
 
 
-  const [statusFilter, setStatusFilter] = useState("all");
-  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
   const [authorFilter, setAuthorFilter] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -360,24 +358,18 @@ export default function NewsList() {
     setImagePreview(preview);
   };
 
-  const uniqueStatuses = useMemo(() => {
-    const statuses = [...new Set(news.map(item => item.status).filter(Boolean))];
-    return statuses.sort();
-  }, [news]);
-
-  // Filter news by status, author, and search term
+  // Filter news by author and search term
   const filteredNews = useMemo(() => {
     return news.filter((item) => {
-      const statusMatch = statusFilter === "all" || item.status === statusFilter;
       const authorMatch = authorFilter === "all" || item.author === authorFilter;
       const searchMatch = searchTerm === "" ||
         item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (item.author && item.author.toLowerCase().includes(searchTerm.toLowerCase()));
 
-      return statusMatch && authorMatch && searchMatch;
+      return authorMatch && searchMatch;
     });
-  }, [news, statusFilter, authorFilter, searchTerm]);
+  }, [news, authorFilter, searchTerm]);
 
   // Define table columns for Common DataGrid
   const columns = [
@@ -385,10 +377,11 @@ export default function NewsList() {
     {
       field: 'title',
       headerName: 'Title',
-      width: 180,
+      flex: 1,
+      minWidth: 180,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="fw-medium text-truncate" style={{ maxWidth: '180px' }} title={params.value}>
+          <div className="fw-medium text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
@@ -431,6 +424,7 @@ export default function NewsList() {
       filterable: false,
       align: 'center',
       headerAlign: 'center',
+      flex: 0,
       renderCell: (params) => (
         <div className="d-flex justify-content-center align-items-center gap-2">
           {/* View Button */}
@@ -573,35 +567,6 @@ export default function NewsList() {
               </div>
             </div>
 
-            {/* Filters */}
-            <div className={styles.filtersContainer}>
-              <div className={styles.filterGroup}>
-                <div className={styles.filterSelectWrapper}>
-                  <select
-                    value={statusFilter}
-                    onChange={(e) => {
-                      setStatusFilter(e.target.value);
-                      setStatusDropdownOpen(false);
-                    }}
-                    onMouseDown={() => setStatusDropdownOpen(!statusDropdownOpen)}
-                    className={styles.filterSelect}
-                  >
-                    <option value="all">All Status</option>
-                    {uniqueStatuses.map((status) => (
-                      <option key={status} value={status}>
-                        {status.charAt(0).toUpperCase() + status.slice(1)}
-                      </option>
-                    ))}
-                  </select>
-                  <span className={`${styles.dropdownIcon} ${statusDropdownOpen ? styles.rotatedIcon : ''}`}>
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-            </div>
           </div>
 
           {/* Right Section - Actions */}
@@ -636,30 +601,32 @@ export default function NewsList() {
 
 
       {/* Enhanced Data Table */}
-      <CommonDataGrid
-        data={filteredNews}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No news found"
-        noDataDescription={
-          searchTerm || statusFilter !== "all" || authorFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first news."
-        }
-        noDataAction={
-          (!searchTerm && statusFilter === "all" && authorFilter === "all") ? {
-            onClick: () => setFormMode("add"),
-            text: "Create First News"
-          } : null
-        }
-        loadingMessage="Loading news..."
-        showSerialNumber={true}
-        serialNumberField="id"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: "100%", overflowX: "auto" }}>
+        <CommonDataGrid
+          data={filteredNews}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No news found"
+          noDataDescription={
+            searchTerm || authorFilter !== "all"
+              ? "Try adjusting your search criteria or filters."
+              : "Get started by creating your first news."
+          }
+          noDataAction={
+            (!searchTerm && authorFilter === "all") ? {
+              onClick: () => setFormMode("add"),
+              text: "Create First News"
+            } : null
+          }
+          loadingMessage="Loading news..."
+          showSerialNumber={true}
+          serialNumberField="id"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
 
       {/* Modal for Add/Edit Form */}

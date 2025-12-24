@@ -646,7 +646,6 @@
   }
 }
 
-/* ---------- LEFT CONTENT ---------- */
 .lifeSection {
   background: #0046ad;
   color: #fff;
@@ -714,7 +713,6 @@
   }
 }
 
-/* ---------- RIGHT GRID ---------- */
 .rightGrid {
   display: flex;
   flex-wrap: wrap;

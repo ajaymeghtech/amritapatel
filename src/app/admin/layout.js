@@ -104,16 +104,16 @@ export default function AdminLayout({ children }) {
           </svg>
         )
       },
-      {
-        label: "Academic Calendars",
-        path: "/admin/academic-calendars",
-        permission: "academic-calendars.create",
-        icon: (
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 10h18M3 14h18M3 18h18M7 6v12M17 6v12" />
-          </svg>
-        )
-      },
+      // {
+      //   label: "Academic Calendars",
+      //   path: "/admin/academic-calendars",
+      //   permission: "academic-calendars.create",
+      //   icon: (
+      //     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 10h18M3 14h18M3 18h18M7 6v12M17 6v12" />
+      //     </svg>
+      //   )
+      // },
       {
         label: "Announcement",
         path: "/admin/announcement",
@@ -124,16 +124,16 @@ export default function AdminLayout({ children }) {
           </svg>
         ),
         submenu: [
-          {
-            label: "Category",
-            path: "/admin/announcement_category",
-            permission: "announcement_category.manage",
-            icon: (
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6m-6 0a4 4 0 01-3-3.87M9 20a4 4 0 013-3.87M12 12a4 4 0 100-8 4 4 0 000 8z" />
-              </svg>
-            )
-          },
+          // {
+          //   label: "Category",
+          //   path: "/admin/announcement_category",
+          //   permission: "announcement_category.manage",
+          //   icon: (
+          //     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a4 4 0 00-3-3.87M9 20h6m-6 0a4 4 0 01-3-3.87M9 20a4 4 0 013-3.87M12 12a4 4 0 100-8 4 4 0 000 8z" />
+          //     </svg>
+          //   )
+          // },
           {
             label: "Sub Category",
             path: "/admin/announcement",
@@ -155,6 +155,48 @@ export default function AdminLayout({ children }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6h18M3 10h18M3 14h18M3 18h18M7 6v12M17 6v12" />
           </svg>
         )
+      },
+      {
+        label: "Academic",
+        path: null,
+        permission: "academic.manage",
+        icon: (
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
+        ),
+        submenu: [
+          {
+            label: "All Academic",
+            path: "/admin/academic",
+            permission: "academic.manage",
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            )
+          },
+          {
+            label: "Sub-Academic",
+            path: "/admin/sub-academic",
+            permission: "academic.manage",
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            )
+          },
+          {
+            label: "Third Academic",
+            path: "/admin/third-academic",
+            permission: "academic.manage",
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            )
+          },
+        ]
       },
       {
         label: "Banners",
@@ -227,58 +269,16 @@ export default function AdminLayout({ children }) {
           </svg>
         )
       },
-      {
-        label: "Activities",
-        path: null,
-        permission: "activities.manage",
-        icon: (
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-          </svg>
-        ),
-        submenu: [
-          {
-            label: "All Activities",
-            path: "/admin/activities",
-            permission: "activities.manage",
-            icon: (
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-              </svg>
-            )
-          },
-          {
-            label: "Sub-Activities",
-            path: "/admin/sub-activities",
-            permission: "activities.manage",
-            icon: (
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
-            )
-          },
-          {
-            label: "Third Categories",
-            path: "/admin/third-categories",
-            permission: "activities.manage",
-            icon: (
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-              </svg>
-            )
-          },
-        ]
-      },
-      {
-        label: "Home Gallery",
-        path: "/admin/home-gallery",
-        permission: "gallery.manage",
-        icon: (
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h18M3 10h18M7 15h10M5 20h14" />
-          </svg>
-        )
-      },
+      // {
+      //   label: "Home Gallery",
+      //   path: "/admin/home-gallery",
+      //   permission: "gallery.manage",
+      //   icon: (
+      //     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h18M3 10h18M7 15h10M5 20h14" />
+      //     </svg>
+      //   )
+      // },
       {
         label: "Institute",
         path: "/admin/institute",
@@ -288,6 +288,48 @@ export default function AdminLayout({ children }) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h18M3 10h18M7 15h10M5 20h14" />
           </svg>
         )
+      },
+      {
+        label: "SPARSH & Field Activities",
+        path: null,
+        permission: null,
+        icon: (
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v12m6-6H6m-2 7h16a2 2 0 002-2V7a2 2 0 00-2-2H4a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        ),
+        submenu: [
+          {
+            label: "Sparsh",
+            path: "/admin/sparsh",
+            permission: null,
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            )
+          },
+          {
+            label: "Testimonials",
+            path: "/admin/field-testimonials",
+            permission: null,
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            )
+          },
+          {
+            label: "Gallery",
+            path: "/admin/field-gallery",
+            permission: null,
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h18M3 10h18M7 15h10M5 20h14" />
+              </svg>
+            )
+          },
+        ]
       },
       {
         label: "News",
@@ -416,15 +458,57 @@ export default function AdminLayout({ children }) {
           </svg>
         )
       },
+      // {
+      //   label: "Testimonials",
+      //   path: "/admin/testimonials",
+      //   permission: "testimonials.manage",
+      //   icon: (
+      //     <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      //       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+      //     </svg>
+      //   )
+      // },
       {
-        label: "Testimonials",
-        path: "/admin/testimonials",
+        label: "Manage Testimonials",
+        path: null,
         permission: "testimonials.manage",
         icon: (
           <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
           </svg>
-        )
+        ),
+        submenu: [
+          {
+            label: "Categories",
+            path: "/admin/testimonial-categories",
+            permission: null,
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+              </svg>
+            )
+          },
+          {
+            label: "Testimonials",
+            path: "/admin/testimonials-new",
+            permission: null,
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+              </svg>
+            )
+          },
+          {
+            label: "Videos",
+            path: "/admin/testimonial-videos",
+            permission: null,
+            icon: (
+              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+              </svg>
+            )
+          },
+        ]
       },
       {
         label: "Settings",

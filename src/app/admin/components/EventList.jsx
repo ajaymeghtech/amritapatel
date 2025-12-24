@@ -87,8 +87,6 @@ export default function EventList() {
   const [editId, setEditId] = useState(null);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [authorFilter, setAuthorFilter] = useState("all");
-  const [authorDropdownOpen, setAuthorDropdownOpen] = useState(false);
 
   // Image upload state
   const [imagePreview, setImagePreview] = useState(null);
@@ -298,24 +296,18 @@ export default function EventList() {
     });
   };
 
-  const uniqueAuthors = useMemo(() => {
-    const authors = [...new Set(events.map(item => item.author).filter(Boolean))];
-    return authors.sort();
-  }, [events]);
-
-  // Filter events by author and search term
+  // Filter events by search term
   const filteredEvents = useMemo(() => {
     return events.filter((item) => {
-      const authorMatch = authorFilter === "all" || item.author === authorFilter;
       const searchMatch = searchTerm === "" ||
         item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
         (item.author && item.author.toLowerCase().includes(searchTerm.toLowerCase()));
 
-      return authorMatch && searchMatch;
+      return searchMatch;
     });
-  }, [events, authorFilter, searchTerm]);
+  }, [events, searchTerm]);
 
   // Define table columns for Common DataGrid
   const columns = [
@@ -323,24 +315,11 @@ export default function EventList() {
     {
       field: 'name',
       headerName: 'Event Name',
-      width: 180,
+      flex: 1,
+      minWidth: 200,
       renderCell: (params) => (
         <Tooltip content={params.value}>
-          <div className="text-truncate" style={{ maxWidth: '160px' }} title={params.value}>
-            {params.value}
-          </div>
-        </Tooltip>
-      ),
-    },
-
-    // Description column
-    {
-      field: 'description',
-      headerName: 'Description',
-      width: 180,
-      renderCell: (params) => (
-        <Tooltip content={params.value}>
-          <div className="text-muted text-truncate" style={{ maxWidth: '160px' }} title={params.value}>
+          <div className="text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </div>
         </Tooltip>
@@ -351,7 +330,7 @@ export default function EventList() {
     {
       field: 'date',
       headerName: 'Date',
-      width: 120,
+      width: 140,
       renderCell: (params) => (
         <span className="small text-muted">
           {params.value ? new Date(params.value).toLocaleDateString() : 'N/A'}
@@ -363,39 +342,13 @@ export default function EventList() {
     {
       field: 'location',
       headerName: 'Location',
-      width: 120,
+      width: 150,
       renderCell: (params) => (
         <div className="d-flex align-items-center">
-          <span className="small text-truncate" style={{ maxWidth: '120px' }} title={params.value}>
+          <span className="small text-truncate" style={{ maxWidth: '100%' }} title={params.value}>
             {params.value}
           </span>
         </div>
-      ),
-    },
-
-    // Author column
-    {
-      field: 'author',
-      headerName: 'Author',
-      width: 120,
-      renderCell: (params) => (
-        <div className="d-flex align-items-center">
-          <span className="small text-truncate" style={{ maxWidth: '120px' }} title={params.value}>
-            {params.value}
-          </span>
-        </div>
-      ),
-    },
-
-    // Created At column
-    {
-      field: 'createdAt',
-      headerName: 'Created At',
-      width: 110,
-      renderCell: (params) => (
-        <span className="small text-muted">
-          {params.value ? new Date(params.value).toLocaleDateString() : 'N/A'}
-        </span>
       ),
     },
     // Image column
@@ -442,7 +395,7 @@ export default function EventList() {
     {
       field: 'actions',
       headerName: 'Actions',
-      width: 250,
+      width: 180,
       sortable: false,
       filterable: false,
       align: 'center',
@@ -520,7 +473,7 @@ export default function EventList() {
   return (
     <div style={{
       width: '100%',
-      maxWidth: 'none',
+      maxWidth: '100%',
       margin: 0,
       padding: 0,
       position: 'relative',
@@ -588,35 +541,6 @@ export default function EventList() {
                 )}
               </div>
             </div>
-
-            {/* Filters */}
-            <div className={styles.filtersContainer}>
-              <div className={styles.filterGroup}>
-                <div className={styles.filterSelectWrapper}>
-                  <select
-                    value={authorFilter}
-                    onChange={(e) => {
-                      setAuthorFilter(e.target.value);
-                      setAuthorDropdownOpen(false);
-                    }}
-                    onMouseDown={() => setAuthorDropdownOpen(!authorDropdownOpen)}
-                    className={styles.filterSelect}
-                  >
-                    <option value="all">All Authors</option>
-                    {uniqueAuthors.map((author) => (
-                      <option key={author} value={author}>
-                        {author}
-                      </option>
-                    ))}
-                  </select>
-                  <span className={`${styles.dropdownIcon} ${authorDropdownOpen ? styles.rotatedIcon : ''}`}>
-                    <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Right Section - Actions */}
@@ -650,30 +574,32 @@ export default function EventList() {
       </div>
 
       {/* Enhanced Data Table */}
-      <CommonDataGrid
-        data={filteredEvents}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No events found"
-        noDataDescription={
-          searchTerm || authorFilter !== "all"
-            ? "Try adjusting your search criteria or filters."
-            : "Get started by creating your first event."
-        }
-        noDataAction={
-          (!searchTerm && authorFilter === "all") ? {
-            onClick: () => setFormMode("add"),
-            text: "Create First Event"
-          } : null
-        }
-        loadingMessage="Loading events..."
-        showSerialNumber={true}
-        serialNumberField="id"
-        serialNumberHeader="Sr.no."
-        serialNumberWidth={100}
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={filteredEvents}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No events found"
+          noDataDescription={
+            searchTerm
+              ? "Try adjusting your search criteria."
+              : "Get started by creating your first event."
+          }
+          noDataAction={
+            !searchTerm ? {
+              onClick: () => setFormMode("add"),
+              text: "Create First Event"
+            } : null
+          }
+          loadingMessage="Loading events..."
+          showSerialNumber={true}
+          serialNumberField="id"
+          serialNumberHeader="Sr.no."
+          serialNumberWidth={100}
+        />
+      </div>
 
       {/* Modal for Add/Edit Form */}
       <Modal

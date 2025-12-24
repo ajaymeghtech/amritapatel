@@ -169,70 +169,26 @@ export default function InstituteList() {
     {
       field: "name",
       headerName: "Name",
-      width: 250,
+      flex: 1,
+      minWidth: 300,
       renderCell: (params) => (
         <Tooltip content={params.row.name}>
-          <div className="text-truncate" style={{ maxWidth: "220px" }}>
+          <div className="text-truncate" style={{ maxWidth: "100%" }}>
             {params.row.name}
           </div>
         </Tooltip>
       ),
     },
     {
-      field: "url",
-      headerName: "Website URL",
-      width: 300,
-      renderCell: (params) => (
-        <Tooltip content={params.row.url}>
-          <div className="text-truncate" style={{ maxWidth: "270px" }}>
-            {params.row.url}
-          </div>
-        </Tooltip>
-      ),
-    },
-    {
-      field: "createdAt",
-      headerName: "Created On",
-      width: 150,
-      renderCell: (params) => (
-        <span>{new Date(params.row.createdAt).toLocaleDateString()}</span>
-      ),
-    },
-
-    {
       field: "actions",
       headerName: "Actions",
-      width: 200,
+      width: 180,
       sortable: false,
       filterable: false,
+      align: 'center',
+      headerAlign: 'center',
       renderCell: (params) => (
         <div className="d-flex gap-2 align-items-center">
-
-          {/* VIEW */}
-          <button
-           onClick={() => setViewModal({ isOpen: true, entry: params.row })}
-            className="btn btn-sm d-flex align-items-center justify-content-center"
-            style={{
-              width: "32px",
-              height: "32px",
-              backgroundColor: "#e0f2fe",
-              border: "none",
-              borderRadius: "6px",
-              padding: 0
-            }}
-            title="View Details"
-            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#bae6fd")}
-            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#e0f2fe")}
-          >
-            <svg width="16" height="16" fill="none" stroke="#0ea5e9" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 
-                 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-            </svg>
-          </button>
-
           {/* EDIT */}
           <button
             onClick={() => handleEdit(params.row)}
@@ -296,7 +252,7 @@ export default function InstituteList() {
   ];
 
   return (
-    <div>
+    <div style={{ width: '100%', maxWidth: '100%', margin: 0, padding: 0 }}>
       <ToastContainer />
 
       <div className={styles.actionBar}>
@@ -340,17 +296,19 @@ export default function InstituteList() {
         </div>
       </div>
 
-      <CommonDataGrid
-        data={gridData}
-        columns={columns}
-        loading={loading}
-        pageSizeOptions={[5, 10, 15, 20, 50]}
-        initialPageSize={10}
-        noDataMessage="No institutes found"
-        loadingMessage="Loading institutes..."
-        showSerialNumber={true}
-        serialNumberHeader="Sr No."
-      />
+      <div style={{ width: '100%', overflow: 'auto' }}>
+        <CommonDataGrid
+          data={gridData}
+          columns={columns}
+          loading={loading}
+          pageSizeOptions={[5, 10, 15, 20, 50]}
+          initialPageSize={10}
+          noDataMessage="No institutes found"
+          loadingMessage="Loading institutes..."
+          showSerialNumber={true}
+          serialNumberHeader="Sr No."
+        />
+      </div>
 
       {/* ADD / EDIT MODAL */}
       <Modal
@@ -377,20 +335,6 @@ export default function InstituteList() {
               />
             </div>
 
-            {/* URL */}
-            <div className={styles.formField}>
-              <label className={styles.formLabel}>
-                Website URL <span className={styles.required}>*</span>
-              </label>
-              <input
-                type="text"
-                className={styles.formInput}
-                required
-                value={formData.url}
-                onChange={(e) => setFormData({ ...formData, url: e.target.value })}
-                placeholder="Enter website URL..."
-              />
-            </div>
           </div>
 
           <div className={styles.formActions}>
