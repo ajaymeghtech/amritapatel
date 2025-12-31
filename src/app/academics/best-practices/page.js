@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
-import academicBanner from '@/app/assets/images/banner/academics_innerbanner.png';
+import academicBanner from '@/app/assets/images/banner/best_practice_anner.jpg';
 
 export default function ExaminationResults() {
 

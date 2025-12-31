@@ -218,20 +218,20 @@ p, li {
 }
 @media (max-width: 1600px) {
   .sectionheading {
-    font-size: 50px;
+    font-size: 40px;
     margin-bottom: 30px;
   }
 }
 @media screen and (max-width: 1400px) {
   .sectionheading {
-    font-size: 40px;
+    font-size: 38px;
     margin-bottom: 30px;
     line-height: 45px;
   }
 }
 @media (max-width: 1199px) {
   .sectionheading {
-    font-size: 40px;
+    font-size: 36px;
     margin-bottom: 25px;
     line-height: 2.5rem;
   }
@@ -275,7 +275,7 @@ p, li {
 }
 @media (max-width: 1600px) {
   .sectionlabel {
-    font-size: 28px;
+    font-size: 22px;
   }
 }
 @media (max-width: 1199px) {
@@ -291,7 +291,7 @@ p, li {
 }
 @media (max-width: 1600px) {
   .sectiondescription {
-    font-size: 1.25rem;
+    font-size: 18px;
   }
 }
 @media (max-width: 767px) {
@@ -1490,6 +1490,12 @@ p, li {
   padding: 16px 32px;
   border-radius: 10px;
 }
+@media (max-width: 1600px) {
+  .getMoreInfoButton {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
 .getMoreInfoButton:hover {
   transform: scale(1.05);
   opacity: 0.9;
@@ -1512,6 +1518,12 @@ p, li {
   text-align: center;
   padding: 16px 32px;
   border-radius: 10px;
+}
+@media (max-width: 1600px) {
+  .moreInfoButton {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
 }
 .moreInfoButton:hover {
   transform: scale(1.05);
@@ -1770,6 +1782,12 @@ p, li {
   background: url("/images/prev.png") no-repeat center center;
   background-size: contain;
 }
+@media (max-width: 1600px) {
+  .homeGallery .slick-prev:before {
+    width: 22px;
+    height: 22px;
+  }
+}
 .homeGallery .slick-next:before {
   content: "";
   width: 30px;
@@ -1782,6 +1800,12 @@ p, li {
   opacity: 1;
   background: url("/images/next.png") no-repeat center center;
   background-size: contain;
+}
+@media (max-width: 1600px) {
+  .homeGallery .slick-next:before {
+    width: 22px;
+    height: 22px;
+  }
 }
 .homeGallery .galleryInfo {
   display: flex;

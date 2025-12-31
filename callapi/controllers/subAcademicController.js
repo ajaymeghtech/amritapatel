@@ -5,7 +5,7 @@ const Academic = require("../models/academicModel");
 const createSubAcademic = async (req, res) => {
     
   try {
-    const { academicId, title, content, status } = req.body;
+    const { academicId, title, content, eventType, leadFacilitator, venueAffiliation, coFacilitator, date, existingImages } = req.body;
 
     if (!academicId || !title) {
       return res.status(400).json({
@@ -22,11 +22,38 @@ const createSubAcademic = async (req, res) => {
       });
     }
 
+    // Handle single image (backward compatibility)
+    const image = req.files?.image?.[0] ? `/uploads/sub-academic/${req.files.image[0].filename}` : null;
+
+    // Handle multiple images
+    let images = [];
+    if (existingImages) {
+      try {
+        const parsed = JSON.parse(existingImages);
+        images = Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        images = [];
+      }
+    }
+
+    // Add new uploaded images
+    if (req.files?.images && Array.isArray(req.files.images)) {
+      req.files.images.forEach((file) => {
+        images.push(`/uploads/sub-academic/${file.filename}`);
+      });
+    }
+
     const data = await SubAcademic.create({
       academicId,
       title,
-      content,
-      status,
+      content: content || "",
+      image, // Keep for backward compatibility
+      images, // Array of images
+      eventType: eventType || "",
+      leadFacilitator: leadFacilitator || "",
+      venueAffiliation: venueAffiliation || "",
+      coFacilitator: coFacilitator || "",
+      date: date ? new Date(date) : null,
     });
 
     res.status(201).json({
@@ -89,9 +116,60 @@ const getSubAcademicById = async (req, res) => {
 // UPDATE
 const updateSubAcademic = async (req, res) => {
   try {
+    const { academicId, title, content, eventType, leadFacilitator, venueAffiliation, coFacilitator, date, existingImages } = req.body;
+    
+    // Get existing record to preserve images
+    const existing = await SubAcademic.findById(req.params.id);
+    if (!existing) {
+      return res.status(404).json({
+        status: false,
+        message: "SubAcademic not found",
+      });
+    }
+
+    const updatedData = {
+      academicId,
+      title,
+      content: content || "",
+      eventType: eventType || "",
+      leadFacilitator: leadFacilitator || "",
+      venueAffiliation: venueAffiliation || "",
+      coFacilitator: coFacilitator || "",
+      date: date ? new Date(date) : null,
+    };
+
+    // Handle single image (backward compatibility)
+    if (req.files?.image?.[0]) {
+      updatedData.image = `/uploads/sub-academic/${req.files.image[0].filename}`;
+    }
+
+    // Handle multiple images - merge existing with new
+    let images = [];
+    if (existingImages) {
+      try {
+        const parsed = JSON.parse(existingImages);
+        images = Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        // If parsing fails, use existing images from database
+        images = existing.images || [];
+      }
+    } else {
+      // If no existingImages provided, keep current images
+      images = existing.images || [];
+    }
+
+    // Add new uploaded images
+    if (req.files?.images && Array.isArray(req.files.images)) {
+      req.files.images.forEach((file) => {
+        images.push(`/uploads/sub-academic/${file.filename}`);
+      });
+    }
+
+    updatedData.images = images;
+
     const updated = await SubAcademic.findByIdAndUpdate(
       req.params.id,
-      req.body,
+      updatedData,
       { new: true } 
     );
 

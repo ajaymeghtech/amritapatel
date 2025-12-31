@@ -1,14 +1,33 @@
 const mongoose = require('mongoose');
 
 const AnnouncementSchema = new mongoose.Schema({
-  title: { type: String, required: true },
+   title: { type: String, required: true , maxlength: [200, "Title cannot exceed 200 characters"], },
   shortTitle: { type: String },            // optional shorter label like "Merit List 2025-2026"
   icon: { type: String },                  // URL or icon class name
   content: { type: String },               // full announcement body / description
   category: { type: String, default: 'general' }, // e.g., "Merit List", "Counseling"
-  startDate: { type: Date },               // optional visible-from
-  endDate: { type: Date },                 // optional visible-until
-  link: { type: String },                  // optional link
+startDate: {
+  type: Date,
+},
+endDate: {
+  type: Date,
+  validate: {
+    validator: function (value) {
+      // allow if either date is missing
+      if (!value || !this.startDate) return true;
+
+      return value >= this.startDate;
+    },
+    message: "End date must be greater than or equal to start date",
+  },
+},                 // optional visible-until
+  link: {
+  type: String,
+  match: [
+    /^(https?:\/\/)(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/.*)?$/,
+    "Please enter a valid URL",
+  ],
+},               // optional link
   // NEW: calendar date for the announcement
   date: { type: Date },
   location: { type: String },             // NEW
@@ -20,11 +39,15 @@ const AnnouncementSchema = new mongoose.Schema({
     required: true
   },
 
-  images: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "AnnouncementImage",
-  }],
-
+   image: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return /\.(png|jpg|jpeg)$/i.test(value);
+      },
+      message: "Only PNG and JPG images are allowed",
+    },
+  },
 
   isPublished: { type: Boolean, default: true },
   meta: { type: Object },                  // extra metadata if needed

@@ -22,17 +22,18 @@
 
 .heroOverlay { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(to bottom, #CFF0FF00 0%, #00183DE5 100%); z-index: 3; width: 100%; height: 380px; opacity: 1; }
 
-.heroContent { position: relative; z-index: 4; height: 100%; display: flex; align-items: flex-end; justify-content: center; text-align: center; color: white; padding: 0 20px 80px 20px; }
+.heroContent { position: relative; z-index: 4; height: 100%; display: flex; align-items: flex-end; justify-content: center;
+   text-align: center; color: white; padding: 0 20px 50px 20px; }
 
 .heroTextWrapper { max-width: 1200px; width: 100%; }
 
 .heroTitle { font-size: 80px; color: #FFFFFF; font-weight: $font-weight-semibold; 
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 0, 0, 0.3); 
   line-height: 1.2;  letter-spacing: -2px; margin: 0 auto 20px; 
-
+  @include desktop { font-size: 50px; }   
   @include mini-desktop { font-size: 70px; } 
     @media screen and (max-width:1400px){
-    font-size: 70px;
+    font-size: 50px;
   }
   @include tab { font-size: 50px; padding-bottom: 60px; } 
   @include phone { font-size: 36px; padding-bottom: 40px; letter-spacing: -0.5px; } }
@@ -946,6 +947,17 @@
   &:active {
     transform: translateX(-2px);
   }
+  @include big-desktop{
+    font-size: 14px;
+    padding: 18px 12px;
+    min-height: 160px;
+  }
+  @include desktop{
+    font-size: 12px;
+    padding: 16px 10px;
+    min-height: 140px;
+  }
+
 }
 
 // Responsive - Hide on mobile

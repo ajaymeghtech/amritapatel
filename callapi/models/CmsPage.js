@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cmsPageSchema = new mongoose.Schema(
   {
     page_key: { type: String, trim: true },
-    title: { type: String, trim: true },
+     title: { type: String, required: true , maxlength: [200, "Title cannot exceed 200 characters"], },
     slug: { type: String, trim: true },
     content: { type: String, default: "" },
     description_1: { type: String, default: "" },

@@ -4,7 +4,15 @@ const AnnouncementImageSchema = new mongoose.Schema({
   title: { type: String, required: true },
   short_description: { type: String },
   description: { type: String },
-  image: { type: String },
+   image: {
+    type: String,
+    validate: {
+      validator: function (value) {
+        return /\.(png|jpg|jpeg)$/i.test(value);
+      },
+      message: "Only PNG and JPG images are allowed",
+    },
+  },
   announcement_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Announcement",

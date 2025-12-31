@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
+  trailingSlash: true,
+  reactStrictMode: false,
   images: {
-    domains: ['localhost'],
+    unoptimized: true,
+    domains: [],
+    // domains: ['localhost'],
   },
   serverExternalPackages: ['axios'],
   // Temporarily disable Turbopack to avoid manifest issues
@@ -15,3 +20,5 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
+

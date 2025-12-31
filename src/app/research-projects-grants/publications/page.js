@@ -73,6 +73,7 @@ export default function Publications() {
                                 <a
                                     href={item.file}
                                     className="pdfBox"
+                                    download
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -88,7 +89,6 @@ export default function Publications() {
                             </div>
                         ))}
                     </div>
-
 
                 </div>
             </div>

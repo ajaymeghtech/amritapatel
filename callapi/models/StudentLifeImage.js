@@ -9,7 +9,9 @@ const StudentLifeImageSchema = new mongoose.Schema({
   },
 
   title: { type: String, required: true },
+  short_description: { type: String, default: "" },
   description: { type: String, default: "" },
+  sortOrder: { type: String, default: "" },
   image: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }

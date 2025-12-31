@@ -52,9 +52,9 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 }
 
 .sectionheading { font-size: 50px; font-weight: 400; margin-bottom: 50px; color: $text-heading-color; line-height: 60px;
-  @include desktop { font-size: 50px; margin-bottom: 30px; }
-  @media screen and (max-width:1400px) { font-size: 40px; margin-bottom: 30px; line-height:45px; }
-  @include mini-desktop { font-size: 40px; margin-bottom: 25px; line-height: $line-height-40; }
+  @include desktop { font-size: 40px; margin-bottom: 30px; }
+  @media screen and (max-width:1400px) { font-size: 38px; margin-bottom: 30px; line-height:45px; }
+  @include mini-desktop { font-size: 36px; margin-bottom: 25px; line-height: $line-height-40; }
   @include tab { font-size: 40px; margin-bottom: 20px; line-height: $line-height-40; }
   @include phone { font-size: 35px; margin-bottom: 20px; line-height: $line-height-40; }
 }
@@ -67,12 +67,12 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 
 .sectionlabel { font-size: 30px; font-weight: -weight-normal; white-space: nowrap; color: -primary; flex-shrink: 0; margin-bottom: 0px;
   &.announcementTitle { color: $accent-yellow; } 
-  @include desktop  { font-size: 28px; }
+  @include desktop  { font-size: 22px; }
   @include mini-desktop {  font-size:$font-size-xl; }
 }
 
 .sectiondescription { font-size: $font-size-2_5xl; color: $text-body-color; font-weight: -weight-normal; 
-  @include desktop { font-size: $font-size-xl; }
+  @include desktop { font-size: 18px; }
   @include phone { font-size: $font-size-xl; }
 }
 
@@ -496,6 +496,7 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 .getMoreInfoButton { background: $accent-yellow; display: flex; align-items: center; justify-content: center;
    cursor: pointer; transition: all 0.3s ease; font-size: 18px; font-weight: 600; color: $brand-blue; text-align: center;
     padding: 16px 32px; border-radius: 10px; 
+    @include desktop{ padding: 12px 24px; font-size: 16px; }
   &:hover { transform: scale(1.05); opacity: 0.9; }
   a { color: $brand-blue; text-decoration: none; }
 }
@@ -503,6 +504,7 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
 .moreInfoButton { background: $accent-yellow; display: flex; align-items: center; justify-content: center; 
   cursor: pointer; transition: all 0.3s ease; font-size: 18px; font-weight: 600; color: $brand-blue; text-align: center; 
   padding: 16px 32px; border-radius: 10px; 
+    @include desktop{ padding: 12px 24px; font-size: 16px; }
   &:hover { transform: scale(1.05); opacity: 0.9; }
   a { color: $brand-blue; text-decoration: none; }
 }
@@ -575,8 +577,15 @@ p,li { font-size: $font-size-2_5xl;; color:  $text-body-color; line-height: $lin
       &.slick-prev { right:17%; }
     }
   }
-  .slick-prev:before { content: ""; width: 30px; height: 30px; display: block; opacity: 1; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: url('/images/prev.png') no-repeat center center; background-size: contain; }
-  .slick-next:before { content: ""; width: 30px; height: 30px; display: block; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 1; background: url('/images/next.png') no-repeat center center; background-size: contain; }
+  .slick-prev:before { content: ""; width: 30px; height: 30px; display: block; opacity: 1; position: absolute; top: 50%; left: 50%; 
+    transform: translate(-50%, -50%); background: url('/images/prev.png') no-repeat center center; background-size: contain; 
+    @include desktop { width: 22px; height: 22px; }
+  }
+  .slick-next:before { content: ""; width: 30px; height: 30px; display: block; position: absolute; top: 50%; left: 50%;
+     transform: translate(-50%, -50%); opacity: 1; background: url('/images/next.png') no-repeat center center; 
+     background-size: contain; 
+    @include desktop { width: 22px; height: 22px; }
+    }
   .galleryInfo {
   display: flex;
   justify-content: space-between;

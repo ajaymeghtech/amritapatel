@@ -16,7 +16,7 @@ export default function StudentCorner() {
             file: "/pdfs/studentcorner/APCPH_Student_Handbook.pdf",
         },
         {
-            name: "Contents to display for curriculum, module",
+            name: "Curriculum Module",
             file: "/pdfs/studentcorner/curriculum_module.pdf",
         },
     ];
@@ -29,6 +29,7 @@ export default function StudentCorner() {
 
             <div className="publicationSec sectionPadding">
                 <div className="container">
+
                     <div className="row">
                         {publications.map((item, index) => (
                             <div
@@ -38,6 +39,7 @@ export default function StudentCorner() {
                                 <a
                                     href={item.file}
                                     className="pdfBox"
+                                    download
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -53,9 +55,9 @@ export default function StudentCorner() {
                             </div>
                         ))}
                     </div>
+
                 </div>
             </div>
-
             {/* <div className="sectionPadding">
                 <div className="container">
                     <div className="table-responsive">

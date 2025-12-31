@@ -7,6 +7,7 @@ import Innerbanner from "@/app/components/common/Innerbanner";
 import commonBanner from "@/app/assets/images/banner/academic-calendar-innerbanner.jpg";
 import LiteYouTubeEmbed from "react-lite-youtube-embed";
 import "react-lite-youtube-embed/dist/LiteYouTubeEmbed.css";
+import sparshBanner from '@/app/assets/images/banner/sparsh_testimonial_banner.jpg';
 
 export default function Testimonials() {
 

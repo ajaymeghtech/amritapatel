@@ -54,6 +54,14 @@ const faqRouter = require("./routes/faq");
 const videoTestimonial = require("./routes/videoTestimonialRoutes");
 const academicRouter = require("./routes/academicRoutes")
 const subAcademicRouter = require("./routes/subAcademicRoutes");
+const thirdAcademicRouter = require("./routes/thirdAcademicRoutes");
+const sparshRouter = require("./routes/sparshRoutes");
+const fieldTestimonialRouter = require("./routes/fieldTestimonialRoutes");
+const fieldGalleryRouter = require("./routes/fieldGalleryRoutes");
+const animalRouter = require("./routes/animal");
+const testimonialCategoryRouter = require("./routes/testimonialCategoryRoutes");
+const testimonialRouterNew = require("./routes/testimonialRoutes");
+const testimonialVideoRouter = require("./routes/testimonialVideoRoutes");
 
 // routes
 app.use('/api/news', newsRouter);
@@ -78,7 +86,14 @@ app.use("/api/third-categories", thirdCategoriesRouter);
 app.use("/api/video-testimonial", videoTestimonial);
 app.use("/api/academic", academicRouter);
 app.use("/api/sub-academic", subAcademicRouter);
-
+app.use("/api/third-academic", thirdAcademicRouter);
+app.use("/api/sparsh", sparshRouter);
+app.use("/api/field-testimonials", fieldTestimonialRouter);
+app.use("/api/field-gallery", fieldGalleryRouter);
+app.use("/api/animals", animalRouter);
+app.use("/api/testimonial-categories", testimonialCategoryRouter);
+app.use("/api/testimonials-new", testimonialRouterNew);
+app.use("/api/testimonial-videos", testimonialVideoRouter);
 
 //Banners
 const bannerRoutes = require('./routes/bannerRoutes');
@@ -93,6 +108,7 @@ app.use('/api/projects', projectRoutes);
 //login api this 
 app.use('/api/auth', require('./routes/auth'));
 const path = require('path');
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Banner Links

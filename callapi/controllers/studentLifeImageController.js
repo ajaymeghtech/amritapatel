@@ -7,7 +7,7 @@ const StudentLife = require("../models/StudentLife");
 // Create Student Life Image
 exports.createStudentLifeImage = async (req, res) => {
   try {
-    const { student_life_id, title, description } = req.body;
+    const { student_life_id, title, short_description, description, sortOrder } = req.body;
 
     // Validate required fields
     if (!student_life_id || !title) {
@@ -31,7 +31,9 @@ exports.createStudentLifeImage = async (req, res) => {
     const newRecord = await StudentLifeImage.create({
       student_life_id,
       title,
+      short_description: short_description || "",
       description: description || "",
+      sortOrder: sortOrder || "",
       image: imagePath
     });
 
@@ -123,7 +125,9 @@ exports.updateStudentLifeImage = async (req, res) => {
     }
 
     existing.title = req.body.title || existing.title;
-    existing.description = req.body.description || existing.description;
+    existing.short_description = req.body.short_description !== undefined ? req.body.short_description : existing.short_description;
+    existing.description = req.body.description !== undefined ? req.body.description : existing.description;
+    existing.sortOrder = req.body.sortOrder !== undefined ? req.body.sortOrder : existing.sortOrder;
     existing.student_life_id = req.body.student_life_id || existing.student_life_id;
     existing.image = imagePath;
 

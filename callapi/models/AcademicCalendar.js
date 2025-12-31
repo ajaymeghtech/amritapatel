@@ -2,8 +2,22 @@ const mongoose = require('mongoose');
 
 const AcademicCalendarSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  pdf: { type: String, required: true },     // stored path like /uploads/academic-calendars/xxx.pdf
-  years: [{ type: Number }],                 // array of years (e.g., [2023, 2024])
+  pdf: {
+  type: String,
+  required: true,
+  validate: {
+    validator: function (value) {
+      return /\.pdf$/i.test(value);
+    },
+    message: "Only PDF files are allowed",
+  },
+},  // stored path like /uploads/academic-calendars/xxx.pdf
+  year: {
+      type: String,
+      required: true,
+      unique: true,
+      match: [/^(19|20)\d{2}$/, "Please enter a valid year"],
+    },              // array of years (e.g., [2023, 2024])
   description: { type: String },             // optional
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }

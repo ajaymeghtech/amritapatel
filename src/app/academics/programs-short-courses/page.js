@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
-import academicBanner from '@/app/assets/images/banner/academics_innerbanner.png';
+import courceBanner from '@/app/assets/images/banner/short_cource_banner.jpg';
 import { fetchCourses } from "@/app/services/courseService";
 import Link from "next/link";
 
@@ -31,7 +31,7 @@ export default function ProgramsShortCourses() {
   return (
     <>
       <Header />
-      <Innerbanner title="Programs & Short Courses" image={academicBanner} />
+      <Innerbanner title="Programs & Short Courses" image={courceBanner} />
 
       <div className="sectionPadding">
         <div className="container">

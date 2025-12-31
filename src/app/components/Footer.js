@@ -118,7 +118,7 @@ export default function Footer() {
                                     <li>
                                         <div className={styles.contactItem}>
                                             <Image className={styles.footericon} src={locationIcon} alt="location_icon" />
-                                            <p>{settings?.address || 'Gokalanagar, Karamsad - 388325, Gujarat, India'}</p>
+                                            <p>{settings?.address || 'Bhaikaka University Gokalnagar, Karamsad – 388325 Gujarat, India'}</p>
                                         </div>
                                         <div className={styles.contactItem}>
                                             <Image className={styles.footericon} src={callIcon} alt="call_icon" />

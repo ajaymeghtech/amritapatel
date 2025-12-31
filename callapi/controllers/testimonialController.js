@@ -1,28 +1,30 @@
 const fs = require("fs");
 const path = require("path");
-const Testimonial = require("../models/testimonial");
+const Testimonial = require("../models/testimonialModel");
 
 // CREATE
-const createTestimonial = async (req, res) => {
+exports.createTestimonial = async (req, res) => {
   try {
     const photoPath = req.file ? `/uploads/testimonials/${req.file.filename}` : null;
 
-    const item = new Testimonial({
+    const testimonial = new Testimonial({
+      category_id: req.body.category_id,
       name: req.body.name,
       designation: req.body.designation,
       institute: req.body.institute,
       message: req.body.message,
       rating: req.body.rating,
       photo: photoPath,
-      status: req.body.status
+      status: req.body.status || "active",
+      sortOrder: req.body.sortOrder || 0,
     });
 
-    await item.save();
+    await testimonial.save();
 
     res.status(201).json({
       status: true,
       message: "Testimonial created successfully",
-      data: item
+      data: testimonial,
     });
   } catch (err) {
     res.status(500).json({ status: false, message: err.message });
@@ -30,14 +32,23 @@ const createTestimonial = async (req, res) => {
 };
 
 // GET ALL
-const getAllTestimonials = async (req, res) => {
+exports.getAllTestimonials = async (req, res) => {
   try {
-    const data = await Testimonial.find().sort({ createdAt: -1 });
+    const { category_id } = req.query;
+    let filter = {};
+
+    if (category_id) {
+      filter.category_id = category_id;
+    }
+
+    const data = await Testimonial.find(filter)
+      .populate("category_id", "title")
+      .sort({ sortOrder: 1, createdAt: -1 });
 
     res.status(200).json({
       status: true,
       message: "Testimonials fetched successfully",
-      data
+      data,
     });
   } catch (err) {
     res.status(500).json({ status: false, message: err.message });
@@ -45,9 +56,9 @@ const getAllTestimonials = async (req, res) => {
 };
 
 // GET ONE
-const getTestimonialById = async (req, res) => {
+exports.getTestimonialById = async (req, res) => {
   try {
-    const item = await Testimonial.findById(req.params.id);
+    const item = await Testimonial.findById(req.params.id).populate("category_id", "title");
 
     if (!item)
       return res.status(404).json({ status: false, message: "Not found" });
@@ -55,7 +66,7 @@ const getTestimonialById = async (req, res) => {
     res.status(200).json({
       status: true,
       message: "Testimonial fetched successfully",
-      data: item
+      data: item,
     });
   } catch (err) {
     res.status(500).json({ status: false, message: err.message });
@@ -63,7 +74,7 @@ const getTestimonialById = async (req, res) => {
 };
 
 // UPDATE
-const updateTestimonial = async (req, res) => {
+exports.updateTestimonial = async (req, res) => {
   try {
     const item = await Testimonial.findById(req.params.id);
     if (!item)
@@ -80,12 +91,14 @@ const updateTestimonial = async (req, res) => {
       photoPath = `/uploads/testimonials/${req.file.filename}`;
     }
 
-    item.name = req.body.name;
-    item.designation = req.body.designation;
-    item.institute = req.body.institute;
-    item.message = req.body.message;
-    item.rating = req.body.rating;
-    item.status = req.body.status;
+    item.category_id = req.body.category_id || item.category_id;
+    item.name = req.body.name || item.name;
+    item.designation = req.body.designation !== undefined ? req.body.designation : item.designation;
+    item.institute = req.body.institute !== undefined ? req.body.institute : item.institute;
+    item.message = req.body.message || item.message;
+    item.rating = req.body.rating !== undefined ? req.body.rating : item.rating;
+    item.status = req.body.status || item.status;
+    item.sortOrder = req.body.sortOrder !== undefined ? req.body.sortOrder : item.sortOrder;
     item.photo = photoPath;
 
     await item.save();
@@ -93,7 +106,7 @@ const updateTestimonial = async (req, res) => {
     res.status(200).json({
       status: true,
       message: "Testimonial updated successfully",
-      data: item
+      data: item,
     });
   } catch (err) {
     res.status(500).json({ status: false, message: err.message });
@@ -101,7 +114,7 @@ const updateTestimonial = async (req, res) => {
 };
 
 // DELETE
-const deleteTestimonial = async (req, res) => {
+exports.deleteTestimonial = async (req, res) => {
   try {
     const item = await Testimonial.findById(req.params.id);
     if (!item)
@@ -117,17 +130,9 @@ const deleteTestimonial = async (req, res) => {
 
     res.status(200).json({
       status: true,
-      message: "Testimonial deleted successfully"
+      message: "Testimonial deleted successfully",
     });
   } catch (err) {
     res.status(500).json({ status: false, message: err.message });
   }
-};
-
-module.exports = {
-  createTestimonial,
-  getAllTestimonials,
-  getTestimonialById,
-  updateTestimonial,
-  deleteTestimonial
 };

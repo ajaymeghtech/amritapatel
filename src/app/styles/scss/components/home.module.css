@@ -68,7 +68,7 @@
   justify-content: center;
   text-align: center;
   color: white;
-  padding: 0 20px 80px 20px;
+  padding: 0 20px 50px 20px;
 }
 
 .heroTextWrapper {
@@ -85,6 +85,11 @@
   letter-spacing: -2px;
   margin: 0 auto 20px;
 }
+@media (max-width: 1600px) {
+  .heroTitle {
+    font-size: 50px;
+  }
+}
 @media (max-width: 1199px) {
   .heroTitle {
     font-size: 70px;
@@ -92,7 +97,7 @@
 }
 @media screen and (max-width: 1400px) {
   .heroTitle {
-    font-size: 70px;
+    font-size: 50px;
   }
 }
 @media (max-width: 991px) {
@@ -1182,6 +1187,20 @@
 }
 .connectTabContent:active {
   transform: translateX(-2px);
+}
+@media (min-width: 1601px) and (max-width: 1800px) {
+  .connectTabContent {
+    font-size: 14px;
+    padding: 18px 12px;
+    min-height: 160px;
+  }
+}
+@media (max-width: 1600px) {
+  .connectTabContent {
+    font-size: 12px;
+    padding: 16px 10px;
+    min-height: 140px;
+  }
 }
 
 @media (max-width: 991px) {

@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
-import commonBanner from '@/app/assets/images/banner/academic-calendar-innerbanner.jpg';
+import sparshBanner from '@/app/assets/images/banner/sparsh_testimonial_banner.jpg';
 
 import { fetchCourses } from "@/app/services/courseService";
 
@@ -31,7 +31,7 @@ export default function Sparsh() {
     return (
         <>
             <Header />
-            <Innerbanner title="SPARSH" image={commonBanner} />
+            <Innerbanner title="SPARSH" image={sparshBanner} />
             <div className="sectionPadding">
                 <div className="container">
                     <p>Charutar Arogya Mandal (CAM) [currently the sponsoring body of Bhaikaka

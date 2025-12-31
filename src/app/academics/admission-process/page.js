@@ -4,14 +4,14 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
-import academicBanner from '@/app/assets/images/banner/academics_innerbanner.png';
+import admissionBanner from '@/app/assets/images/banner/admission_banner.jpg';
 
 export default function AdmissionProcess() {
 
     return (
         <>
             <Header />
-            <Innerbanner title="Admission Process" image={academicBanner} />
+            <Innerbanner title="Admission Process" image={admissionBanner} />
 
             <div className="sectionPadding admissionpage">
                 <div className="container">
