@@ -58,11 +58,54 @@
 
 //reachUsSection
 
-.reachUsSection { flex: 1; background: #00417A; color: #FFFFFF; 
-     padding: 100px 50px; border-radius: 50px; display: flex; flex-direction: column; justify-content: space-between;
-     .sectionheading,h2 { color: #FFFFFF;}
-      @include desktop { padding: 30px 25px; } @include phone { padding: 25px 20px; } 
+.reachUsSection {
+     flex: 1;
+     background: #00417A;
+     color: #FFFFFF;
+     padding: 100px 50px;
+     border-radius: 50px;
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+
+     .sectionheading,
+     h2 {
+          color: #FFFFFF;
      }
+
+     @include desktop {
+          padding: 30px 25px;
+     }
+
+     @include phone {
+          padding: 25px 20px;
+     }
+
+     .reachUsTitleText {
+          font-size: 25px;
+          line-height: 36px;
+          font-weight: 700;
+          margin-bottom: 15px;
+
+          @include desktop {
+               font-size: 22px;
+          }
+
+          @include phone {
+               font-size: 18px;
+          }
+     }
+
+     .reachUsText {
+          font-size: 25px;
+          line-height: 36px;
+           @include desktop {     font-size: 22px;}
+             @include phone {
+               font-size: 18px;
+          }
+     }
+
+}
 
 .reachUsItem { display: flex; gap: 15px; align-items: flex-start; margin-bottom:10px;
       @include phone { margin-bottom: 18px; } }
@@ -73,15 +116,13 @@
 .reachUsText { font-size: 25px; line-height: 36px; font-weight: 400;
      @include phone { font-size: 18px; } }
 
-.reachUsTitleText { font-size:30px; line-height: 36px; font-weight: 700; margin-bottom: 15px;
-     @include phone { font-size:18px; } }
+// .reachUsTitleText { font-size:30px; line-height: 36px; font-weight: 700; margin-bottom: 15px;
+//      @include desktop { font-size:25px; } 
+//      @include phone { font-size:18px; } 
+// }
 
-.socialIcons { display: flex; gap: 16px; margin-top: 30px; justify-content: flex-start; padding-left: 46px;
-     a { width: 38px; display: flex; align-items: center; justify-content: center; 
-          color: #FFFFFF; 
-          text-decoration: none; font-size: 20px; transition: all 0.3s ease;
-         } 
- @include phone { gap: 12px; a { width: 36px; height: 36px; font-size: 18px; } } }
+
+
 
 .socialImg { width: 31px; object-fit: contain; display: block; }
 
@@ -109,26 +150,33 @@
 }
 
 
-@media screen and (max-width:1400px){
-   .reachUsSection{
-     .reachUsTitleText{
-          font-size:27px;
-     }
-      .reachUsText{
-          font-size:22px;
-     }
-   }
-}
+// @media screen and (max-width:1400px){
+//    .reachUsSection{
+//      .reachUsTitleText{
+//           font-size:27px;
+//      }
+//       .reachUsText{
+//           font-size:22px;
+//      }
+//    }
+// }
 
-@media screen and (max-width:1300px){
-   .reachUsSection{
-     .reachUsTitleText{
-          font-size:24px;
-          line-height: 25px;
-     }
-     .reachUsText{
-          font-size:20px;
-          line-height: 30px;
-     }
-   }
-}
+// @media screen and (max-width:1300px){
+//    .reachUsSection{
+//      .reachUsTitleText{
+//           font-size:24px;
+//           line-height: 25px;
+//      }
+//      .reachUsText{
+//           font-size:20px;
+//           line-height: 30px;
+//      }
+//    }
+// }
+
+.socialIcons { display: flex; gap: 16px; margin-top: 30px; justify-content: flex-start; padding-left: 46px;
+     a { width: 38px; display: flex; align-items: center; justify-content: center; 
+          color: #FFFFFF; 
+          text-decoration: none; font-size: 20px; transition: all 0.3s ease;
+         } 
+ @include phone { gap: 12px; a { width: 36px; height: 36px; font-size: 18px; } } }

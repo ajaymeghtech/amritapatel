@@ -105,7 +105,8 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.reachUsSection .sectionheading, .reachUsSection h2 {
+.reachUsSection .sectionheading,
+.reachUsSection h2 {
   color: #FFFFFF;
 }
 @media (max-width: 1600px) {
@@ -116,6 +117,36 @@
 @media (max-width: 767px) {
   .reachUsSection {
     padding: 25px 20px;
+  }
+}
+.reachUsSection .reachUsTitleText {
+  font-size: 25px;
+  line-height: 36px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+@media (max-width: 1600px) {
+  .reachUsSection .reachUsTitleText {
+    font-size: 22px;
+  }
+}
+@media (max-width: 767px) {
+  .reachUsSection .reachUsTitleText {
+    font-size: 18px;
+  }
+}
+.reachUsSection .reachUsText {
+  font-size: 25px;
+  line-height: 36px;
+}
+@media (max-width: 1600px) {
+  .reachUsSection .reachUsText {
+    font-size: 22px;
+  }
+}
+@media (max-width: 767px) {
+  .reachUsSection .reachUsText {
+    font-size: 18px;
   }
 }
 
@@ -158,44 +189,6 @@
     font-size: 18px;
   }
 }
-.reachUsIcon .reachUsTitleText {
-  font-size: 30px;
-  line-height: 36px;
-  font-weight: 700;
-  margin-bottom: 15px;
-}
-@media (max-width: 767px) {
-  .reachUsIcon .reachUsTitleText {
-    font-size: 18px;
-  }
-}
-.reachUsIcon .socialIcons {
-  display: flex;
-  gap: 16px;
-  margin-top: 30px;
-  justify-content: flex-start;
-  padding-left: 46px;
-}
-.reachUsIcon .socialIcons a {
-  width: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFFFFF;
-  text-decoration: none;
-  font-size: 20px;
-  transition: all 0.3s ease;
-}
-@media (max-width: 767px) {
-  .reachUsIcon .socialIcons {
-    gap: 12px;
-  }
-  .reachUsIcon .socialIcons a {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
-}
 .reachUsIcon .socialImg {
   width: 31px;
   -o-object-fit: contain;
@@ -233,21 +226,30 @@
   cursor: pointer;
 }
 
-@media screen and (max-width: 1400px) {
-  .reachUsSection .reachUsTitleText {
-    font-size: 27px;
-  }
-  .reachUsSection .reachUsText {
-    font-size: 22px;
-  }
+.socialIcons {
+  display: flex;
+  gap: 16px;
+  margin-top: 30px;
+  justify-content: flex-start;
+  padding-left: 46px;
 }
-@media screen and (max-width: 1300px) {
-  .reachUsSection .reachUsTitleText {
-    font-size: 24px;
-    line-height: 25px;
+.socialIcons a {
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+@media (max-width: 767px) {
+  .socialIcons {
+    gap: 12px;
   }
-  .reachUsSection .reachUsText {
-    font-size: 20px;
-    line-height: 30px;
+  .socialIcons a {
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
   }
 }/*# sourceMappingURL=contact-us.module.css.map */
