@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
-import academicBanner from '@/app/assets/images/academic-calendar-innerbanner.jpg';
+import academicBanner from '@/app/assets/images/banner/academic-calendar-innerbanner.jpg';
 import { fetchCourses } from "@/app/services/courseService";
 
 export default function NewsEvents () {

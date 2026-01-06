@@ -34,7 +34,7 @@ export default function Testimonials() {
     <>
       <Header />
 
-      <Innerbanner title="Testimonials" image={commonBanner} />
+      <Innerbanner title="Testimonials" image={sparshBanner} />
 
       <div className="sectionPadding admissionpage">
         <div className="container">

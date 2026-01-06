@@ -5,7 +5,7 @@ import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
-import seminarBanner from '@/app/assets/images/banner/seminar_banner.png';
+import seminarBanner from '@/app/assets/images/banner/seminar_banner.jpg';
 import img1 from "@/app/assets/images/img1.jpg";
 import img2 from "@/app/assets/images/img2.jpg";
 import img3 from "@/app/assets/images/img3.jpg";

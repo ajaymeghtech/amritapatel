@@ -5,14 +5,14 @@ import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "@/app/components/common/Innerbanner";
 import Image from "next/image";
-import studentBanner from '@/app/assets/images/banner/student_corner_banner.png';
+import facultyBanner from '@/app/assets/images/banner/faculty_banner.jpg';
 
 
 export default function Faculty() {
   return (
     <>
       <Header />
-      <Innerbanner title="Faculty" image={studentBanner} />
+      <Innerbanner title="Faculty" image={facultyBanner} />
       <div className="sectionPadding">
         <div className="container">
           <div className="table-responsive">

@@ -5,7 +5,7 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import '@/app/styles/scss/main.scss';
 import Innerbanner from "../components/common/Innerbanner";
-import contactusBanner from '@/app/assets/images/contactuse-innerbanner.png';
+import contactusBanner from '@/app/assets/images/banner/contactuse_banner.jpg';
 import contactStyles from '@/app/styles/scss/components/contact-us.module.scss';
 import locationIcon from '@/app/assets/icons/location-white.svg';
 import emailIcon from '@/app/assets/icons/email_white.svg';
